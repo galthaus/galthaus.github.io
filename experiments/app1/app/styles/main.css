@@ -1,7 +1,27 @@
+ @font-face {
+  font-family: gunslinger;
+  src: url(GunslingerDEMO-KCFonts.ttf);
+}
+ @font-face {
+  font-family: westerne;
+  src: url(WESTERNE.TTF);
+}
+ @font-face {
+  font-family: carnivalee;
+  src: url(CF.ttf);
+}
+@font-face {
+  font-family: typodermic;
+  src: url(typodermic.ttf);
+}
+
+
 /* Space out content a bit */
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+  background-image: url("indaris_parchment.jpg");
+  font-family: carnivalee;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -15,6 +35,7 @@ body {
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
+  font-family: gunslinger;
 }
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
@@ -29,6 +50,7 @@ body {
   padding-top: 19px;
   color: #777;
   border-top: 1px solid #e5e5e5;
+  font-family: gunslinger;
 }
 
 /* Customize container */
@@ -77,3 +99,4 @@ body {
     border-bottom: 0;
   }
 }
+
