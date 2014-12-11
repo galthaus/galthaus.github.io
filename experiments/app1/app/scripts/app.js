@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name dicerRollerApp
+ * @name wildWestCharSheetApp
  * @description
- * # dicerRollerApp
+ * # wildWestCharSheetApp
  *
  * Main module of the application.
  */
 angular
-  .module('dicerRollerApp', [
+  .module('wildWestCharSheetApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',

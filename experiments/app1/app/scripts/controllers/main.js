@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name dicerRollerApp.controller:MainCtrl
+ * @name wildWestCharSheetApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the dicerRollerApp
+ * Controller of the wildWestCharSheetApp
  */
-angular.module('dicerRollerApp')
+angular.module('wildWestCharSheetApp')
   .controller('MainCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

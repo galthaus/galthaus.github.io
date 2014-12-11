@@ -24,6 +24,45 @@ body {
   font-family: carnivalee;
 }
 
+div.ability {
+  max-width: 200px;
+  border-style: solid;
+  border-width: 5px;
+  float: left;
+}
+
+div.miscellaneous {
+  max-width: 500px;
+  border-style: solid;
+  border-width: 5px;
+  float: right;
+}
+
+.title {
+  background-color: #000000;
+  color: #ffffff;
+  text-align: center;
+}
+
+th {
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+
+td {
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+
+td.attribute {
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: left;
+  font-weight: bold;
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -51,6 +90,9 @@ body {
   color: #777;
   border-top: 1px solid #e5e5e5;
   font-family: gunslinger;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 /* Customize container */
