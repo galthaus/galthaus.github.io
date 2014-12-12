@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the wildWestCharSheetApp
  */
-angular.module('wildWestCharSheetApp').controller('MainCtrl', [ '$scope', 'dataService', function ($scope, dataService) {
+angular.module('wildWestCharSheetApp').controller('MainCtrl', function ($scope, dataService) {
     dataService.getItems().then(function(items) {
       $scope.items=items;
     });
@@ -16,4 +16,4 @@ angular.module('wildWestCharSheetApp').controller('MainCtrl', [ '$scope', 'dataS
       $scope.character = data;
     });
 
-  }]);
+  });

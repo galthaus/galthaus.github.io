@@ -16,7 +16,7 @@ angular.module('wildWestCharSheetApp', [
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($locationProvider, $routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
