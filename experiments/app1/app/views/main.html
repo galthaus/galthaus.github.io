@@ -1,6 +1,6 @@
 
 
-<div>
+<div ng-controller="MainCtrl">
 
 <div class="ability">
   <h3 class="western title">Ability Scores</h3>
@@ -39,5 +39,24 @@
     </tr>
   </table>
 </div>
+
+
+<table>
+<tr>
+<th>Id static</th>
+</tr>
+<tr ng-repeat="item in items">
+<td>{{item}}</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<th>Id character</th>
+</tr>
+<tr ng-repeat="item in character.data">
+<td>{{item}}</td>
+</tr>
+</table>
 
 </div>

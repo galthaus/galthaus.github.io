@@ -7,11 +7,13 @@
  * # MainCtrl
  * Controller of the wildWestCharSheetApp
  */
-angular.module('wildWestCharSheetApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+angular.module('wildWestCharSheetApp').controller('MainCtrl', [ '$scope', 'dataService', function ($scope, dataService) {
+    dataService.getItems().then(function(items) {
+      $scope.items=items;
+    });
+
+    $scope.$on('dataService:character', function(event,data) {
+      $scope.character = data;
+    });
+
+  }]);
