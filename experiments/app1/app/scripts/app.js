@@ -42,7 +42,7 @@ angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource
       itemsDefer.resolve(items);
     } else {
       $.ajax({
-        url: "config-1.json",
+        url: "game-data.json",
         beforeSend: function(xhr){
           if (xhr.overrideMimeType) {
             xhr.overrideMimeType("application/json");
