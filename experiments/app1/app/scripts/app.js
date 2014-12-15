@@ -44,13 +44,13 @@ angular.module('wildWestCharSheetApp').directive('chAttribute', function() {
 });
 
 angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource', '$rootScope', function($q, $resource, $rootScope) {
-  var items=[];
-  var character=[];
+  var items=0;
+  var character=0;
   var service={};
 
   service.getItems=function() {
     var itemsDefer=$q.defer();
-    if(items.length > 0) {
+    if (typeof items != 'number') {
       itemsDefer.resolve(items);
     } else {
       $.ajax({
@@ -72,7 +72,7 @@ angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource
 
   service.getCharacter=function() {
     var itemsDefer=$q.defer();
-    if(character.length > 0) {
+    if (typeof character !== 'number') {
       itemsDefer.resolve(character);
     } else {
       $.ajax({

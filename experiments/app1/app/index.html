@@ -57,22 +57,23 @@
           <li ng-class="{active: isActive('/about')}"><a ng-href="#/about">About</a></li>
           <li ng-class="{active: isActive('/contact')}"><a ng-href="#/">Contact</a></li>
         </ul>
-        <div>
+
         <h3 class="text-muted">Wild West Character Sheet</h3>
-        <input type="file" id="files" name="files[]" value="Select File..."/>
+        <input type="file" id="files" style="display: none;" name="files[]" value="Select File..."/>
+        <div class="button" id="uploadTrigger">Load Character</div>
         <script>
           document.getElementById('files').addEventListener('change', handleFileSelect, false);
+          $("#uploadTrigger").click(function(){ $("#files").click(); });
         </script>
         <input size="15" type="text" ng-model="filename" />
         <input type="button" id="saveCharacter" ng-click="download()" value="Save"/>
-        </div>
       </div>
 
       <div ng-controller="microController" id="microController-div"\>
       <div ng-view=""></div>
 
       <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+        <p><span class="glyphicon glyphicon-heart"></span> from Greg</p>
       </div>
     </div>
 

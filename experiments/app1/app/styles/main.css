@@ -145,3 +145,19 @@ input.attribute {
   }
 }
 
+.hidden {
+  display:none;
+}
+.button {
+  border: 1px solid #333;
+  padding: 10px;
+  margin: 5px;
+  background: #777;
+  color: #fff;
+  width:140px;
+}
+
+.button:hover {
+  background: #333;
+  cursor: pointer;
+}
