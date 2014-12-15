@@ -5,17 +5,17 @@
   "character_info": {
     "attributes": {
       "strength": {
-        "value":  13,
+        "value":  10,
         "tmpadj":  0,
         "mod":  0
       },
       "dexterity": {
-        "value":  15,
+        "value":  10,
         "tmpadj":  0,
         "mod":  0
       },
       "constitution": {
-        "value":  12,
+        "value":  10,
         "tmpadj":  0,
         "mod":  0
       },
@@ -25,7 +25,7 @@
         "mod":  0
       },
       "wisdom": {
-        "value":  16,
+        "value":  10,
         "tmpadj":  0,
         "mod":  0
       },

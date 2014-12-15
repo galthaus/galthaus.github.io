@@ -1,3 +1,26 @@
 {
-  "data": [ "Greg", "John" ]
+  "attributes": [
+    { "order": 0, "short": "STR", "long": "Strength" },
+    { "order": 1, "short": "DEX", "long": "Dexterity" },
+    { "order": 2, "short": "CON", "long": "Constitution" },
+    { "order": 3, "short": "INT", "long": "Intelligence" },
+    { "order": 4, "short": "WIS", "long": "Wisdom" },
+    { "order": 5, "short": "CHA", "long": "Charisma" }
+  ],
+
+  "calculations": [
+    { "value": "character.character_info.attributes.strength.mod", 
+       "eval": "Math.floor((Number(character.character_info.attributes.strength.value) + Number(character.character_info.attributes.strength.tmpadj) - 10) / 2)" },
+    { "value": "character.character_info.attributes.dexterity.mod", 
+       "eval": "Math.floor((Number(character.character_info.attributes.dexterity.value) + Number(character.character_info.attributes.dexterity.tmpadj) - 10) / 2)" },
+    { "value": "character.character_info.attributes.constitution.mod", 
+       "eval": "Math.floor((Number(character.character_info.attributes.constitution.value) + Number(character.character_info.attributes.constitution.tmpadj) - 10) / 2)" },
+    { "value": "character.character_info.attributes.intelligence.mod", 
+       "eval": "Math.floor((Number(character.character_info.attributes.intelligence.value) + Number(character.character_info.attributes.intelligence.tmpadj) - 10) / 2)" },
+    { "value": "character.character_info.attributes.wisdom.mod", 
+       "eval": "Math.floor((Number(character.character_info.attributes.wisdom.value) + Number(character.character_info.attributes.wisdom.tmpadj) - 10) / 2)" },
+    { "value": "character.character_info.attributes.charisma.mod", 
+       "eval": "Math.floor((Number(character.character_info.attributes.charisma.value) + Number(character.character_info.attributes.charisma.tmpadj) - 10) / 2)" }
+  ]
+
 }

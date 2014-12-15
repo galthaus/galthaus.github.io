@@ -31,9 +31,21 @@ angular.module('wildWestCharSheetApp', [
       });
   });
 
+angular.module('wildWestCharSheetApp').directive('chAttribute', function() {
+  return {
+    restrict: 'A',
+    scope: {
+      info: '=info',
+      aname: '@',
+      calculate: '&calculate'
+    },
+    templateUrl: 'views/ch-attribute.html'
+  };
+});
+
 angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource', '$rootScope', function($q, $resource, $rootScope) {
   var items=[];
-  var character={};
+  var character=[];
   var service={};
 
   service.getItems=function() {
@@ -43,16 +55,37 @@ angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource
     } else {
       $.ajax({
         url: "game-data.json",
-        beforeSend: function(xhr){
-          if (xhr.overrideMimeType) {
-            xhr.overrideMimeType("application/json");
-          }
-        },
+        mimeType: "application/json",
         dataType: 'json',
         data: null,
         success: function( data ) {
-          items=data.data;
+          items=data;
           itemsDefer.resolve(items)
+        },
+        error: function(jq, reason, error) {
+          alert(reason + "::" + error);
+        }
+      });
+    }
+    return itemsDefer.promise;
+  };
+
+  service.getCharacter=function() {
+    var itemsDefer=$q.defer();
+    if(character.length > 0) {
+      itemsDefer.resolve(character);
+    } else {
+      $.ajax({
+        url: "character-base.json",
+        mimeType: "application/json",
+        dataType: 'json',
+        data: null,
+        success: function( data ) {
+          character=data;
+          itemsDefer.resolve(character)
+        },
+        error: function(jq, reason, error) {
+          alert(reason + "::" + error);
         }
       });
     }
@@ -62,6 +95,7 @@ angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource
   service.setCharacter=function(data) {
     character = data;
     $rootScope.$broadcast('dataService:character',data);
+    calculate(items, character);
   };
 
   return service;
@@ -128,5 +162,12 @@ function download(strData, strFileName, strMimeType) {
         D.body.removeChild(f);
     }, 333);
     return true;
+}
+
+function calculate(gameData, character) {
+  for (var i = 0; i < gameData.calculations.length; i++) {
+    eval(gameData.calculations[i].value + "=" +
+         gameData.calculations[i].eval);
+  }
 }
 

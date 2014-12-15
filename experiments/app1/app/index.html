@@ -50,19 +50,21 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container">
+    <div class="container" ng-controller="NavCtrl">
       <div class="header">
-        <ul class="nav nav-pills pull-right" ng-controller="NavCtrl">
+        <ul class="nav nav-pills pull-right">
           <li ng-class="{active: isActive('/')}"><a ng-href="#/">Home</a></li>
           <li ng-class="{active: isActive('/about')}"><a ng-href="#/about">About</a></li>
           <li ng-class="{active: isActive('/contact')}"><a ng-href="#/">Contact</a></li>
         </ul>
         <div>
         <h3 class="text-muted">Wild West Character Sheet</h3>
-        <input type="file" id="files" name="files[]"/>
+        <input type="file" id="files" name="files[]" value="Select File..."/>
         <script>
           document.getElementById('files').addEventListener('change', handleFileSelect, false);
         </script>
+        <input size="15" type="text" ng-model="filename" />
+        <input type="button" id="saveCharacter" ng-click="download()" value="Save"/>
         </div>
       </div>
 

@@ -5,13 +5,15 @@
 <div class="ability">
   <h3 class="western title">Ability Scores</h3>
   <table class="attributes">
-    <tr><th></th><th>Score</th><th>Mod</th><th>Temp</th></tr>
-    <tr><td class="attribute">STR</td><td>0</td><td>0</td><td>0</td></tr>
-    <tr><td class="attribute">DEX</td><td>0</td><td>0</td><td>0</td></tr>
-    <tr><td class="attribute">CON</td><td>0</td><td>0</td><td>0</td></tr>
-    <tr><td class="attribute">INT</td><td>0</td><td>0</td><td>0</td></tr>
-    <tr><td class="attribute">WIS</td><td>0</td><td>0</td><td>0</td></tr>
-    <tr><td class="attribute">CHA</td><td>0</td><td>0</td><td>0</td></tr>
+    <thead><tr><th></th><th>Score</th><th>Mod</th><th>Temp</th></tr></thead>
+    <tbody>
+      <tr ch-attribute aname="STR" info="character.character_info.attributes.strength" calculate="calculate()"></tr>
+      <tr ch-attribute aname="DEX" info="character.character_info.attributes.dexterity" calculate="calculate()"></tr>
+      <tr ch-attribute aname="CON" info="character.character_info.attributes.constitution" calculate="calculate()"></tr>
+      <tr ch-attribute aname="INT" info="character.character_info.attributes.intelligence" calculate="calculate()"></tr>
+      <tr ch-attribute aname="WIS" info="character.character_info.attributes.wisdom" calculate="calculate()"></tr>
+      <tr ch-attribute aname="CHA" info="character.character_info.attributes.charisma" calculate="calculate()"></tr>
+    </tbody>
   </table>
 </div>
 
@@ -39,24 +41,5 @@
     </tr>
   </table>
 </div>
-
-
-<table>
-<tr>
-<th>Id static</th>
-</tr>
-<tr ng-repeat="item in items">
-<td>{{item}}</td>
-</tr>
-</table>
-
-<table>
-<tr>
-<th>Id character</th>
-</tr>
-<tr ng-repeat="item in character.data">
-<td>{{item}}</td>
-</tr>
-</table>
 
 </div>
