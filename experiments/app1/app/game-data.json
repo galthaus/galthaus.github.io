@@ -42,6 +42,11 @@
   },
 
   "calculations": [
+    { "value": "character.character_info.misc.grit",
+      "eval": "ledgerSum(character.ledger, 'Roll', 'Grit', '*')" },
+
+    { "value": "character.character_info.attributes.strength.value",
+      "eval": "ledgerEntry(character.ledger, 'Roll', 'Stat', 'Strength') + ledgerSum(character.ledger, 'Spend', 'Stat', 'Strength')" },
     { "value": "character.character_info.attributes.strength.value",
       "eval": "ledgerEntry(character.ledger, 'Roll', 'Stat', 'Strength') + ledgerSum(character.ledger, 'Spend', 'Stat', 'Strength')" },
     { "value": "character.character_info.attributes.dexterity.value",
@@ -66,7 +71,22 @@
     { "value": "character.character_info.attributes.wisdom.mod", 
        "eval": "Math.floor((Number(character.character_info.attributes.wisdom.value) + Number(character.character_info.attributes.wisdom.tmpadj) - 10) / 2)" },
     { "value": "character.character_info.attributes.charisma.mod", 
-       "eval": "Math.floor((Number(character.character_info.attributes.charisma.value) + Number(character.character_info.attributes.charisma.tmpadj) - 10) / 2)" }
+       "eval": "Math.floor((Number(character.character_info.attributes.charisma.value) + Number(character.character_info.attributes.charisma.tmpadj) - 10) / 2)" },
+
+    { "value": "character.character_info.saves.fort.ability",
+      "eval": "Number(character.character_info.attributes.constitution.mod)" },
+    { "value": "character.character_info.saves.ref.ability",
+      "eval": "Number(character.character_info.attributes.dexterity.mod)" },
+    { "value": "character.character_info.saves.will.ability",
+      "eval": "Number(character.character_info.attributes.wisdom.mod)" },
+
+    { "value": "character.character_info.saves.fort.total",
+      "eval": "Number(character.character_info.saves.fort.base) + Number(character.character_info.saves.fort.ability) + Number(character.character_info.saves.fort.misc) + Number(character.character_info.saves.fort.tmp)" },
+    { "value": "character.character_info.saves.ref.total",
+      "eval": "Number(character.character_info.saves.ref.base) + Number(character.character_info.saves.ref.ability) + Number(character.character_info.saves.ref.misc) + Number(character.character_info.saves.ref.tmp)" },
+    { "value": "character.character_info.saves.will.total",
+      "eval": "Number(character.character_info.saves.will.base) + Number(character.character_info.saves.will.ability) + Number(character.character_info.saves.will.misc) + Number(character.character_info.saves.will.tmp)" }
+
   ]
 
 }

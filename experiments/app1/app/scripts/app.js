@@ -43,6 +43,18 @@ angular.module('wildWestCharSheetApp').directive('chAttribute', function() {
   };
 });
 
+angular.module('wildWestCharSheetApp').directive('chSave', function() {
+  return {
+    restrict: 'A',
+    scope: {
+      info: '=info',
+      aname: '@',
+      calculate: '&calculate'
+    },
+    templateUrl: 'views/ch-save.html'
+  };
+});
+
 angular.module('wildWestCharSheetApp').directive('ledgerRow', function() {
   return {
     restrict: 'A',
@@ -205,15 +217,13 @@ function ledgerSum(l, a, p1, p2) {
     var le = l[i];
 
     if (le.action === a &&
-        le.param1 === p1 &&
-        le.param2 === p2) {
+        (p1 === '*' || le.param1 === p1) &&
+        (p2 === '*' || le.param2 === p2)) {
       acc = acc + Number(le.value);
     }
   }
   return acc;
 }
-
-
 
 
 

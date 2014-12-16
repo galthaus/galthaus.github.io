@@ -17,13 +17,25 @@
   </table>
 </div>
 
+<div class="saves">
+  <h3 class="western title">Saving Throws</h3>
+  <table class="saves">
+    <thead><tr><th></th><th>Total</th><th>Base</th><th>Ability</th><th>Misc</th><th>Tmp</th></tr></thead>
+    <tbody>
+      <tr ch-save aname="FORT" info="character.character_info.saves.fort" calculate="calculate()"></tr>
+      <tr ch-save aname="REF" info="character.character_info.saves.ref" calculate="calculate()"></tr>
+      <tr ch-save aname="WILL" info="character.character_info.saves.will" calculate="calculate()"></tr>
+    </tbody>
+  </table>
+</div>
+
 <div class="miscellaneous">
   <h3 class="western title">Miscellaneous</h3>
   <table class="attributes">
     <tr>
       <td class="attribute">Grit</td>
-      <td>0</td>
-      <td>MDT</td>
+      <td>{{character.character_info.misc.grit}}</td>
+      <td class="attribute">MDT</td>
       <td>0</td>
     </tr>
     <tr>
@@ -36,7 +48,7 @@
       <td>+</td>
       <td>0</td>
       <td>0</td>
-      <td>REP</td>
+      <td class="attribute">REP</td>
       <td>0</td>
     </tr>
   </table>

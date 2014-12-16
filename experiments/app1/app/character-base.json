@@ -34,6 +34,33 @@
         "tmpadj":  0,
         "mod":  0
       }
+    },
+    "misc": {
+      "grit": 0,
+      "damage": 0
+    },
+    "saves": {
+      "fort": {
+        "total": 0,
+        "base": 0,
+        "ability": 0,
+        "misc": 0,
+        "tmp": 0
+      },
+      "ref": {
+        "total": 0,
+        "base": 0,
+        "ability": 0,
+        "misc": 0,
+        "tmp": 0
+      },
+      "will": {
+        "total": 0,
+        "base": 0,
+        "ability": 0,
+        "misc": 0,
+        "tmp": 0
+      }
     }
   },
   "ledger": [
