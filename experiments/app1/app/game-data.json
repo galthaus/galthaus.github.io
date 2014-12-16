@@ -7,8 +7,54 @@
     { "order": 4, "short": "WIS", "long": "Wisdom" },
     { "order": 5, "short": "CHA", "long": "Charisma" }
   ],
+  "ledger": {
+    "Roll": {
+      "Stat": {
+        "Strength": "Number",
+        "Dexterity": "Number",
+        "Constitution": "Number",
+        "Intelligence": "Number",
+        "Wisdom": "Number",
+        "Charisma": "Number"
+      },
+      "Grit": "Number"
+    },
+    "Spend": {
+      "Stat": {
+        "Strength": "Number",
+        "Dexterity": "Number",
+        "Constitution": "Number",
+        "Intelligence": "Number",
+        "Wisdom": "Number",
+        "Charisma": "Number"
+      },
+      "Skill": {
+      },
+      "Feat": {
+      },
+      "Trait": {
+      }
+    },
+    "Buy": {
+      "Equipment": {
+      }
+    }
+  },
 
   "calculations": [
+    { "value": "character.character_info.attributes.strength.value",
+      "eval": "ledgerEntry(character.ledger, 'Roll', 'Stat', 'Strength') + ledgerSum(character.ledger, 'Spend', 'Stat', 'Strength')" },
+    { "value": "character.character_info.attributes.dexterity.value",
+      "eval": "ledgerEntry(character.ledger, 'Roll', 'Stat', 'Dexterity') + ledgerSum(character.ledger, 'Spend', 'Stat', 'Dexterity')" },
+    { "value": "character.character_info.attributes.constitution.value",
+      "eval": "ledgerEntry(character.ledger, 'Roll', 'Stat', 'Constitution') + ledgerSum(character.ledger, 'Spend', 'Stat', 'Constitution')" },
+    { "value": "character.character_info.attributes.intelligence.value",
+      "eval": "ledgerEntry(character.ledger, 'Roll', 'Stat', 'Intelligence') + ledgerSum(character.ledger, 'Spend', 'Stat', 'Intelligence')" },
+    { "value": "character.character_info.attributes.wisdom.value",
+      "eval": "ledgerEntry(character.ledger, 'Roll', 'Stat', 'Wisdom') + ledgerSum(character.ledger, 'Spend', 'Stat', 'Wisdom')" },
+    { "value": "character.character_info.attributes.charisma.value",
+      "eval": "ledgerEntry(character.ledger, 'Roll', 'Stat', 'Charisma') + ledgerSum(character.ledger, 'Spend', 'Stat', 'Charisma')" },
+
     { "value": "character.character_info.attributes.strength.mod", 
        "eval": "Math.floor((Number(character.character_info.attributes.strength.value) + Number(character.character_info.attributes.strength.tmpadj) - 10) / 2)" },
     { "value": "character.character_info.attributes.dexterity.mod", 

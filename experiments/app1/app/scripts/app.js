@@ -22,9 +22,9 @@ angular.module('wildWestCharSheetApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/ledger', {
+        templateUrl: 'views/ledger.html',
+        controller: 'LedgerCtrl'
       })
       .otherwise({
         redirectTo: '/'
@@ -40,6 +40,18 @@ angular.module('wildWestCharSheetApp').directive('chAttribute', function() {
       calculate: '&calculate'
     },
     templateUrl: 'views/ch-attribute.html'
+  };
+});
+
+angular.module('wildWestCharSheetApp').directive('ledgerRow', function() {
+  return {
+    restrict: 'A',
+    scope: {
+      rowdata: '=rowdata',
+      items: '=items',
+      calculate: '&calculate'
+    },
+    templateUrl: 'views/ledger-row.html'
   };
 });
 
@@ -166,8 +178,42 @@ function download(strData, strFileName, strMimeType) {
 
 function calculate(gameData, character) {
   for (var i = 0; i < gameData.calculations.length; i++) {
-    eval(gameData.calculations[i].value + "=" +
-         gameData.calculations[i].eval);
+    var v = gameData.calculations[i].value;
+    var e = gameData.calculations[i].eval;
+
+    eval(v + " = " + e);
   }
 }
+
+function ledgerEntry(l, a, p1, p2) {
+  for (var i = 0; i < l.length; i++) {
+    var le = l[i];
+
+    if (le.action === a &&
+        le.param1 === p1 &&
+        le.param2 === p2) {
+      return Number(le.value);
+    }
+  }
+  return 0;
+}
+
+function ledgerSum(l, a, p1, p2) {
+  var acc = 0;
+
+  for (var i = 0; i < l.length; i++) {
+    var le = l[i];
+
+    if (le.action === a &&
+        le.param1 === p1 &&
+        le.param2 === p2) {
+      acc = acc + Number(le.value);
+    }
+  }
+  return acc;
+}
+
+
+
+
 

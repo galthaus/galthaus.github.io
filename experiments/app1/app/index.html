@@ -40,7 +40,7 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/micro.js"></script>
-        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/ledger.js"></script>
         <script src="scripts/controllers/nav.js"></script>
         <!-- endbuild -->
   </head>
@@ -53,20 +53,19 @@
     <div class="container" ng-controller="NavCtrl">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li ng-class="{active: isActive('/')}"><a ng-href="#/">Home</a></li>
-          <li ng-class="{active: isActive('/about')}"><a ng-href="#/about">About</a></li>
-          <li ng-class="{active: isActive('/contact')}"><a ng-href="#/">Contact</a></li>
+          <li ng-class="{active: isActive('/')}"><a ng-href="#/">Base</a></li>
+          <li ng-class="{active: isActive('/ledger')}"><a ng-href="#/ledger">Ledger</a></li>
         </ul>
 
         <h3 class="text-muted">Wild West Character Sheet</h3>
         <input type="file" id="files" style="display: none;" name="files[]" value="Select File..."/>
-        <div class="button" id="uploadTrigger">Load Character</div>
+        <button id="uploadTrigger" class="btn btn-success btn-xs">Load Character</button>
         <script>
           document.getElementById('files').addEventListener('change', handleFileSelect, false);
           $("#uploadTrigger").click(function(){ $("#files").click(); });
         </script>
-        <input size="15" type="text" ng-model="filename" />
-        <input type="button" id="saveCharacter" ng-click="download()" value="Save"/>
+        <input size="10" type="text" ng-model="filename"/>
+        <button class="btn btn-warning btn-xs" id="saveCharacter" ng-click="download()">Save</button>
       </div>
 
       <div ng-controller="microController" id="microController-div"\>

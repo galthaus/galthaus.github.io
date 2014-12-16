@@ -31,4 +31,6 @@ angular.module('wildWestCharSheetApp')
       download(JSON.stringify($scope.character), $scope.filename, 'application/json');
     };
 
+    $scope.checked = false;
+
   });
