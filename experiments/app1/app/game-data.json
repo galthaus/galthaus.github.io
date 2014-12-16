@@ -15,6 +15,10 @@
     { "order": 4, "short": "d12", "long": "d12", "type": "Number" },
     { "order": 5, "short": "d20", "long": "d20", "type": "Number" }
   ],
+  "occupations": [
+    { "order": 0, "short": "Academic", "long": "Academic", "type": "Occupation" },
+    { "order": 0, "short": "Artisan", "long": "Artisan", "type": "Occupation" }
+  ],
   "skills": [
     { "order": 0, "short": "painting", "long": "painting", "type": "Number" },
     { "order": 10, "short": "dancing", "long": "dancing", "type": "Number" }
@@ -132,6 +136,9 @@
       }
     },
     "Spend": {
+      "Occupation": {
+        "type": "occupations"
+      },
       "Class": {
         "type": "classes"
       },

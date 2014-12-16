@@ -38,6 +38,27 @@ div.miscellaneous {
   float: right;
 }
 
+div.cinfo {
+  max-width: 500px;
+  border-style: solid;
+  border-width: 5px;
+  float: right;
+}
+
+div.ledger {
+  max-width: 600px;
+  border-style: solid;
+  border-width: 5px;
+  float: left;
+}
+
+div.remaining {
+  max-width: 500px;
+  border-style: solid;
+  border-width: 5px;
+  float: right;
+}
+
 div.saves {
   max-width: 500px;
   border-style: solid;
