@@ -1,42 +1,156 @@
 {
   "attributes": [
-    { "order": 0, "short": "STR", "long": "Strength" },
-    { "order": 1, "short": "DEX", "long": "Dexterity" },
-    { "order": 2, "short": "CON", "long": "Constitution" },
-    { "order": 3, "short": "INT", "long": "Intelligence" },
-    { "order": 4, "short": "WIS", "long": "Wisdom" },
-    { "order": 5, "short": "CHA", "long": "Charisma" }
+    { "order": 0, "short": "STR", "long": "Strength", "type": "Number" },
+    { "order": 1, "short": "DEX", "long": "Dexterity", "type": "Number" },
+    { "order": 2, "short": "CON", "long": "Constitution", "type": "Number" },
+    { "order": 3, "short": "INT", "long": "Intelligence", "type": "Number" },
+    { "order": 4, "short": "WIS", "long": "Wisdom", "type": "Number" },
+    { "order": 5, "short": "CHA", "long": "Charisma", "type": "Number" }
   ],
+  "dice": [
+    { "order": 0, "short": "d4", "long": "d4", "type": "Number" },
+    { "order": 1, "short": "d6", "long": "d6", "type": "Number" },
+    { "order": 2, "short": "d8", "long": "d8", "type": "Number" },
+    { "order": 3, "short": "d10", "long": "d10", "type": "Number" },
+    { "order": 4, "short": "d12", "long": "d12", "type": "Number" },
+    { "order": 5, "short": "d20", "long": "d20", "type": "Number" }
+  ],
+  "skills": [
+    { "order": 0, "short": "painting", "long": "painting", "type": "Number" },
+    { "order": 10, "short": "dancing", "long": "dancing", "type": "Number" }
+  ],
+  "feats": [
+    { "order": 0, "short": "feinting", "long": "feinting", "type": "Number" },
+    { "order": 10, "short": "power attack", "long": "power attack", "type": "Number" }
+  ],
+  "charts": {
+    "bab": {
+      "best": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      "better": [0, 1, 2, 3, 3, 4, 5, 6, 6, 7],
+      "good": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    },
+    "fort": {
+      "best": [1, 2, 2, 2, 3, 3, 4, 4, 4, 5 ],
+      "better": [],
+      "good": [0, 0, 1, 1, 1, 2, 2, 2, 3, 3 ]
+    },
+    "ref": {
+      "best": [1, 2, 2, 2, 3, 3, 4, 4, 4, 5 ],
+      "better": [],
+      "good": [0, 0, 1, 1, 1, 2, 2, 2, 3, 3 ]
+    },
+    "will": {
+      "best": [1, 2, 2, 2, 3, 3, 4, 4, 4, 5 ],
+      "better": [],
+      "good": [0, 0, 1, 1, 1, 2, 2, 2, 3, 3 ]
+    },
+    "defense": {
+      "best": [ 3, 4, 4, 5, 5, 6, 6, 7, 7, 8 ],
+      "good": [ 1, 2, 2, 3, 3, 3, 4, 4, 5, 5 ]
+    },
+    "reputation": {
+      "better": [ 0, 0, 1, 1, 1, 2, 2, 2, 3, 3 ],
+      "good": [ 0, 0, 0, 0, 1, 1, 1, 1, 2, 2 ]
+    }
+  },
+  "classes": [
+    {
+      "order": 0,
+      "short": "Strong",
+      "long": "Strong Hero",
+      "type": "Class",
+      "charts": {
+        "bab": "best",
+        "fort": "best",
+        "ref": "good",
+        "will": "good",
+        "defense": "better",
+        "reputation": "good"
+      },
+      "Features": [ "Talent", "Bonus Feat", "Talent", "Bonus Feat", "Talent", "Bonus Feat",
+                    "Talent", "Feat", "Talent", "Feat" ],
+      "Bonus Feat List": [
+        "Animal Affinity", "Archaic Weapons Proficiency",
+        "Athletic", "Blind-Fight", "Brawl", "Cleave", "Combat Martial Arts",
+        "Combat Reflexes", "Great Cleave", "Improved Brawl",
+        "Improved Combat Martial Arts", "Improvised Weapon Proficiency",
+        "Improvised Weapon Damage", "Power Attack", "Weapon Focus"],
+      "GritDie": 8,
+      "ActionPoints": "5 + 0.5*characterlevel",
+      "SkillPoints": "3+IntMod",
+      "StartSkillPoints": "4*(3+IntMod)",
+      "StartingFeats": "Simple Weapons Proficiency",
+      "StartingFeatCount": 2,
+      "Talents": {
+        "Extreme Effort": {
+          "requires": [],
+          "details": "+2 to Strength Check or Strength Related Skills and takes a full round"
+        },
+        "Improved Extreme Effort": {
+          "requires": ["Extreme Effort"],
+          "details": "+4 to Strength Check or Strength Related Skills and takes a full round"
+        },
+        "Advanced Extreme Effort": {
+          "requires": ["Improved Extreme Effort", "Extreme Effort"],
+          "details": "+6 to Strength Check or Strength Related Skills and takes a full round"
+        },
+        "Ignore Hardness": {
+          "requires": [],
+          "details": "Ignore 2 points of object hardness"
+        },
+        "Improved Ignore Hardness": {
+          "requires": ["Ignore Hardnerss"],
+          "details": "Ignore 2 points of object hardness (stacks with prereqs)"
+        },
+        "Advanced Ignore Hardness": {
+          "requires": ["Improved Ignore Hardness", "Ignore Hardnerss"],
+          "details": "Ignore 2 points of object hardness (stacks with prereqs)"
+        },
+        "Melee Smash": {
+          "requires": [],
+          "details": "+1 Melee Damage"
+        },
+        "Improved Melee Smash": {
+          "requires": ["Melee Damage"],
+          "details": "+1 Melee Damage (stacks with prereqs)"
+        },
+        "Advanced Melee Smash": {
+          "requires": ["Improved Melee Damage", "Melee Damage"],
+          "details": "+1 Melee Damage (stacks with prereqs)"
+        }
+      }
+    }
+  ],
+
   "ledger": {
     "Roll": {
       "Stat": {
-        "Strength": "Number",
-        "Dexterity": "Number",
-        "Constitution": "Number",
-        "Intelligence": "Number",
-        "Wisdom": "Number",
-        "Charisma": "Number"
+        "type": "attributes"
       },
-      "Grit": "Number"
+      "Grit": {
+        "type": "dice"
+      }
     },
     "Spend": {
+      "Class": {
+        "type": "classes"
+      },
       "Stat": {
-        "Strength": "Number",
-        "Dexterity": "Number",
-        "Constitution": "Number",
-        "Intelligence": "Number",
-        "Wisdom": "Number",
-        "Charisma": "Number"
+        "type": "attributes"
       },
       "Skill": {
+        "type": "skills"
       },
       "Feat": {
+        "type": "feats"
       },
-      "Trait": {
+      "Talent": {
+        "type": "talents"
       }
     },
     "Buy": {
       "Equipment": {
+        "type": "equipment"
       }
     }
   },
