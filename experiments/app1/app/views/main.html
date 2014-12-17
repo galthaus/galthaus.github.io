@@ -1,66 +1,24 @@
-
-
 <div class="container-fluid" ng-controller="MainCtrl">
 
 <div class="row">
   <div class="col-md-7 col-lg-7 col-sm-7 col-xs-7">
-    <h3 class="western title">Character Info</h3>
+    <div ng-include src="'views/cinfo.html'"></div>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-    <h3 class="western title">Ability Scores</h3>
-    <table >
-      <thead><tr><th></th><th>Score</th><th>Mod</th><th>Temp</th></tr></thead>
-      <tbody>
-        <tr ch-attribute aname="STR" info="character.character_info.attributes.strength" calculate="calculate()"></tr>
-        <tr ch-attribute aname="DEX" info="character.character_info.attributes.dexterity" calculate="calculate()"></tr>
-        <tr ch-attribute aname="CON" info="character.character_info.attributes.constitution" calculate="calculate()"></tr>
-        <tr ch-attribute aname="INT" info="character.character_info.attributes.intelligence" calculate="calculate()"></tr>
-        <tr ch-attribute aname="WIS" info="character.character_info.attributes.wisdom" calculate="calculate()"></tr>
-        <tr ch-attribute aname="CHA" info="character.character_info.attributes.charisma" calculate="calculate()"></tr>
-      </tbody>
-    </table>
+    <div ng-include src="'views/ability.html'"></div>
   </div>
 
   <div class="col-lg-7 col-lg-offset-1 col-md-7 col-md-offset-1 col-sm-7 col-sm-offset-1 col-xs-7 col-xs-offset-1">
-    <h3 class="western title">Saving Throws</h3>
-    <table>
-      <thead><tr><th></th><th>Total</th><th>Base</th><th>Ability</th><th>Misc</th><th>Tmp</th></tr></thead>
-      <tbody>
-        <tr ch-save aname="FORT" info="character.character_info.saves.fort" calculate="calculate()"></tr>
-        <tr ch-save aname="REF" info="character.character_info.saves.ref" calculate="calculate()"></tr>
-        <tr ch-save aname="WILL" info="character.character_info.saves.will" calculate="calculate()"></tr>
-      </tbody>
-    </table>
+    <div ng-include src="'views/saves.html'"></div>
   </div>
 </div>
 
 <div class="row">
   <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-    <h3 class="western title">Miscellaneous</h3>
-    <table class="attributes">
-      <tr>
-        <td class="attribute">Grit</td>
-        <td>{{character.character_info.misc.grit}}</td>
-        <td class="attribute">MDT</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <td class="attribute">DEF</td>
-        <td>0</td>
-        <td>=</td>
-        <td>0</td>
-        <td>+</td>
-        <td>0</td>
-        <td>+</td>
-        <td>0</td>
-        <td>0</td>
-        <td class="attribute">REP</td>
-        <td>0</td>
-      </tr>
-    </table>
+    <div ng-include src="'views/misc.html'"></div>
   </div>
 </div>
 

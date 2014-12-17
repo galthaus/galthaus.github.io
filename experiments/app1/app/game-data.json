@@ -162,7 +162,7 @@
     }
   },
 
-  "calculations": [
+  "ledger_calculations": [
     { "value": "character.character_info.misc.grit",
       "eval": "ledgerSum(character.ledger, 'Roll', 'Grit', '*')" },
 
@@ -179,8 +179,10 @@
     { "value": "character.character_info.attributes.wisdom.value",
       "eval": "ledgerEntry(character.ledger, 'Roll', 'Stat', 'Wisdom') + ledgerSum(character.ledger, 'Spend', 'Stat', 'Wisdom')" },
     { "value": "character.character_info.attributes.charisma.value",
-      "eval": "ledgerEntry(character.ledger, 'Roll', 'Stat', 'Charisma') + ledgerSum(character.ledger, 'Spend', 'Stat', 'Charisma')" },
+      "eval": "ledgerEntry(character.ledger, 'Roll', 'Stat', 'Charisma') + ledgerSum(character.ledger, 'Spend', 'Stat', 'Charisma')" }
+  ],
 
+  "calculations": [
     { "value": "character.character_info.attributes.strength.mod", 
        "eval": "Math.floor((Number(character.character_info.attributes.strength.value) + Number(character.character_info.attributes.strength.tmpadj) - 10) / 2)" },
     { "value": "character.character_info.attributes.dexterity.mod", 

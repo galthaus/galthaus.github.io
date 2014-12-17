@@ -1,0 +1,11 @@
+<h3 class="western title">Character Info</h3>
+<table>
+  <tr>
+    <td>Character</td><td><input size="10" type="text" ng-model="character.character_info.base.name"</input></td>
+    <td>Player</td><td><input size="10" type="text" ng-model="character.character_info.base.player_name"</input></td>
+  </tr>
+  <tr>
+    <td>Current Class</td><td>{{character.character_info.base.current_class}}</td>
+    <td>Classes</td><td><ul><li ng-repeat="for x in character.character_info.base.classes">{{x.name}} {{x.leel}}</li></ul></td>
+  </tr>
+</table>
