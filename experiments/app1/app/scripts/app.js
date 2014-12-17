@@ -61,7 +61,8 @@ angular.module('wildWestCharSheetApp').directive('ledgerRow', function() {
     scope: {
       rowdata: '=rowdata',
       items: '=items',
-      calculate: '&calculate'
+      calculate: '&calculate',
+      delete: '&'
     },
     controller: function($scope) {
       $scope.getTypeData = function(act, p1) {
@@ -212,34 +213,4 @@ function calculate(gameData, character) {
     eval(v + " = " + e);
   }
 }
-
-function ledgerEntry(l, a, p1, p2) {
-  for (var i = 0; i < l.length; i++) {
-    var le = l[i];
-
-    if (le.action === a &&
-        le.param1 === p1 &&
-        le.param2 === p2) {
-      return Number(le.value);
-    }
-  }
-  return 0;
-}
-
-function ledgerSum(l, a, p1, p2) {
-  var acc = 0;
-
-  for (var i = 0; i < l.length; i++) {
-    var le = l[i];
-
-    if (le.action === a &&
-        (p1 === '*' || le.param1 === p1) &&
-        (p2 === '*' || le.param2 === p2)) {
-      acc = acc + Number(le.value);
-    }
-  }
-  return acc;
-}
-
-
 

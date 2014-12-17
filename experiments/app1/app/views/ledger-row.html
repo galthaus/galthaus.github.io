@@ -1,4 +1,6 @@
-<td>{{rowdata.date}}</td>
+<td>
+  <input ng-change="calculate()" ng-model="rowdata.date" type="text" size="7"></input>
+</td>
 <td>
   <select ng-change="calculate()" ng-model="rowdata.action" ng-options="key as key for (key, data) in items.ledger">
   </select>
@@ -14,5 +16,6 @@
 <td>
   <input ng-change="calculate()" ng-model="rowdata.value" type="text" size="3"></input>
 </td>
-<td><input type="text" sizze="10" ng-model="rowdata.details"</td>
+<td><input type="text" size="15" ng-model="rowdata.details"</td>
+<td><button type="button" class="btn btn-xs btn-danger" ng-click="delete(index)">X</button></td>
 </select>
