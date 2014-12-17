@@ -24,48 +24,6 @@ body {
   font-family: carnivalee;
 }
 
-div.ability {
-  max-width: 200px;
-  border-style: solid;
-  border-width: 5px;
-  float: left;
-}
-
-div.miscellaneous {
-  max-width: 500px;
-  border-style: solid;
-  border-width: 5px;
-  float: right;
-}
-
-div.cinfo {
-  max-width: 500px;
-  border-style: solid;
-  border-width: 5px;
-  float: right;
-}
-
-div.ledger {
-  max-width: 600px;
-  border-style: solid;
-  border-width: 5px;
-  float: left;
-}
-
-div.remaining {
-  max-width: 500px;
-  border-style: solid;
-  border-width: 5px;
-  float: right;
-}
-
-div.saves {
-  max-width: 500px;
-  border-style: solid;
-  border-width: 5px;
-  float: right;
-}
-
 .title {
   background-color: #000000;
   color: #ffffff;
@@ -172,28 +130,4 @@ input.attribute {
     border-bottom: 0;
   }
 }
-
-.hidden {
-  display:none;
-}
-.button {
-  border: 1px solid #333;
-  padding: 10px;
-  margin: 5px;
-  background: #777;
-  color: #fff;
-  width:140px;
-}
-
-.button:hover {
-  background: #333;
-  cursor: pointer;
-}
-
-.ng-pageslide {
-  background: #eee;
-}
-
-
-
 
