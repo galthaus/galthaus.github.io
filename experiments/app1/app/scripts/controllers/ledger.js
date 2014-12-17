@@ -1,33 +1,28 @@
 'use strict';
 
-function ledgerEntry(l, a, p1, p2) {
-  for (var i = 0; i < l.length; i++) { 
-    var le = l[i]; 
+function getLedgerTypeData(gameData, act, p1) {
+  var atype;
 
-    if (le.action === a &&
-        le.param1 === p1 && 
-        le.param2 === p2) {
-      return Number(le.value);
+  if (gameData.ledger[act] === undefined) {
+    return [];
+  }
+  if (gameData.ledger[act][p1] === undefined) {
+    return [];
+  }
+
+  atype = gameData.ledger[act][p1]["type"];
+
+  return gameData[atype];
+};
+
+function findLedgerTypeEntry(arr, p2) {
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i].long === p2) {
+      return arr[i];
     }
   }
-  return 0;
+  return undefined;
 }
-
-function ledgerSum(l, a, p1, p2) {
-  var acc = 0;
-
-  for (var i = 0; i < l.length; i++) {
-    var le = l[i]; 
-
-    if (le.action === a &&
-        (p1 === '*' || le.param1 === p1) &&
-        (p2 === '*' || le.param2 === p2)) {
-      acc = acc + Number(le.value);
-    }
-  }
-  return acc;
-}
-
 
 /**
  * @ngdoc function
@@ -51,6 +46,8 @@ angular.module('wildWestCharSheetApp').controller('LedgerCtrl', function ($scope
   });
 
   $scope.calculate = function() {
+    var character = $scope.character;
+
     // Sort ledger
     $scope.character.ledger.sort(function(a,b) {
       if ( a.date < b.date )
@@ -60,17 +57,24 @@ angular.module('wildWestCharSheetApp').controller('LedgerCtrl', function ($scope
       return 0;
     });
 
-    // GREG: things that are set in ledger
+    // Clear values
+    for (var key in $scope.items.ledger_clear) {
+      eval(key + "=" + $scope.items.ledger_clear[key]);
+    }
 
-    // GREG: Walk the ledger from 0 to date.
-    // GREG:   update scratch/remaining fields
+    // Process ledger
+    for (var i = 0; i < $scope.character.ledger.length; i++) {
+      // GREG: If after date then break
 
-    // Run the ledger calcs
-    for (var i = 0; i < items.ledger_calculations.length; i++) {
-      var v = items.calculations[i].value;
-      var e = items.calculations[i].eval;
+      var le = $scope.character.ledger[i];
+      var item = getLedgerTypeData($scope.items, le.action, le.param1);
+      var el = findLedgerTypeEntry(item, le.param2);
 
-      eval(v + " = " + e);
+      if (el === undefined || el.lf === undefined) {
+        continue;
+      }
+
+      eval(el.lf);
     }
 
     calculate($scope.items, $scope.character);
@@ -85,6 +89,7 @@ angular.module('wildWestCharSheetApp').controller('LedgerCtrl', function ($scope
 
   $scope.deleteEntry = function(index) {
     $scope.character.ledger.splice(index,1);
+    $scope.calculate();
   }
 });
 

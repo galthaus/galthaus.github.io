@@ -66,18 +66,7 @@ angular.module('wildWestCharSheetApp').directive('ledgerRow', function() {
     },
     controller: function($scope) {
       $scope.getTypeData = function(act, p1) {
-        var atype;
-
-        if ($scope.items.ledger[act] === undefined) {
-          return [];
-        }
-        if ($scope.items.ledger[act][p1] === undefined) {
-          return [];
-        }
-
-        atype = $scope.items.ledger[act][p1]["type"];
-
-        return $scope.items[atype];
+        return getLedgerTypeData($scope.items, act, p1);
       };
     },
     templateUrl: 'views/ledger-row.html'
