@@ -33,10 +33,7 @@ angular.module('wildWestCharSheetApp').controller('LedgerCtrl', function ($scope
   };
 
   $scope.addEntry = function() {
-    var d = new Date()
-    var date = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
-    var e = { "date": date, "action": "Buy", "param1": "Equipment", "param2": "Boomerang", "value": "0", "details": "Edit me" };
-    $scope.character.ledger.push(e);
+    ledger_addentry($scope.character, "Buy", "Equipment", "Boomerang", "0", "Edit me");
   }
 
   $scope.deleteEntry = function(index) {

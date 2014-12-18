@@ -1,5 +1,11 @@
 'use strict';
 
+// Returns a random integer between min (included) and max (excluded)
+// Using Math.round() will give you a non-uniform distribution!
+function getRandomInt(min, max) {
+   return Math.floor(Math.random() * (max - min)) + min;
+}
+
 /**
  * @ngdoc overview
  * @name wildWestCharSheetApp
@@ -272,6 +278,13 @@ function ledger_clear(gameData, character) {
   }
 }
 
+function ledger_addentry(character, a, p1, p2, v, details) {
+  var d = new Date()
+  var date = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
+  var e = { "date": date, "action": a, "param1": p1, "param2": p2, "value": v, "details": details };
+  character.ledger.push(e);
+}
+
 function ledger_calculate(gameData, character) {
   // Sort ledger
   character.ledger.sort(function(a,b) {
@@ -307,6 +320,46 @@ function ledger_calculate(gameData, character) {
 
       var_expand(gameData, character, varName, el.type);
       eval(varName + " += Number(" + le.value + ");");
+    }
+
+    if (type_name === "occupations") {
+      character.character_info.base.occupation = el.long;
+
+      // GREG: Add benefits!
+    }
+
+    if (type_name === "classes") {
+      var ci = 0;
+      var addedLevel = 0;
+
+      for (ci = 0; ci < character.character_info.base.classes.length; ci++) {
+        var e = character.character_info.base.classes[ci];
+        if (e.name === el.long) {
+          e.level += 1;
+          addedLevel = 1;
+          break;
+        }
+      }
+
+      if (addedLevel == 0) {
+        var e = { "name": el.long, "level": 1 };
+        character.character_info.base.classes.push(e);
+      }
+      character.character_info.base.current_class = el.long;
+
+      if (addedLevel == 0 && ci == 0) {
+        // Initial Level
+
+        ledger_addentry(character, "Roll", "Grit", el.GritDie, el.GritDie.substring(1), "Edit Me");
+      }
+      else {
+        // Follow-on Level
+
+        ledger_addentry(character, "Roll", "Grit", el.GritDie, 
+                        getRandomInt(0, Number(el.GritDie.substring(1))) + 1, "Edit Me");
+      }
+
+      // GREG: Add benefits!
     }
 
     if (le.action == "Roll" && le.param1 === "Grit") {

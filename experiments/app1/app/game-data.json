@@ -83,7 +83,7 @@
         "Combat Reflexes", "Great Cleave", "Improved Brawl",
         "Improved Combat Martial Arts", "Improvised Weapon Proficiency",
         "Improvised Weapon Damage", "Power Attack", "Weapon Focus"],
-      "GritDie": 8,
+      "GritDie": "d8",
       "ActionPoints": "5 + 0.5*characterlevel",
       "SkillPoints": "3+IntMod",
       "StartSkillPoints": "4*(3+IntMod)",
