@@ -1,29 +1,5 @@
 'use strict';
 
-function getLedgerTypeData(gameData, act, p1) {
-  var atype;
-
-  if (gameData.ledger[act] === undefined) {
-    return [];
-  }
-  if (gameData.ledger[act][p1] === undefined) {
-    return [];
-  }
-
-  atype = gameData.ledger[act][p1]["type"];
-
-  return gameData[atype];
-};
-
-function findLedgerTypeEntry(arr, p2) {
-  for (var i = 0; i < arr.length; i++) {
-    if (arr[i].long === p2) {
-      return arr[i];
-    }
-  }
-  return undefined;
-}
-
 /**
  * @ngdoc function
  * @name iwildWestCharSheetApp.controller:LedgerCtrl
@@ -59,7 +35,7 @@ angular.module('wildWestCharSheetApp').controller('LedgerCtrl', function ($scope
   $scope.addEntry = function() {
     var d = new Date()
     var date = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
-    var e = { "date": date, "action": "Buy", "param1": "Equipment", "param2": "Boomerang", "details": "Edit me" };
+    var e = { "date": date, "action": "Buy", "param1": "Equipment", "param2": "Boomerang", "value": "0", "details": "Edit me" };
     $scope.character.ledger.push(e);
   }
 

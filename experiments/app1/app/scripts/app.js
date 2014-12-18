@@ -205,6 +205,73 @@ function calculate(gameData, character) {
   }
 }
 
+function getLedgerType(gameData, act, p1) {
+  if (gameData.ledger[act] === undefined) {
+    return [];
+  }
+  if (gameData.ledger[act][p1] === undefined) {
+    return [];
+  }
+
+  return gameData.ledger[act][p1]["type"];
+}
+
+function getLedgerTypeData(gameData, act, p1) {
+  var atype = getLedgerType(gameData, act, p1);
+  return gameData[atype];
+}
+
+function findLedgerTypeEntry(arr, p2) {
+  if (arr === undefined) {
+    return undefined;
+  }
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i].long === p2) {
+      return arr[i];
+    }
+  }
+  return undefined;
+}
+
+function var_expand(gameData, character, varName, type) {
+  var arr = varName.split(".");
+  var newVar = arr[0];
+  var expanded = 0;
+
+  for (var i = 1; i < (arr.length-1); i++) {
+    newVar = newVar + "." + arr[i];
+
+    if (eval(newVar) === undefined) {
+      eval(newVar + " = {}");
+      expanded = 1;
+    }
+  }
+
+  if (expanded == 1) {
+    if (type === "Number") {
+      eval(varName + " = Number(0)");
+    }
+  }
+}
+
+function ledger_clear(gameData, character) {
+  for (var key in gameData.ledger_clear) {
+    var index = key.indexOf(".*.");
+
+    if (index != -1) {
+      var strbase = key.substring(0, index);
+      var strend = key.substring(index+3);
+
+      for (var val in eval(strbase)) {
+        eval(strbase + "." + val + "." + strend + "=" + gameData.ledger_clear[key]);
+      }
+    }
+    else {
+      eval(key + "=" + gameData.ledger_clear[key]);
+    }
+  }
+}
+
 function ledger_calculate(gameData, character) {
   // Sort ledger
   character.ledger.sort(function(a,b) {
@@ -216,9 +283,7 @@ function ledger_calculate(gameData, character) {
   });
 
   // Clear values
-  for (var key in gameData.ledger_clear) {
-    eval(key + "=" + gameData.ledger_clear[key]);
-  }
+  ledger_clear(gameData, character);
 
   // Process ledger
   for (var i = 0; i < character.ledger.length; i++) {
@@ -228,14 +293,41 @@ function ledger_calculate(gameData, character) {
       break;
     }
 
-    var item = getLedgerTypeData(gameData, le.action, le.param1);
+    var type_name = getLedgerType(gameData, le.action, le.param1);
+    var item = gameData[type_name];
     var el = findLedgerTypeEntry(item, le.param2);
 
-    if (el === undefined || el.lf === undefined) {
+    if (el === undefined) {
       continue;
     }
 
-    eval(el.lf);
+    if (el.type === "Number") {
+      var base = eval("gameData." + type_name + "_base");
+      var varName = base.replace("__REPLACE__", el.long);
+
+      var_expand(gameData, character, varName, el.type);
+      eval(varName + " += Number(" + le.value + ");");
+    }
+
+    if (le.action == "Roll" && le.param1 === "Grit") {
+      character.character_info.scratch.gritdie -= 1;
+    }
+    if (le.action == "Spend" && le.param1 === "Stat") {
+      character.character_info.scratch.stats -= Number(le.value);
+    }
+    if (le.action == "Spend" && le.param1 === "Skill") {
+      character.character_info.scratch.skills -= Number(le.value);
+    }
+    if (le.action == "Spend" && le.param1 === "Feat") {
+      character.character_info.scratch.feats -= Number(le.value);
+    }
+    if (le.action == "Spend" && le.param1 === "Talent") {
+      character.character_info.scratch.talents -= Number(le.value);
+    }
+    if (le.action == "Spend" && le.param1 === "Occupation") {
+      character.character_info.scratch.occupation -= 1;
+    }
+
   }
 
   calculate(gameData, character);

@@ -10,38 +10,39 @@
     },
     "scratch": {
       "gritdie": 0,
+      "stats": 0,
       "skills": 0,
       "feats": 0,
       "talents": 0,
       "occupation": 1
     },
     "attributes": {
-      "strength": {
+      "Strength": {
         "value":  10,
         "tmpadj":  0,
         "mod":  0
       },
-      "dexterity": {
+      "Dexterity": {
         "value":  10,
         "tmpadj":  0,
         "mod":  0
       },
-      "constitution": {
+      "Constitution": {
         "value":  10,
         "tmpadj":  0,
         "mod":  0
       },
-      "intelligence": {
+      "Intelligence": {
         "value":  10,
         "tmpadj":  0,
         "mod":  0
       },
-      "wisdom": {
+      "Wisdom": {
         "value":  10,
         "tmpadj":  0,
         "mod":  0
       },
-      "charisma": {
+      "Charisma": {
         "value":  10,
         "tmpadj":  0,
         "mod":  0

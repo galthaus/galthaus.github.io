@@ -1,43 +1,35 @@
 {
+  "attributes_base": "character.character_info.attributes.__REPLACE__.base",
   "attributes": [
-    { "order": 0, "short": "STR", "long": "Strength", "type": "Number",
-      "lf": "character.character_info.attributes.strength.value += Number(le.value);" },
-    { "order": 1, "short": "DEX", "long": "Dexterity", "type": "Number",
-      "lf": "character.character_info.attributes.dexterity.value += Number(le.value);" },
-    { "order": 2, "short": "CON", "long": "Constitution", "type": "Number",
-      "lf": "character.character_info.attributes.constitution.value += Number(le.value);" },
-    { "order": 3, "short": "INT", "long": "Intelligence", "type": "Number",
-      "lf": "character.character_info.attributes.intelligence.value += Number(le.value);" },
-    { "order": 4, "short": "WIS", "long": "Wisdom", "type": "Number",
-      "lf": "character.character_info.attributes.wisdom.value += Number(le.value);" },
-    { "order": 5, "short": "CHA", "long": "Charisma", "type": "Number",
-      "lf": "character.character_info.attributes.charisma.value += Number(le.value);" }
+    { "order": 0, "short": "STR", "long": "Strength", "type": "Number" },
+    { "order": 1, "short": "DEX", "long": "Dexterity", "type": "Number" },
+    { "order": 2, "short": "CON", "long": "Constitution", "type": "Number" },
+    { "order": 3, "short": "INT", "long": "Intelligence", "type": "Number" },
+    { "order": 4, "short": "WIS", "long": "Wisdom", "type": "Number" },
+    { "order": 5, "short": "CHA", "long": "Charisma", "type": "Number" }
   ],
+  "dice_base": "character.character_info.misc.grit",
   "dice": [
-    { "order": 0, "short": "d4", "long": "d4", "type": "Number",
-      "lf": "character.character_info.misc.grit += Number(le.value);" },
-    { "order": 1, "short": "d6", "long": "d6", "type": "Number",
-      "lf": "character.character_info.misc.grit += Number(le.value);" },
-    { "order": 2, "short": "d8", "long": "d8", "type": "Number",
-      "lf": "character.character_info.misc.grit += Number(le.value);" },
-    { "order": 3, "short": "d10", "long": "d10", "type": "Number",
-      "lf": "character.character_info.misc.grit += Number(le.value);" },
-    { "order": 4, "short": "d12", "long": "d12", "type": "Number",
-      "lf": "character.character_info.misc.grit += Number(le.value);" },
-    { "order": 5, "short": "d20", "long": "d20", "type": "Number",
-      "lf": "character.character_info.misc.grit += Number(le.value);" }
+    { "order": 0, "short": "d4", "long": "d4", "type": "Number" },
+    { "order": 1, "short": "d6", "long": "d6", "type": "Number" },
+    { "order": 2, "short": "d8", "long": "d8", "type": "Number" },
+    { "order": 3, "short": "d10", "long": "d10", "type": "Number" },
+    { "order": 4, "short": "d12", "long": "d12", "type": "Number" },
+    { "order": 5, "short": "d20", "long": "d20", "type": "Number" }
   ],
   "occupations": [
     { "order": 0, "short": "Academic", "long": "Academic", "type": "Occupation" },
     { "order": 0, "short": "Artisan", "long": "Artisan", "type": "Occupation" }
   ],
+  "skills_base": "character.character_info.skills.__REPLACE__.base",
   "skills": [
-    { "order": 0, "short": "painting", "long": "painting", "type": "Number" },
-    { "order": 10, "short": "dancing", "long": "dancing", "type": "Number" }
+    { "order": 0, "short": "painting", "long": "Painting", "type": "Number" },
+    { "order": 10, "short": "dancing", "long": "Dancing", "type": "Number" }
   ],
+  "feats_base": "character.character_info.feats.__REPLACE__.purchased",
   "feats": [
-    { "order": 0, "short": "feinting", "long": "feinting", "type": "Number" },
-    { "order": 10, "short": "power attack", "long": "power attack", "type": "Number" }
+    { "order": 0, "short": "feinting", "long": "Feinting", "type": "Number" },
+    { "order": 10, "short": "power attack", "long": "Power Attack", "type": "Number" }
   ],
   "charts": {
     "bab": {
@@ -175,14 +167,12 @@
   },
 
   "ledger_clear": {
-    "character.character_info.attributes.strength.value": "Number(0)",
-    "character.character_info.attributes.dexterity.value": "Number(0)",
-    "character.character_info.attributes.constitution.value": "Number(0)",
-    "character.character_info.attributes.intelligence.value": "Number(0)",
-    "character.character_info.attributes.wisdom.value": "Number(0)",
-    "character.character_info.attributes.charisma.value": "Number(0)",
+    "character.character_info.attributes.*.base": "Number(0)",
+    "character.character_info.skills.*.base": "Number(0)",
+    "character.character_info.feats.*.purchased": "Number(0)",
     "character.character_info.misc.grit": "Number(0)",
     "character.character_info.scratch.gritdie": "Number(0)",
+    "character.character_info.scratch.stats": "Number(0)",
     "character.character_info.scratch.skills": "Number(0)",
     "character.character_info.scratch.feats": "Number(0)",
     "character.character_info.scratch.talents": "Number(0)",
@@ -193,25 +183,38 @@
   },
 
   "calculations": [
-    { "value": "character.character_info.attributes.strength.mod", 
-       "eval": "Math.floor((Number(character.character_info.attributes.strength.value) + Number(character.character_info.attributes.strength.tmpadj) - 10) / 2)" },
-    { "value": "character.character_info.attributes.dexterity.mod", 
-       "eval": "Math.floor((Number(character.character_info.attributes.dexterity.value) + Number(character.character_info.attributes.dexterity.tmpadj) - 10) / 2)" },
-    { "value": "character.character_info.attributes.constitution.mod", 
-       "eval": "Math.floor((Number(character.character_info.attributes.constitution.value) + Number(character.character_info.attributes.constitution.tmpadj) - 10) / 2)" },
-    { "value": "character.character_info.attributes.intelligence.mod", 
-       "eval": "Math.floor((Number(character.character_info.attributes.intelligence.value) + Number(character.character_info.attributes.intelligence.tmpadj) - 10) / 2)" },
-    { "value": "character.character_info.attributes.wisdom.mod", 
-       "eval": "Math.floor((Number(character.character_info.attributes.wisdom.value) + Number(character.character_info.attributes.wisdom.tmpadj) - 10) / 2)" },
-    { "value": "character.character_info.attributes.charisma.mod", 
-       "eval": "Math.floor((Number(character.character_info.attributes.charisma.value) + Number(character.character_info.attributes.charisma.tmpadj) - 10) / 2)" },
+    { "value": "character.character_info.attributes.Strength.value",
+       "eval": "Number(character.character_info.attributes.Strength.base) + Number(character.character_info.attributes.Strength.tmpadj)" },
+    { "value": "character.character_info.attributes.Dexterity.value",
+       "eval": "Number(character.character_info.attributes.Dexterity.base) + Number(character.character_info.attributes.Dexterity.tmpadj)" },
+    { "value": "character.character_info.attributes.Constitution.value",
+       "eval": "Number(character.character_info.attributes.Constitution.base) + Number(character.character_info.attributes.Constitution.tmpadj)" },
+    { "value": "character.character_info.attributes.Intelligence.value",
+       "eval": "Number(character.character_info.attributes.Intelligence.base) + Number(character.character_info.attributes.Intelligence.tmpadj)" },
+    { "value": "character.character_info.attributes.Wisdom.value",
+       "eval": "Number(character.character_info.attributes.Wisdom.base) + Number(character.character_info.attributes.Wisdom.tmpadj)" },
+    { "value": "character.character_info.attributes.Charisma.value",
+       "eval": "Number(character.character_info.attributes.Charisma.base) + Number(character.character_info.attributes.Charisma.tmpadj)" },
+
+    { "value": "character.character_info.attributes.Strength.mod",
+       "eval": "Math.floor((Number(character.character_info.attributes.Strength.value) - 10) / 2)" },
+    { "value": "character.character_info.attributes.Dexterity.mod",
+       "eval": "Math.floor((Number(character.character_info.attributes.Dexterity.value) - 10) / 2)" },
+    { "value": "character.character_info.attributes.Constitution.mod",
+       "eval": "Math.floor((Number(character.character_info.attributes.Constitution.value) - 10) / 2)" },
+    { "value": "character.character_info.attributes.Intelligence.mod",
+       "eval": "Math.floor((Number(character.character_info.attributes.Intelligence.value) - 10) / 2)" },
+    { "value": "character.character_info.attributes.Wisdom.mod",
+       "eval": "Math.floor((Number(character.character_info.attributes.Wisdom.value) - 10) / 2)" },
+    { "value": "character.character_info.attributes.Charisma.mod",
+       "eval": "Math.floor((Number(character.character_info.attributes.Charisma.value) - 10) / 2)" },
 
     { "value": "character.character_info.saves.fort.ability",
-      "eval": "Number(character.character_info.attributes.constitution.mod)" },
+      "eval": "Number(character.character_info.attributes.Constitution.mod)" },
     { "value": "character.character_info.saves.ref.ability",
-      "eval": "Number(character.character_info.attributes.dexterity.mod)" },
+      "eval": "Number(character.character_info.attributes.Dexterity.mod)" },
     { "value": "character.character_info.saves.will.ability",
-      "eval": "Number(character.character_info.attributes.wisdom.mod)" },
+      "eval": "Number(character.character_info.attributes.Wisdom.mod)" },
 
     { "value": "character.character_info.saves.fort.total",
       "eval": "Number(character.character_info.saves.fort.base) + Number(character.character_info.saves.fort.ability) + Number(character.character_info.saves.fort.misc) + Number(character.character_info.saves.fort.tmp)" },
