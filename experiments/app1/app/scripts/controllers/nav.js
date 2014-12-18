@@ -31,6 +31,10 @@ angular.module('wildWestCharSheetApp')
       download(JSON.stringify($scope.character), $scope.filename, 'application/json');
     };
 
+    $scope.ledger_calculate = function() {
+      ledger_calculate($scope.items, $scope.character);
+    };
+
     $scope.checked = false;
 
   });

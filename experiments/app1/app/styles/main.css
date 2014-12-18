@@ -3,10 +3,6 @@
   src: url(GunslingerDEMO-KCFonts.ttf);
 }
  @font-face {
-  font-family: westerne;
-  src: url(WESTERNE.TTF);
-}
- @font-face {
   font-family: carnivalee;
   src: url(CF.ttf);
 }
@@ -22,6 +18,10 @@ body {
   padding-bottom: 20px;
   background-image: url("indaris_parchment.jpg");
   font-family: carnivalee;
+}
+
+.typodermic {
+  font-family: typodermic;
 }
 
 .title {

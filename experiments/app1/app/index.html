@@ -66,6 +66,10 @@
         </script>
         <input size="10" type="text" ng-model="filename"/>
         <button class="btn btn-warning btn-xs" id="saveCharacter" ng-click="download()">Save</button>
+        <div style="float: right;">
+          Process Date:
+          <input class="typodermic" size="10" type="text" ng-change="ledger_calculate()" ng-model="items.current_date"/>
+        </div>
       </div>
 
       <div ng-controller="microController" id="microController-div"\>

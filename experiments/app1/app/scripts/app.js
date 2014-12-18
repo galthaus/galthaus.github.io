@@ -89,7 +89,9 @@ angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource
         dataType: 'json',
         data: null,
         success: function( data ) {
+          var d = new Date();
           items=data;
+          items.current_date = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
           itemsDefer.resolve(items)
         },
         error: function(jq, reason, error) {
@@ -201,5 +203,41 @@ function calculate(gameData, character) {
 
     eval(v + " = " + e);
   }
+}
+
+function ledger_calculate(gameData, character) {
+  // Sort ledger
+  character.ledger.sort(function(a,b) {
+    if ( a.date < b.date )
+      return -1;
+    if ( a.date > b.date )
+      return 1;
+    return 0;
+  });
+
+  // Clear values
+  for (var key in gameData.ledger_clear) {
+    eval(key + "=" + gameData.ledger_clear[key]);
+  }
+
+  // Process ledger
+  for (var i = 0; i < character.ledger.length; i++) {
+    var le = character.ledger[i];
+
+    if (gameData.current_date < le.date) {
+      break;
+    }
+
+    var item = getLedgerTypeData(gameData, le.action, le.param1);
+    var el = findLedgerTypeEntry(item, le.param2);
+
+    if (el === undefined || el.lf === undefined) {
+      continue;
+    }
+
+    eval(el.lf);
+  }
+
+  calculate(gameData, character);
 }
 

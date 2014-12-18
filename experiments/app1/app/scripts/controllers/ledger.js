@@ -45,39 +45,15 @@ angular.module('wildWestCharSheetApp').controller('LedgerCtrl', function ($scope
     $scope.character = data;
   });
 
+  $scope.$watch(function(scope) { return scope.items.current_date },
+                function(newValue, oldValue) {
+                  if (newValue !== oldValue) {
+                    $scope.calculate();
+                  }
+                });
+
   $scope.calculate = function() {
-    var character = $scope.character;
-
-    // Sort ledger
-    $scope.character.ledger.sort(function(a,b) {
-      if ( a.date < b.date )
-        return -1;
-      if ( a.date > b.date )
-         return 1;
-      return 0;
-    });
-
-    // Clear values
-    for (var key in $scope.items.ledger_clear) {
-      eval(key + "=" + $scope.items.ledger_clear[key]);
-    }
-
-    // Process ledger
-    for (var i = 0; i < $scope.character.ledger.length; i++) {
-      // GREG: If after date then break
-
-      var le = $scope.character.ledger[i];
-      var item = getLedgerTypeData($scope.items, le.action, le.param1);
-      var el = findLedgerTypeEntry(item, le.param2);
-
-      if (el === undefined || el.lf === undefined) {
-        continue;
-      }
-
-      eval(el.lf);
-    }
-
-    calculate($scope.items, $scope.character);
+    ledger_calculate($scope.items, $scope.character);
   };
 
   $scope.addEntry = function() {
