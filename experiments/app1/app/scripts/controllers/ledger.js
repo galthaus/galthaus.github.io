@@ -37,7 +37,7 @@ angular.module('wildWestCharSheetApp').controller('LedgerCtrl', function ($scope
   }
 
   $scope.deleteEntry = function(index) {
-    $scope.character.ledger.splice(index,1);
+    ledger_deleteentry($scope.character, index);
     $scope.calculate();
   }
 });

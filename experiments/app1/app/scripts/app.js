@@ -282,7 +282,12 @@ function ledger_addentry(character, a, p1, p2, v, details) {
   var d = new Date()
   var date = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
   var e = { "date": date, "action": a, "param1": p1, "param2": p2, "value": v, "details": details };
+
   character.ledger.push(e);
+}
+
+function ledger_deleteentry(character, index) {
+  character.ledger.splice(index,1);
 }
 
 function ledger_calculate(gameData, character) {
