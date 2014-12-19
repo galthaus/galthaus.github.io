@@ -281,13 +281,31 @@ function ledger_clear(gameData, character) {
 function ledger_addentry(character, a, p1, p2, v, details) {
   var d = new Date()
   var date = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
-  var e = { "date": date, "action": a, "param1": p1, "param2": p2, "value": v, "details": details };
+
+  var e = { "date": date, "action": a, "param1": p1, "param2": p2, "value": v, "details": details,
+            "id": character.ledger_id, "children": [] };
+  character.ledger_id += 1;
 
   character.ledger.push(e);
+
+  return e;
 }
 
 function ledger_deleteentry(character, index) {
-  character.ledger.splice(index,1);
+  var arr = character.ledger.splice(index,1);
+  var le = arr[0];
+
+  for (var i = 0; i < le.children.length; i++) {
+    var index;
+    for (index = 0; index < character.ledger.length; index++) {
+      if (character.ledger[index].id == le.children[i])
+        break;
+    }
+
+    if (index != character.ledger.length) {
+      ledger_deleteentry(character, index);
+    }
+  }
 }
 
 function ledger_calculate(gameData, character) {
@@ -354,14 +372,29 @@ function ledger_calculate(gameData, character) {
 
       if (addedLevel == 0 && ci == 0) {
         // Initial Level
+        character.character_info.scratch.gritdie += 1;
 
-        ledger_addentry(character, "Roll", "Grit", el.GritDie, el.GritDie.substring(1), "Edit Me");
+        if (le.children.length == 0) {
+          var e;
+
+          e = ledger_addentry(character, "Roll", "Grit", el.GritDie, el.GritDie.substring(1), "Edit Me");
+          e.parent = le.id;
+          le.children.push(e.id);
+        }
       }
       else {
-        // Follow-on Level
 
-        ledger_addentry(character, "Roll", "Grit", el.GritDie, 
-                        getRandomInt(0, Number(el.GritDie.substring(1))) + 1, "Edit Me");
+        // Follow-on Level
+        character.character_info.scratch.gritdie += 1;
+
+        if (le.children.length == 0) {
+          var e;
+
+          e = ledger_addentry(character, "Roll", "Grit", el.GritDie, 
+                              getRandomInt(0, Number(el.GritDie.substring(1))) + 1, "Edit Me");
+          e.parent = le.id;
+          le.children.push(e.id);
+        }
       }
 
       // GREG: Add benefits!

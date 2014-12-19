@@ -76,12 +76,13 @@
       }
     }
   },
+  "ledger_id": 7,
   "ledger": [
-    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Strength", "value": 10, "details": "Stat Buy" },
-    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Dexterity", "value": 10, "details": "Stat Buy" },
-    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Constitution", "value": 10, "details": "Stat Buy" },
-    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Intelligence", "value": 10, "details": "Stat Buy" },
-    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Wisdom", "value": 10, "details": "Stat Buy" },
-    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Charisma", "value": 10, "details": "Stat Buy" }
+    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Strength", "value": 10, "details": "Stat Buy", "id": 1, "children": [] },
+    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Dexterity", "value": 10, "details": "Stat Buy", "id": 2, "children": [] },
+    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Constitution", "value": 10, "details": "Stat Buy", "id": 3, "children": [] },
+    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Intelligence", "value": 10, "details": "Stat Buy", "id": 4, "children": [] },
+    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Wisdom", "value": 10, "details": "Stat Buy", "id": 5, "children": [] },
+    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Charisma", "value": 10, "details": "Stat Buy", "id": 6, "children": [] }
   ]
 }
