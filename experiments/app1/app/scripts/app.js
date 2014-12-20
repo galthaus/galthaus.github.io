@@ -369,10 +369,18 @@ function ledger_calculate(gameData, character) {
         character.character_info.base.classes.push(e);
       }
       character.character_info.base.current_class = el.long;
+      character.character_info.base.character_level += 1;
+      character.character_info.misc.action_points += eval(el.ActionPoints);
 
       if (addedLevel == 0 && ci == 0) {
         // Initial Level
         character.character_info.scratch.gritdie += 1;
+        character.character_info.scratch.skills += eval(el.StartSkillPoints);
+
+	character.character_info.scratch.feats += el.StartingFeatCount + 
+	           el.StartingFeats.length;
+
+        // GREG: Add Talent or Bonus Feat from list
 
         if (le.children.length == 0) {
           var e;
@@ -380,12 +388,19 @@ function ledger_calculate(gameData, character) {
           e = ledger_addentry(character, "Roll", "Grit", el.GritDie, el.GritDie.substring(1), "Edit Me");
           e.parent = le.id;
           le.children.push(e.id);
+
+          for (var xx in el.StartingFeats) {
+            e = ledger_addentry(character, "Spend", "Feat", xx, 1, "Starting Feat for " + el.long);
+            e.parent = le.id;
+            le.children.push(e.id);
+	  }
         }
       }
       else {
 
         // Follow-on Level
         character.character_info.scratch.gritdie += 1;
+        character.character_info.scratch.skills += eval(el.SkillPoints);
 
         if (le.children.length == 0) {
           var e;
@@ -419,8 +434,8 @@ function ledger_calculate(gameData, character) {
       character.character_info.scratch.occupation -= 1;
     }
 
+    // Calculate each time - this is badish, but okay for now.
+    calculate(gameData, character);
   }
-
-  calculate(gameData, character);
 }
 

@@ -92,10 +92,10 @@
         "Improved Combat Martial Arts", "Improvised Weapon Proficiency",
         "Improvised Weapon Damage", "Power Attack", "Weapon Focus"],
       "GritDie": "d8",
-      "ActionPoints": "5 + 0.5*characterlevel",
-      "SkillPoints": "3+IntMod",
-      "StartSkillPoints": "4*(3+IntMod)",
-      "StartingFeats": "Simple Weapons Proficiency",
+      "ActionPoints": "5 + Math.floor(0.5*character.character_info.base.character_level)",
+      "SkillPoints": "3 + character.character_info.attributes.Intelligence.mod",
+      "StartSkillPoints": "4*(3+character.character_info.attributes.Intelligence.mod)",
+      "StartingFeats": [ "Simple Weapons Proficiency" ],
       "StartingFeatCount": 2,
       "Talents": {
         "Extreme Effort": {
@@ -179,6 +179,7 @@
     "character.character_info.skills.*.base": "Number(0)",
     "character.character_info.feats.*.purchased": "Number(0)",
     "character.character_info.misc.grit": "Number(0)",
+    "character.character_info.misc.action_points": "Number(0)",
     "character.character_info.scratch.gritdie": "Number(0)",
     "character.character_info.scratch.stats": "Number(0)",
     "character.character_info.scratch.skills": "Number(0)",
@@ -186,6 +187,7 @@
     "character.character_info.scratch.talents": "Number(0)",
     "character.character_info.scratch.occupation": "Number(1)",
     "character.character_info.base.occupation": "'Unset'",
+    "character.character_info.base.character_level": "Number(0)",
     "character.character_info.base.current_class": "'Unset'",
     "character.character_info.base.classes": "[]"
   },

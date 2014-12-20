@@ -50,7 +50,8 @@
     },
     "misc": {
       "grit": 0,
-      "damage": 0
+      "damage": 0,
+      "action_points": 0
     },
     "saves": {
       "fort": {
