@@ -376,6 +376,21 @@ function ledger_calculate(gameData, character) {
         character.character_info.base.classes.push(e);
       }
       
+      if (level_index > 0) {
+        character.character_info.misc.bab -= gameData.charts.bab[el.charts.bab][level_index - 1];
+        character.character_info.saves.fort.base -= gameData.charts.fort[el.charts.fort][level_index - 1];
+        character.character_info.saves.ref.base -= gameData.charts.ref[el.charts.ref][level_index - 1];
+        character.character_info.saves.will.base -= gameData.charts.will[el.charts.will][level_index - 1];
+        character.character_info.misc.defense.base -= gameData.charts.defense[el.charts.defense][level_index - 1];
+        character.character_info.misc.reputation.base -= gameData.charts.reputation[el.charts.reputation][level_index - 1];   
+      }
+      character.character_info.misc.bab += gameData.charts.bab[el.charts.bab][level_index];
+      character.character_info.saves.fort.base += gameData.charts.fort[el.charts.fort][level_index];
+      character.character_info.saves.ref.base += gameData.charts.ref[el.charts.ref][level_index];
+      character.character_info.saves.will.base += gameData.charts.will[el.charts.will][level_index];
+      character.character_info.misc.defense.base += gameData.charts.defense[el.charts.defense][level_index];
+      character.character_info.misc.reputation.base += gameData.charts.reputation[el.charts.reputation][level_index];
+      
       level_feature = el.Features[level_index];
       if (level_feature === "Bonus Feat") {
         character.character_info.scratch.feats += 1;

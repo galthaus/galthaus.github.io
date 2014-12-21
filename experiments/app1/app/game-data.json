@@ -177,9 +177,13 @@
   "ledger_clear": {
     "character.character_info.attributes.*.base": "Number(0)",
     "character.character_info.skills.*.base": "Number(0)",
+    "character.character_info.saves.*.base": "Number(0)",
     "character.character_info.feats.*.purchased": "Number(0)",
     "character.character_info.misc.grit": "Number(0)",
     "character.character_info.misc.action_points": "Number(0)",
+    "character.character_info.misc.bab": "Number(0)",
+    "character.character_info.misc.defense.base": "Number(0)",
+    "character.character_info.misc.reputation.base": "Number(0)",
     "character.character_info.scratch.gritdie": "Number(0)",
     "character.character_info.scratch.stats": "Number(0)",
     "character.character_info.scratch.skills": "Number(0)",
@@ -231,7 +235,12 @@
     { "value": "character.character_info.saves.ref.total",
       "eval": "Number(character.character_info.saves.ref.base) + Number(character.character_info.saves.ref.ability) + Number(character.character_info.saves.ref.misc) + Number(character.character_info.saves.ref.tmp)" },
     { "value": "character.character_info.saves.will.total",
-      "eval": "Number(character.character_info.saves.will.base) + Number(character.character_info.saves.will.ability) + Number(character.character_info.saves.will.misc) + Number(character.character_info.saves.will.tmp)" }
+      "eval": "Number(character.character_info.saves.will.base) + Number(character.character_info.saves.will.ability) + Number(character.character_info.saves.will.misc) + Number(character.character_info.saves.will.tmp)" },
+
+    { "value": "character.character_info.misc.defense.total",
+      "eval": "10 + Number(character.character_info.misc.defense.base) + Number(character.character_info.attributes.Dexterity.mod)"},
+    { "value": "character.character_info.misc.reputation.total",
+      "eval": "Number(character.character_info.misc.reputation.base)" }
 
   ]
 
