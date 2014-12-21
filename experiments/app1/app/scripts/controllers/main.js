@@ -22,6 +22,6 @@ angular.module('wildWestCharSheetApp').controller('MainCtrl', function ($scope, 
 
     $scope.calculate = function() {
       calculate($scope.items, $scope.character);
-    }
+    };
 
   });

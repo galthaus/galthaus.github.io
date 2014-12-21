@@ -1,14 +1,14 @@
 <h3 class="western title">Character Info</h3>
 <table>
   <tr>
-    <td>Character</td><td><input size="10" type="text" ng-model="character.character_info.base.name"</input></td>
-    <td>Player</td><td><input size="10" type="text" ng-model="character.character_info.base.player_name"</input></td>
+    <td>Character</td><td><input size="10" type="text" ng-model="character.character_info.base.name" /></td>
+    <td>Player</td><td><input size="10" type="text" ng-model="character.character_info.base.player_name" /></td>
   </tr>
   <tr>
     <td>Current Class</td><td>{{character.character_info.base.current_class}}</td>
     <td>Classes</td><td><ul><li ng-repeat="x in character.character_info.base.classes">{{x.name}} {{x.level}}</li></ul></td>
   </tr>
   <tr>
-    <td>Oppucation</td><td>{{character.character_info.base.occupation}}</td>
+    <td>Occupation</td><td>{{character.character_info.base.occupation}}</td>
   </tr>
 </table>

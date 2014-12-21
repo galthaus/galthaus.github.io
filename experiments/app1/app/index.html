@@ -46,7 +46,8 @@
   </head>
   <body>
     <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please 
+         <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
@@ -58,7 +59,7 @@
         </ul>
 
         <h3 class="text-muted">Wild West Character Sheet</h3>
-        <input type="file" id="files" style="display: none;" name="files[]" value="Select File..."/>
+        <input type="file" id="files" style="display: none;" name="files[]"/>
         <button id="uploadTrigger" class="btn btn-success btn-xs">Load Character</button>
         <script>
           document.getElementById('files').addEventListener('change', handleFileSelect, false);
@@ -68,11 +69,12 @@
         <button class="btn btn-warning btn-xs" id="saveCharacter" ng-click="download()">Save</button>
         <div style="float: right;">
           Process Date:
-          <input class="typodermic" size="10" type="text" ng-change="ledger_calculate()" ng-model="items.current_date"/>
+          <input class="typodermic" size="10" type="text" ng-change="ledger_calculate()" 
+                 ng-model="items.current_date"/>
         </div>
       </div>
 
-      <div ng-controller="microController" id="microController-div"\>
+      <div ng-controller="microController" id="microController-div"></div>
       <div ng-view=""></div>
 
       <div class="footer">
