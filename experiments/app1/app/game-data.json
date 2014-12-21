@@ -84,7 +84,7 @@
         "reputation": "good"
       },
       "Features": [ "Talent", "Bonus Feat", "Talent", "Bonus Feat", "Talent", "Bonus Feat",
-                    "Talent", "Feat", "Talent", "Feat" ],
+                    "Talent", "Bonus Feat", "Talent", "Bonus Feat" ],
       "Bonus Feat List": [
         "Animal Affinity", "Archaic Weapons Proficiency",
         "Athletic", "Blind-Fight", "Brawl", "Cleave", "Combat Martial Arts",

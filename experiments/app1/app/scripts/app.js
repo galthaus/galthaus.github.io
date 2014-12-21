@@ -358,65 +358,104 @@ function ledger_calculate(gameData, character) {
     if (type_name === "classes") {
       var ci = 0;
       var addedLevel = 0;
+      var level_index = 0;
+      var level_feature = "";
+      var grit_value = 0;
 
       for (ci = 0; ci < character.character_info.base.classes.length; ci++) {
         var e = character.character_info.base.classes[ci];
         if (e.name === el.long) {
+          level_index = e.level;
           e.level += 1;
           addedLevel = 1;
           break;
         }
       }
-
       if (addedLevel === 0) {
         var e = { "name": el.long, "level": 1 };
         character.character_info.base.classes.push(e);
       }
+      
+      level_feature = el.Features[level_index];
+      if (level_feature === "Bonus Feat") {
+        character.character_info.scratch.feats += 1;
+      }
+      else if (level_feature === "Talent") {
+        character.character_info.scratch.talents += 1;  
+      }
+      
       character.character_info.base.current_class = el.long;
       character.character_info.base.character_level += 1;
       character.character_info.misc.action_points += eval(el.ActionPoints);
+      character.character_info.scratch.gritdie += 1;
+
+      if (character.character_info.base.character_level % 4 === 0) {
+        character.character_info.scratch.stats += 1;
+      }
+      if (character.character_info.base.character_level % 3 === 0) {
+        character.character_info.scratch.feats += 1;
+      }
 
       if (addedLevel === 0 && ci === 0) {
         // Initial Level
-        character.character_info.scratch.gritdie += 1;
         character.character_info.scratch.skills += eval(el.StartSkillPoints);
-
 	character.character_info.scratch.feats += el.StartingFeatCount + 
 	           el.StartingFeats.length;
 
-        // GREG: Add Talent or Bonus Feat from list
+        if (le.children.length === 0) {
+          grit_value = el.GritDie.substring(1);
+        }
+      }
+      else {
+        // Follow-on Level
+        character.character_info.scratch.skills += eval(el.SkillPoints);
 
         if (le.children.length === 0) {
-          var e;
+          grit_value = getRandomInt(0, Number(el.GritDie.substring(1))) + 1;
+        }
+      }
 
-          e = ledger_addentry(character, "Roll", "Grit", el.GritDie, el.GritDie.substring(1), "Edit Me");
-          e.parent = le.id;
-          le.children.push(e.id);
+      if (le.children.length === 0) {  
+        var e;
 
+        e = ledger_addentry(character, "Roll", "Grit", el.GritDie, grit_value, "Edit Me");
+        e.parent = le.id;
+        le.children.push(e.id);
+          
+        if (addedLevel === 0 && ci === 0) {
           for (var xx in el.StartingFeats) {
             e = ledger_addentry(character, "Spend", "Feat", xx, 1, "Starting Feat for " + el.long);
             e.parent = le.id;
             le.children.push(e.id);
-	  }
+          }
         }
-      }
-      else {
-
-        // Follow-on Level
-        character.character_info.scratch.gritdie += 1;
-        character.character_info.scratch.skills += eval(el.SkillPoints);
-
-        if (le.children.length === 0) {
-          var e;
-
-          e = ledger_addentry(character, "Roll", "Grit", el.GritDie, 
-                              getRandomInt(0, Number(el.GritDie.substring(1))) + 1, "Edit Me");
+          
+        // Add Talent or Bonus Feat from list
+        if (level_feature === "Bonus Feat") {
+          e = ledger_addentry(character, "Spend", "Feat", "???", 1, "Bonus Feat for " + el.long);
+          e.parent = le.id;
+          le.children.push(e.id);
+        }
+        else if (level_feature === "Talent") {
+          e = ledger_addentry(character, "Spend", "Talent", "???", 1, "Talent for " + el.long);
+          e.parent = le.id;
+          le.children.push(e.id);  
+        }
+      
+        // Add stat on levels / 4. 
+        if (character.character_info.base.character_level % 4 === 0) {
+          e = ledger_addentry(character, "Spend", "Stat", "???", 1, "Stat Point for Level/4"); 
+          e.parent = le.id;
+          le.children.push(e.id);
+        }
+          
+        // Add Feat on levels / 3. 
+        if (character.character_info.base.character_level % 3 === 0) {
+          e = ledger_addentry(character, "Spend", "Feat", "???", 1, "Feat for Level/3"); 
           e.parent = le.id;
           le.children.push(e.id);
         }
       }
-
-      // GREG: Add benefits!
     }
 
     if (le.action === "Roll" && le.param1 === "Grit") {
@@ -442,4 +481,3 @@ function ledger_calculate(gameData, character) {
     calculate(gameData, character);
   }
 }
-
