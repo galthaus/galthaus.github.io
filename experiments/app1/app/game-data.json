@@ -18,8 +18,41 @@
     { "order": 5, "short": "d20", "long": "d20", "type": "Number" }
   ],
   "occupations": [
-    { "order": 0, "short": "Academic", "long": "Academic", "type": "Occupation" },
-    { "order": 0, "short": "Artisan", "long": "Artisan", "type": "Occupation" }
+    { "order": 0, "short": "Academic", "long": "Academic", "type": "Occupation",
+      "Prereqs": [ "Number(character.character_info.base.age) >= 18" ],
+      "SkillsCount": 3,
+      "Skills": [ "Craft(writing)", "Decipher Script", "Gather Information", "Knowledge(arcane lore)",
+          "Knowledge(art)", "Knowledge(behavioral sciences)", "Knowledge(business)",
+          "Knowledge(civics)", "Knowledge(current events)", "Knowledge(earth/life sciences)",
+          "Knowledge(history)", "Knowledge(physical sciences)", "Knowledge(popular culture)",
+          "Knowledge(tactics)", "Knowledge(technology)", "Knowledge(theology/religion)",
+          "Research", "Read/Write Language", "Speak Language"],
+      "BonusFeatCount": 0,
+      "BonusFeats": [],
+      "WealthBonus": 2 },
+    { "order": 1, "short": "Artisan", "long": "Artisan", "type": "Occupation",
+      "Prereqs": [ "character.character_info.attributes.Dexterity.total >= 13" ],
+      "SkillsCount": 2,
+      "Skills": [ "Craft(chemical)", "Craft(electric)", "Craft(mechanical)", "Craft(pharmaceutical)",
+          "Craft(structural)", "Craft(visual art)", "Disable Device",
+          "Knowledge(art)", "Knowledge(physical sciences)", "Knowledge(technology)",
+          "Repair", "Research" ],
+      "BonusFeatCount": 1,
+      "BonusFeats": [ "Builder", "Creative", "Mechanical" ],
+      "WealthBonus": 2
+    },
+    { "order": 2, "short": "Artist", "long": "Artist", "type": "Occupation",
+      "Prereqs": [ "Number(character.character_info.base.age) >= 15" ],
+      "SkillsCount": 3,
+      "Skills": [ "Bluff", "Craft(visual art)", "Disguise", "Forgery",
+          "Knowledge(arcane lore)", "Knowledge(art)", "Knowledge(popular culture)",
+          "Listen", "Perform(act)", "Perform(dance)", "Perform(keyboards)", 
+          "Perform(percussion instruments)", "Perform(sing)", "Perform(stand-up)",
+          "Perform(stringed instruments)", "Perform(wind instruments)", "Spot" ],
+      "BonusFeatCount": 0,
+      "BonusFeats": [],
+      "WealthBonus": 2
+    }  
   ],
   "skills_base": "character.character_info.skills.__REPLACE__.base",
   "skills": [
@@ -85,7 +118,7 @@
       },
       "Features": [ "Talent", "Bonus Feat", "Talent", "Bonus Feat", "Talent", "Bonus Feat",
                     "Talent", "Bonus Feat", "Talent", "Bonus Feat" ],
-      "Bonus Feat List": [
+      "BonusFeatList": [
         "Animal Affinity", "Archaic Weapons Proficiency",
         "Athletic", "Blind-Fight", "Brawl", "Cleave", "Combat Martial Arts",
         "Combat Reflexes", "Great Cleave", "Improved Brawl",

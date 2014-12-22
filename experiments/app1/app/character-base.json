@@ -3,6 +3,7 @@
     "base": {
       "name": "Fill Me In",
       "player_name": "Fille Me in",
+      "age": 14,
       "occupation": "???",
       "current_class": "???",
       "classes": [
@@ -60,7 +61,8 @@
       "reputation": {
         "base": 0,
         "total": 0
-      }
+      },
+      "wealth": 0
     },
     "saves": {
       "fort": {

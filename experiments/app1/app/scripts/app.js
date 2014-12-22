@@ -71,8 +71,17 @@ angular.module('wildWestCharSheetApp').directive('ledgerRow', function() {
       delete: '&'
     },
     controller: function($scope) {
-      $scope.getTypeData = function(act, p1) {
-        return getLedgerTypeData($scope.items, act, p1);
+      $scope.setChoices = function(rowdata) {
+        if (rowdata.choices !== undefined) {
+          return rowdata.choices;
+        }
+          
+        var arr = getLedgerTypeData($scope.items, rowdata.action, rowdata.param1);
+        rowdata.choices = [];
+        for (var i = 0; i < arr.length; i++) {
+          rowdata.choices.push(arr[i].long);
+        }
+        return rowdata.choices;
       };
     },
     templateUrl: 'views/ledger-row.html'
@@ -438,35 +447,42 @@ function ledger_calculate(gameData, character) {
         le.children.push(e.id);
           
         if (addedLevel === 0 && ci === 0) {
-          for (var xx in el.StartingFeats) {
-            e = ledger_addentry(character, "Spend", "Feat", xx, 1, "Starting Feat for " + el.long);
+          for (var xxi = 0; xxi < el.StartingFeats.length; xxi++) {
+            e = ledger_addentry(character, "Spend", "Feat", el.StartingFeats[xxi], 1, "Starting Feat for " + el.long);
             e.parent = le.id;
+            e.choices = [ el.StartingFeats[xxi] ];
             le.children.push(e.id);
           }
         }
           
         // Add Talent or Bonus Feat from list
         if (level_feature === "Bonus Feat") {
-          e = ledger_addentry(character, "Spend", "Feat", "???", 1, "Bonus Feat for " + el.long);
+          e = ledger_addentry(character, "Spend", "Feat", el.BonusFeatList[0], 1, "Bonus Feat for " + el.long);
           e.parent = le.id;
+          e.choices = el.BonusFeatList;
           le.children.push(e.id);
         }
         else if (level_feature === "Talent") {
           e = ledger_addentry(character, "Spend", "Talent", "???", 1, "Talent for " + el.long);
           e.parent = le.id;
+          e.choices = [];
+          for (var key in el.Talents) {
+            e.choices.push(key);
+          }
+          e.param2 = e.choices[0];
           le.children.push(e.id);  
         }
       
         // Add stat on levels / 4. 
         if (character.character_info.base.character_level % 4 === 0) {
-          e = ledger_addentry(character, "Spend", "Stat", "???", 1, "Stat Point for Level/4"); 
+          e = ledger_addentry(character, "Spend", "Stat", "Strength", 1, "Stat Point for Level/4"); 
           e.parent = le.id;
           le.children.push(e.id);
         }
           
         // Add Feat on levels / 3. 
         if (character.character_info.base.character_level % 3 === 0) {
-          e = ledger_addentry(character, "Spend", "Feat", "???", 1, "Feat for Level/3"); 
+          e = ledger_addentry(character, "Spend", "Feat", "?GREG?", 1, "Feat for Level/3"); 
           e.parent = le.id;
           le.children.push(e.id);
         }
@@ -483,10 +499,10 @@ function ledger_calculate(gameData, character) {
       character.character_info.scratch.skills -= Number(le.value);
     }
     if (le.action === "Spend" && le.param1 === "Feat") {
-      character.character_info.scratch.feats -= Number(le.value);
+      character.character_info.scratch.feats -= 1;
     }
     if (le.action === "Spend" && le.param1 === "Talent") {
-      character.character_info.scratch.talents -= Number(le.value);
+      character.character_info.scratch.talents -= 1;
     }
     if (le.action === "Spend" && le.param1 === "Occupation") {
       character.character_info.scratch.occupation -= 1;
