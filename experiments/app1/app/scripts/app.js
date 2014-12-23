@@ -70,19 +70,25 @@ angular.module('wildWestCharSheetApp').directive('ledgerRow', function() {
       calculate: '&calculate',
       delete: '&'
     },
-    controller: function($scope) {
-      $scope.setChoices = function(rowdata) {
+    controller: function($scope) {  
+      $scope.setChoices = function() {
+        var rowdata = $scope.rowdata;
+        
         if (rowdata.choices !== undefined) {
           return rowdata.choices;
         }
           
         var arr = getLedgerTypeData($scope.items, rowdata.action, rowdata.param1);
+        if (arr === undefined) {
+          return [];
+        }
         rowdata.choices = [];
         for (var i = 0; i < arr.length; i++) {
           rowdata.choices.push(arr[i].long);
         }
         return rowdata.choices;
       };
+      $scope.setChoices();
     },
     templateUrl: 'views/ledger-row.html'
   };
@@ -107,6 +113,8 @@ angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource
           var d = new Date();
           items=data;
           items.current_date = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
+          if (typeof items !== 'number' && typeof character !== 'number')
+            ledger_calculate(items, character);
           itemsDefer.resolve(items);
         },
         error: function(jq, reason, error) {
@@ -129,6 +137,8 @@ angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource
         data: null,
         success: function( data ) {
           character=data;
+          if (typeof items !== 'number' && typeof character !== 'number')
+            ledger_calculate(items, character);
           itemsDefer.resolve(character);
         },
         error: function(jq, reason, error) {
@@ -142,7 +152,8 @@ angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource
   service.setCharacter=function(data) {
     character = data;
     $rootScope.$broadcast('dataService:character',data);
-    calculate(items, character);
+    if (typeof items !== 'number' && typeof character !== 'number')
+      ledger_calculate(items, character);
   };
 
   return service;
@@ -254,7 +265,7 @@ function var_expand(gameData, character, varName, type) {
   var expanded = 0;
 
   for (var i = 1; i < (arr.length-1); i++) {
-    newVar = newVar + "." + arr[i];
+    newVar = newVar + "." + arr[i].replace(/ /g, "_");
 
     if (eval(newVar) === undefined) {
       eval(newVar + " = {}");
@@ -264,7 +275,7 @@ function var_expand(gameData, character, varName, type) {
 
   if (expanded === 1) {
     if (type === "Number") {
-      eval(varName + " = Number(0)");
+      eval(varName.replace(/ /g, "_") + " = Number(0)");
     }
   }
 }
@@ -355,7 +366,7 @@ function ledger_calculate(gameData, character) {
       var varName = base.replace("__REPLACE__", el.long);
 
       var_expand(gameData, character, varName, el.type);
-      eval(varName + " += Number(" + le.value + ");");
+      eval(varName.replace(/ /g, "_") + " += Number(" + le.value + ");");
     }
 
     if (type_name === "occupations") {
@@ -442,7 +453,7 @@ function ledger_calculate(gameData, character) {
       if (le.children.length === 0) {  
         var e;
 
-        e = ledger_addentry(character, "Roll", "Grit", el.GritDie, grit_value, "Edit Me");
+        e = ledger_addentry(character, "Roll", "Grit", el.GritDie, grit_value, "Grit Die for " + el.long);
         e.parent = le.id;
         le.children.push(e.id);
           
@@ -465,10 +476,7 @@ function ledger_calculate(gameData, character) {
         else if (level_feature === "Talent") {
           e = ledger_addentry(character, "Spend", "Talent", "???", 1, "Talent for " + el.long);
           e.parent = le.id;
-          e.choices = [];
-          for (var key in el.Talents) {
-            e.choices.push(key);
-          }
+          e.choices = el.Talents;
           e.param2 = e.choices[0];
           le.children.push(e.id);  
         }
@@ -492,19 +500,25 @@ function ledger_calculate(gameData, character) {
     if (le.action === "Roll" && le.param1 === "Grit") {
       character.character_info.scratch.gritdie -= 1;
     }
-    if (le.action === "Spend" && le.param1 === "Stat") {
+    else if (le.action === "Roll") {
+        // Nothing
+    }
+    else if (le.action === "Buy") {
+        // Nothing
+    }
+    else if (le.action === "Spend" && le.param1 === "Stat") {
       character.character_info.scratch.stats -= Number(le.value);
     }
-    if (le.action === "Spend" && le.param1 === "Skill") {
+    else if (le.action === "Spend" && le.param1 === "Skill") {
       character.character_info.scratch.skills -= Number(le.value);
     }
-    if (le.action === "Spend" && le.param1 === "Feat") {
+    else if (le.action === "Spend" && le.param1 === "Feat") {
       character.character_info.scratch.feats -= 1;
     }
-    if (le.action === "Spend" && le.param1 === "Talent") {
+    else if (le.action === "Spend" && le.param1 === "Talent") {
       character.character_info.scratch.talents -= 1;
     }
-    if (le.action === "Spend" && le.param1 === "Occupation") {
+    else if (le.action === "Spend" && le.param1 === "Occupation") {
       character.character_info.scratch.occupation -= 1;
     }
 

@@ -7,7 +7,7 @@
   </select>
 </td>
 <td>
-  <select ng-change="setChoices(rowdata); calculate()" ng-model="rowdata.param1" 
+  <select ng-change="setChoices(); calculate()" ng-model="rowdata.param1" 
           ng-options="key as key for (key, data) in items.ledger[rowdata.action]">
   </select>
 </td>

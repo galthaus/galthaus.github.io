@@ -62,7 +62,47 @@
   "feats_base": "character.character_info.feats.__REPLACE__.purchased",
   "feats": [
     { "order": 0, "short": "feinting", "long": "Feinting", "type": "Number" },
-    { "order": 10, "short": "power attack", "long": "Power Attack", "type": "Number" }
+    { "order": 10, "short": "power attack", "long": "Power Attack", "type": "Number" },
+    { "order": 10, "short": "Simple Weapons Proficiency", "long": "Simple Weapons Proficiency", "type": "Number" }
+  ],
+  "talents_base": "character.character_info.talents.__REPLACE__.purchased",
+  "talents": [
+        { "order": 0, "short": "Extreme Effort", "long": "Extreme Effort", "type": "Number",
+          "requires": [],
+          "details": "+2 to Strength Check or Strength Related Skills and takes a full round"
+        },
+        { "order": 1, "short": "Improved Extreme Effort", "long": "Improved Extreme Effort", "type": "Number",
+          "requires": ["Extreme Effort"],
+          "details": "+4 to Strength Check or Strength Related Skills and takes a full round"
+        },
+        { "order": 2, "short": "Advanced Extreme Effort", "long": "Advanced Extreme Effort", "type": "Number", 
+          "requires": ["Improved Extreme Effort", "Extreme Effort"],
+          "details": "+6 to Strength Check or Strength Related Skills and takes a full round"
+        },
+        { "order": 3, "short": "Ignore Hardness", "long": "Ignore Hardness", "type": "Number",
+          "requires": [],
+          "details": "Ignore 2 points of object hardness"
+        },
+        { "order": 4, "short": "Improved Ignore Hardness", "long": "Improved Ignore Hardness", "type": "Number",
+          "requires": ["Ignore Hardnerss"],
+          "details": "Ignore 2 points of object hardness (stacks with prereqs)"
+        },
+        { "order": 5, "short": "Advanced Ignore Hardness", "long": "Advanced Ignore Hardness", "type": "Number",
+          "requires": ["Improved Ignore Hardness", "Ignore Hardnerss"],
+          "details": "Ignore 2 points of object hardness (stacks with prereqs)"
+        },
+        { "order": 6, "short": "Melee Smash", "long": "Melee Smash", "type": "Number",
+          "requires": [],
+          "details": "+1 Melee Damage"
+        },
+        { "order": 7, "short": "Improved Melee Smash", "long": "Improved Melee Smash", "type": "Number",
+          "requires": ["Melee Damage"],
+          "details": "+1 Melee Damage (stacks with prereqs)"
+        },
+        { "order": 8, "short": "Advanced Melee Smash", "long": "Advanced Melee Smash", "type": "Number",
+          "requires": ["Improved Melee Damage", "Melee Damage"],
+          "details": "+1 Melee Damage (stacks with prereqs)"
+        }  
   ],
   "charts": {
     "bab": {
@@ -130,44 +170,17 @@
       "StartSkillPoints": "4*(3+character.character_info.attributes.Intelligence.mod)",
       "StartingFeats": [ "Simple Weapons Proficiency" ],
       "StartingFeatCount": 2,
-      "Talents": {
-        "Extreme Effort": {
-          "requires": [],
-          "details": "+2 to Strength Check or Strength Related Skills and takes a full round"
-        },
-        "Improved Extreme Effort": {
-          "requires": ["Extreme Effort"],
-          "details": "+4 to Strength Check or Strength Related Skills and takes a full round"
-        },
-        "Advanced Extreme Effort": {
-          "requires": ["Improved Extreme Effort", "Extreme Effort"],
-          "details": "+6 to Strength Check or Strength Related Skills and takes a full round"
-        },
-        "Ignore Hardness": {
-          "requires": [],
-          "details": "Ignore 2 points of object hardness"
-        },
-        "Improved Ignore Hardness": {
-          "requires": ["Ignore Hardnerss"],
-          "details": "Ignore 2 points of object hardness (stacks with prereqs)"
-        },
-        "Advanced Ignore Hardness": {
-          "requires": ["Improved Ignore Hardness", "Ignore Hardnerss"],
-          "details": "Ignore 2 points of object hardness (stacks with prereqs)"
-        },
-        "Melee Smash": {
-          "requires": [],
-          "details": "+1 Melee Damage"
-        },
-        "Improved Melee Smash": {
-          "requires": ["Melee Damage"],
-          "details": "+1 Melee Damage (stacks with prereqs)"
-        },
-        "Advanced Melee Smash": {
-          "requires": ["Improved Melee Damage", "Melee Damage"],
-          "details": "+1 Melee Damage (stacks with prereqs)"
-        }
-      }
+      "Talents": [
+        "Extreme Effort",
+        "Improved Extreme Effort",
+        "Advanced Extreme Effort",
+        "Ignore Hardness",
+        "Improved Ignore Hardness",
+        "Advanced Ignore Hardness",
+        "Melee Smash",
+        "Improved Melee Smash",
+        "Advanced Melee Smash"
+      ]
     }
   ],
 
@@ -212,6 +225,7 @@
     "character.character_info.skills.*.base": "Number(0)",
     "character.character_info.saves.*.base": "Number(0)",
     "character.character_info.feats.*.purchased": "Number(0)",
+    "character.character_info.talents.*.purchased": "Number(0)",
     "character.character_info.misc.grit": "Number(0)",
     "character.character_info.misc.action_points": "Number(0)",
     "character.character_info.misc.bab": "Number(0)",
