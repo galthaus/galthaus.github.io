@@ -206,6 +206,9 @@
       "Skill": {
         "type": "skills"
       },
+      "PermanentSkill": {
+        "type": "skills"
+      },
       "Feat": {
         "type": "feats"
       },
@@ -227,6 +230,7 @@
     "character.character_info.feats.*.purchased": "Number(0)",
     "character.character_info.talents.*.purchased": "Number(0)",
     "character.character_info.misc.grit": "Number(0)",
+    "character.character_info.misc.wealth": "Number(0)",
     "character.character_info.misc.action_points": "Number(0)",
     "character.character_info.misc.bab": "Number(0)",
     "character.character_info.misc.defense.base": "Number(0)",

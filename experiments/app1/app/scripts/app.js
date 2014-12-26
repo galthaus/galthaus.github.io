@@ -371,8 +371,28 @@ function ledger_calculate(gameData, character) {
 
     if (type_name === "occupations") {
       character.character_info.base.occupation = el.long;
+      character.character_info.scratch.feats += el.BonusFeatCount;
 
-      // GREG: Add benefits!
+      if (le.children.length === 0) { 
+        for (var ii = 0; ii < el.SkillsCount; ii++) {
+          var e;
+        
+          e = ledger_addentry(character, "Spend", "PermanentSkill", el.Skills[0], 1, "Permanent Skill for " + el.long);
+          e.parent = le.id;
+          e.choices = el.Skills;
+          le.children.push(e.id);
+        }
+      
+        for (var ii = 0; ii < el.BonusFeatCount; ii++) {
+          var e;
+        
+          e = ledger_addentry(character, "Spend", "Feat", el.BonusFeats[0], 1, "Starting Feat for " + el.long);
+          e.parent = le.id;
+          e.choices = el.BonusFeats;
+          le.children.push(e.id);
+        }
+      }
+      character.character_info.misc.wealth += el.WealthBonus;
     }
 
     if (type_name === "classes") {
