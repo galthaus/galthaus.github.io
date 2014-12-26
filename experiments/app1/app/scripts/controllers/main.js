@@ -25,3 +25,27 @@ angular.module('wildWestCharSheetApp').controller('MainCtrl', function ($scope, 
     };
 
   });
+  
+angular.module('wildWestCharSheetApp').directive('chAttribute', function() {
+  return {
+    restrict: 'A',
+    scope: {
+      info: '=info',
+      aname: '@',
+      calculate: '&calculate'
+    },
+    templateUrl: 'views/ch-attribute.html'
+  };
+});
+
+angular.module('wildWestCharSheetApp').directive('chSave', function() {
+  return {
+    restrict: 'A',
+    scope: {
+      info: '=info',
+      aname: '@',
+      calculate: '&calculate'
+    },
+    templateUrl: 'views/ch-save.html'
+  };
+});
