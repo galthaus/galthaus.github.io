@@ -1,23 +1,7 @@
-<td>
-  <input ng-change="calculate()" ng-model="rowdata.date" type="text" size="7" />
-</td>
-<td>
-  <select ng-change="calculate()" ng-model="rowdata.action" 
-          ng-options="key as key for (key, data) in items.ledger">
-  </select>
-</td>
-<td>
-  <select ng-change="setChoices(); calculate()" ng-model="rowdata.param1" 
-          ng-options="key as key for (key, data) in items.ledger[rowdata.action]">
-  </select>
-</td>
-<td>
-  <select ng-change="calculate()" ng-model="rowdata.param2"
-          ng-options="key as key for key in rowdata.choices">
-  </select>
-</td>
-<td>
-  <input ng-change="calculate()" ng-model="rowdata.value" type="text" size="3" />
-</td>
-<td><input type="text" size="25" ng-model="rowdata.details" /></td>
-<td><button type="button" class="btn btn-xs btn-danger" ng-click="delete(index)">X</button></td>
+<td>{{rowdata.name}}</td>
+<td>{{rowdata.attribute}}</td>
+<td>{{rowdata.untrained}}</td>
+<td>{{cskill.total}}</td>
+<td>{{cskill.ranks}}</td>
+<td>GREG: Character attr mod</td>
+<td>GREG: input for misc mod</td>

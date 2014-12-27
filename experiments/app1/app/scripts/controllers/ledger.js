@@ -121,6 +121,9 @@ function var_expand(gameData, character, varName, type) {
     if (type === "Number") {
       eval(varName.replace(/ /g, "_") + " = Number(0)");
     }
+    if (type === "Skill") {
+      eval(varName.replace(/ /g, "_") + " = { \"total\": 0, \"ranks\": 0 }");
+    }
   }
 }
 
@@ -375,6 +378,18 @@ function ledger_calculate(gameData, character) {
     }
     else if (le.action === "Spend" && le.param1 === "Skill") {
       character.character_info.scratch.skills -= Number(le.value);
+      var cc = findLedgerTypeEntry(gameData.classes, character.character_info.base.current_class);
+      var divMod = 2;
+      if ($.inArray(le.param2, cc.ClassSkills) !== -1) {
+        divMod = 1;
+      }
+      if ($.inArray(le.param2, character.character_info.base.permanentSkills) !== -1) {
+        divMod = 1;
+      }
+      character.character_info.skills[le.param2.replace(/ /g, "_")].ranks += (Number(le.value) / divMod);
+    }
+    else if (le.action === "Spend" && le.param1 === "PermanentSkill") {
+      character.character_info.base.permanentSkills.push(le.param2);
     }
     else if (le.action === "Spend" && le.param1 === "Feat") {
       character.character_info.scratch.feats -= 1;

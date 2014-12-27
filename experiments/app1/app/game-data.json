@@ -56,8 +56,8 @@
   ],
   "skills_base": "character.character_info.skills.__REPLACE__.base",
   "skills": [
-    { "name": "Painting", "type": "Number" },
-    { "name": "Dancing", "type": "Number" }
+    { "name": "Painting", "type": "Number", "attribute": "Dexterity", "untrained": true },
+    { "name": "Dancing", "type": "Number", "attribute": "Strength", "untrained": false }
   ],
   "feats_base": "character.character_info.feats.__REPLACE__.purchased",
   "feats": [
@@ -163,6 +163,7 @@
         "Improved Combat Martial Arts", "Improvised Weapon Proficiency",
         "Improvised Weapon Damage", "Power Attack", "Weapon Focus"],
       "GritDie": "d8",
+      "ClassSkills": [ "Painting" ],
       "ActionPoints": "5 + Math.floor(0.5*character.character_info.base.character_level)",
       "SkillPoints": "3 + character.character_info.attributes.Intelligence.mod",
       "StartSkillPoints": "4*(3+character.character_info.attributes.Intelligence.mod)",
@@ -223,7 +224,9 @@
 
   "ledger_clear": {
     "character.character_info.attributes.*.base": "Number(0)",
-    "character.character_info.skills.*.base": "Number(0)",
+    "character.character_info.skills.*.total": "Number(0)",
+    "character.character_info.skills.*.ranks": "Number(0)",
+    "character.character_info.skills.*.attr_mod": "Number(0)",
     "character.character_info.saves.*.base": "Number(0)",
     "character.character_info.feats.*.purchased": "Number(0)",
     "character.character_info.talents.*.purchased": "Number(0)",
@@ -242,7 +245,8 @@
     "character.character_info.base.occupation": "'Unset'",
     "character.character_info.base.character_level": "Number(0)",
     "character.character_info.base.current_class": "'Unset'",
-    "character.character_info.base.classes": "[]"
+    "character.character_info.base.classes": "[]",
+    "character.character_info.base.permanent_skills": "[]"
   },
 
   "calculations": [

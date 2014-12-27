@@ -40,9 +40,17 @@ angular.module('wildWestCharSheetApp').directive('skillsRow', function() {
     scope: {
       rowdata: '=rowdata',
       items: '=items',
+      character: '=character',
       calculate: '&calculate'
     },
     controller: function($scope) {
+      var varName = "character.character_info.skills."+$scope.rowdata.name;
+      var character = $scope.character;
+      
+      varName = varName.replace(/ /g, "_");
+      
+      var_expand($scope.items, $scope.character, varName, "Skill");
+      $scope.cskill = eval(varName);
     },
     templateUrl: 'views/skills-row.html'
   };

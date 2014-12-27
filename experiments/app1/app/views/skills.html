@@ -4,10 +4,29 @@
   <div>
     <table class="skills">
       <thead><tr>
-        <th>Date</th><th>Action</th><th>P1</th><th>P2</th><th>Value</th><th>Details</th>
+        <th>Permanent Class Skills</th>
       </tr></thead>
       <tbody>
-        <tr ng-repeat="x in items.skills" skills-row 
+          <tr ng-bind="character.base.permanentSkills" ng-repeat="x in character.base.permanentSkills"><td>{{x}}</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>   
+    
+<div class="row">
+  <div>
+    <table class="skills">
+      <thead><tr>
+        <th>Skill</th>
+        <th>Ability</th>
+        <th>Untrained?</th>
+        <th>Skill Modifier</th>
+        <th>Ranks</th>
+        <th>Ability Modifier</th>
+        <th>Misc Modifiers</th>
+      </tr></thead>
+      <tbody>
+        <tr ng-repeat="x in items.skills" skills-row character="character"
             items="items" rowdata="x" calculate="calculate()"></tr>
       </tbody>
     </table>
