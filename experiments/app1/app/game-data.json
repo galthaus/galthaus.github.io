@@ -1,24 +1,24 @@
 {
   "attributes_base": "character.character_info.attributes.__REPLACE__.base",
   "attributes": [
-    { "order": 0, "short": "STR", "long": "Strength", "type": "Number" },
-    { "order": 1, "short": "DEX", "long": "Dexterity", "type": "Number" },
-    { "order": 2, "short": "CON", "long": "Constitution", "type": "Number" },
-    { "order": 3, "short": "INT", "long": "Intelligence", "type": "Number" },
-    { "order": 4, "short": "WIS", "long": "Wisdom", "type": "Number" },
-    { "order": 5, "short": "CHA", "long": "Charisma", "type": "Number" }
+    { "name": "Strength", "type": "Number" },
+    { "name": "Dexterity", "type": "Number" },
+    { "name": "Constitution", "type": "Number" },
+    { "name": "Intelligence", "type": "Number" },
+    { "name": "Wisdom", "type": "Number" },
+    { "name": "Charisma", "type": "Number" }
   ],
   "dice_base": "character.character_info.misc.grit",
   "dice": [
-    { "order": 0, "short": "d4", "long": "d4", "type": "Number" },
-    { "order": 1, "short": "d6", "long": "d6", "type": "Number" },
-    { "order": 2, "short": "d8", "long": "d8", "type": "Number" },
-    { "order": 3, "short": "d10", "long": "d10", "type": "Number" },
-    { "order": 4, "short": "d12", "long": "d12", "type": "Number" },
-    { "order": 5, "short": "d20", "long": "d20", "type": "Number" }
+    { "name": "d4", "type": "Number" },
+    { "name": "d6", "type": "Number" },
+    { "name": "d8", "type": "Number" },
+    { "name": "d10", "type": "Number" },
+    { "name": "d12", "type": "Number" },
+    { "name": "d20", "type": "Number" }
   ],
   "occupations": [
-    { "order": 0, "short": "Academic", "long": "Academic", "type": "Occupation",
+    { "name": "Academic", "type": "Occupation",
       "Prereqs": [ "Number(character.character_info.base.age) >= 18" ],
       "SkillsCount": 3,
       "Skills": [ "Craft(writing)", "Decipher Script", "Gather Information", "Knowledge(arcane lore)",
@@ -30,7 +30,7 @@
       "BonusFeatCount": 0,
       "BonusFeats": [],
       "WealthBonus": 2 },
-    { "order": 1, "short": "Artisan", "long": "Artisan", "type": "Occupation",
+    { "name": "Artisan", "type": "Occupation",
       "Prereqs": [ "character.character_info.attributes.Dexterity.total >= 13" ],
       "SkillsCount": 2,
       "Skills": [ "Craft(chemical)", "Craft(electric)", "Craft(mechanical)", "Craft(pharmaceutical)",
@@ -41,7 +41,7 @@
       "BonusFeats": [ "Builder", "Creative", "Mechanical" ],
       "WealthBonus": 2
     },
-    { "order": 2, "short": "Artist", "long": "Artist", "type": "Occupation",
+    { "name": "Artist", "type": "Occupation",
       "Prereqs": [ "Number(character.character_info.base.age) >= 15" ],
       "SkillsCount": 3,
       "Skills": [ "Bluff", "Craft(visual art)", "Disguise", "Forgery",
@@ -56,50 +56,50 @@
   ],
   "skills_base": "character.character_info.skills.__REPLACE__.base",
   "skills": [
-    { "order": 0, "short": "painting", "long": "Painting", "type": "Number" },
-    { "order": 10, "short": "dancing", "long": "Dancing", "type": "Number" }
+    { "name": "Painting", "type": "Number" },
+    { "name": "Dancing", "type": "Number" }
   ],
   "feats_base": "character.character_info.feats.__REPLACE__.purchased",
   "feats": [
-    { "order": 0, "short": "feinting", "long": "Feinting", "type": "Number" },
-    { "order": 10, "short": "power attack", "long": "Power Attack", "type": "Number" },
-    { "order": 10, "short": "Simple Weapons Proficiency", "long": "Simple Weapons Proficiency", "type": "Number" }
+    { "name": "Feinting", "type": "Number" },
+    { "name": "Power Attack", "type": "Number" },
+    { "name": "Simple Weapons Proficiency", "type": "Number" }
   ],
   "talents_base": "character.character_info.talents.__REPLACE__.purchased",
   "talents": [
-        { "order": 0, "short": "Extreme Effort", "long": "Extreme Effort", "type": "Number",
+        { "name": "Extreme Effort", "type": "Number",
           "requires": [],
           "details": "+2 to Strength Check or Strength Related Skills and takes a full round"
         },
-        { "order": 1, "short": "Improved Extreme Effort", "long": "Improved Extreme Effort", "type": "Number",
+        { "name": "Improved Extreme Effort", "type": "Number",
           "requires": ["Extreme Effort"],
           "details": "+4 to Strength Check or Strength Related Skills and takes a full round"
         },
-        { "order": 2, "short": "Advanced Extreme Effort", "long": "Advanced Extreme Effort", "type": "Number", 
+        { "name": "Advanced Extreme Effort", "type": "Number", 
           "requires": ["Improved Extreme Effort", "Extreme Effort"],
           "details": "+6 to Strength Check or Strength Related Skills and takes a full round"
         },
-        { "order": 3, "short": "Ignore Hardness", "long": "Ignore Hardness", "type": "Number",
+        { "name": "Ignore Hardness", "type": "Number",
           "requires": [],
           "details": "Ignore 2 points of object hardness"
         },
-        { "order": 4, "short": "Improved Ignore Hardness", "long": "Improved Ignore Hardness", "type": "Number",
+        { "name": "Improved Ignore Hardness", "type": "Number",
           "requires": ["Ignore Hardnerss"],
           "details": "Ignore 2 points of object hardness (stacks with prereqs)"
         },
-        { "order": 5, "short": "Advanced Ignore Hardness", "long": "Advanced Ignore Hardness", "type": "Number",
+        { "name": "Advanced Ignore Hardness", "type": "Number",
           "requires": ["Improved Ignore Hardness", "Ignore Hardnerss"],
           "details": "Ignore 2 points of object hardness (stacks with prereqs)"
         },
-        { "order": 6, "short": "Melee Smash", "long": "Melee Smash", "type": "Number",
+        { "name": "Melee Smash", "type": "Number",
           "requires": [],
           "details": "+1 Melee Damage"
         },
-        { "order": 7, "short": "Improved Melee Smash", "long": "Improved Melee Smash", "type": "Number",
+        { "name": "Improved Melee Smash", "type": "Number",
           "requires": ["Melee Damage"],
           "details": "+1 Melee Damage (stacks with prereqs)"
         },
-        { "order": 8, "short": "Advanced Melee Smash", "long": "Advanced Melee Smash", "type": "Number",
+        { "name": "Advanced Melee Smash", "type": "Number",
           "requires": ["Improved Melee Damage", "Melee Damage"],
           "details": "+1 Melee Damage (stacks with prereqs)"
         }  
@@ -144,9 +144,7 @@
   },
   "classes": [
     {
-      "order": 0,
-      "short": "Strong",
-      "long": "Strong Hero",
+      "name": "Strong Hero",
       "type": "Class",
       "charts": {
         "bab": "best",

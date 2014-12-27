@@ -65,7 +65,7 @@ angular.module('wildWestCharSheetApp').directive('ledgerRow', function() {
         }
         rowdata.choices = [];
         for (var i = 0; i < arr.length; i++) {
-          rowdata.choices.push(arr[i].long);
+          rowdata.choices.push(arr[i].name);
         }
         return rowdata.choices;
       };
@@ -96,7 +96,7 @@ function findLedgerTypeEntry(arr, p2) {
     return undefined;
   }
   for (var i = 0; i < arr.length; i++) {
-    if (arr[i].long === p2) {
+    if (arr[i].name === p2) {
       return arr[i];
     }
   }
@@ -207,21 +207,21 @@ function ledger_calculate(gameData, character) {
 
     if (el.type === "Number") {
       var base = eval("gameData." + type_name + "_base");
-      var varName = base.replace("__REPLACE__", el.long);
+      var varName = base.replace("__REPLACE__", el.name);
 
       var_expand(gameData, character, varName, el.type);
       eval(varName.replace(/ /g, "_") + " += Number(" + le.value + ");");
     }
 
     if (type_name === "occupations") {
-      character.character_info.base.occupation = el.long;
+      character.character_info.base.occupation = el.name;
       character.character_info.scratch.feats += el.BonusFeatCount;
 
       if (le.children.length === 0) { 
         for (var ii = 0; ii < el.SkillsCount; ii++) {
           var e;
         
-          e = ledger_addentry(character, "Spend", "PermanentSkill", el.Skills[0], 1, "Permanent Skill for " + el.long);
+          e = ledger_addentry(character, "Spend", "PermanentSkill", el.Skills[0], 1, "Permanent Skill for " + el.name);
           e.parent = le.id;
           e.choices = el.Skills;
           le.children.push(e.id);
@@ -230,7 +230,7 @@ function ledger_calculate(gameData, character) {
         for (var ii = 0; ii < el.BonusFeatCount; ii++) {
           var e;
         
-          e = ledger_addentry(character, "Spend", "Feat", el.BonusFeats[0], 1, "Starting Feat for " + el.long);
+          e = ledger_addentry(character, "Spend", "Feat", el.BonusFeats[0], 1, "Starting Feat for " + el.name);
           e.parent = le.id;
           e.choices = el.BonusFeats;
           le.children.push(e.id);
@@ -248,7 +248,7 @@ function ledger_calculate(gameData, character) {
 
       for (ci = 0; ci < character.character_info.base.classes.length; ci++) {
         var e = character.character_info.base.classes[ci];
-        if (e.name === el.long) {
+        if (e.name === el.name) {
           level_index = e.level;
           e.level += 1;
           addedLevel = 1;
@@ -256,7 +256,7 @@ function ledger_calculate(gameData, character) {
         }
       }
       if (addedLevel === 0) {
-        var e = { "name": el.long, "level": 1 };
+        var e = { "name": el.name, "level": 1 };
         character.character_info.base.classes.push(e);
       }
       
@@ -283,7 +283,7 @@ function ledger_calculate(gameData, character) {
         character.character_info.scratch.talents += 1;  
       }
       
-      character.character_info.base.current_class = el.long;
+      character.character_info.base.current_class = el.name;
       character.character_info.base.character_level += 1;
       character.character_info.misc.action_points += eval(el.ActionPoints);
       character.character_info.scratch.gritdie += 1;
@@ -317,13 +317,13 @@ function ledger_calculate(gameData, character) {
       if (le.children.length === 0) {  
         var e;
 
-        e = ledger_addentry(character, "Roll", "Grit", el.GritDie, grit_value, "Grit Die for " + el.long);
+        e = ledger_addentry(character, "Roll", "Grit", el.GritDie, grit_value, "Grit Die for " + el.name);
         e.parent = le.id;
         le.children.push(e.id);
           
         if (addedLevel === 0 && ci === 0) {
           for (var xxi = 0; xxi < el.StartingFeats.length; xxi++) {
-            e = ledger_addentry(character, "Spend", "Feat", el.StartingFeats[xxi], 1, "Starting Feat for " + el.long);
+            e = ledger_addentry(character, "Spend", "Feat", el.StartingFeats[xxi], 1, "Starting Feat for " + el.name);
             e.parent = le.id;
             e.choices = [ el.StartingFeats[xxi] ];
             le.children.push(e.id);
@@ -332,13 +332,13 @@ function ledger_calculate(gameData, character) {
           
         // Add Talent or Bonus Feat from list
         if (level_feature === "Bonus Feat") {
-          e = ledger_addentry(character, "Spend", "Feat", el.BonusFeatList[0], 1, "Bonus Feat for " + el.long);
+          e = ledger_addentry(character, "Spend", "Feat", el.BonusFeatList[0], 1, "Bonus Feat for " + el.name);
           e.parent = le.id;
           e.choices = el.BonusFeatList;
           le.children.push(e.id);
         }
         else if (level_feature === "Talent") {
-          e = ledger_addentry(character, "Spend", "Talent", "???", 1, "Talent for " + el.long);
+          e = ledger_addentry(character, "Spend", "Talent", "???", 1, "Talent for " + el.name);
           e.parent = le.id;
           e.choices = el.Talents;
           e.param2 = e.choices[0];
