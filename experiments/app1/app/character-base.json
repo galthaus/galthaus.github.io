@@ -87,7 +87,9 @@
         "tmp": 0
       }
     },
-    "skills": {}
+    "skills": {},
+    "feats": {},
+    "talents": {}
   },
   "ledger_id": 7,
   "ledger": [

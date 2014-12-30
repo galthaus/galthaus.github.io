@@ -202,7 +202,12 @@ function calculate(gameData, character) {
       cskill.extra_mod = 1;
     }
 
-    cskill.attr_mod = character.character_info.attributes[dskill.attribute].mod;
+    if (dskill.attribute === "None") {
+      cskill.attr_mod = 0;    
+    }
+    else {
+      cskill.attr_mod = character.character_info.attributes[dskill.attribute].mod;
+    }
     cskill.total = cskill.ranks + cskill.attr_mod + cskill.extra_mod + Number(cskill.tmp_mod);
   }
 }

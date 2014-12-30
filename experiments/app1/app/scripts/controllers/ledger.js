@@ -109,7 +109,7 @@ function var_expand(gameData, character, varName, type) {
   var expanded = 0;
 
   for (var i = 1; i < (arr.length-1); i++) {
-    newVar = newVar + "." + arr[i].replace(/ /g, "_");
+    newVar = newVar + "." + arr[i];
 
     if (eval(newVar) === undefined) {
       eval(newVar + " = {}");
@@ -119,10 +119,10 @@ function var_expand(gameData, character, varName, type) {
 
   if (expanded === 1) {
     if (type === "Number") {
-      eval(varName.replace(/ /g, "_") + " = Number(0)");
+      eval(varName + " = Number(0)");
     }
     if (type === "Skill") {
-      eval(varName.replace(/ /g, "_") + " = { \"total\": 0, \"ranks\": 0 }");
+      eval(varName + " = { \"total\": 0, \"ranks\": 0 }");
     }
   }
 }
@@ -136,7 +136,7 @@ function ledger_clear(gameData, character) {
       var strend = key.substring(index+3);
 
       for (var val in eval(strbase)) {
-        eval(strbase + "." + val + "." + strend + "=" + gameData.ledger_clear[key]);
+        eval(strbase + "[\"" + val + "\"]." + strend + "=" + gameData.ledger_clear[key]);
       }
     }
     else {
@@ -213,7 +213,7 @@ function ledger_calculate(gameData, character) {
       var varName = base.replace("__REPLACE__", el.name);
 
       var_expand(gameData, character, varName, el.type);
-      eval(varName.replace(/ /g, "_") + " += Number(" + le.value + ");");
+      eval(varName + " += Number(" + le.value + ");");
     }
 
     if (type_name === "occupations") {
@@ -386,7 +386,7 @@ function ledger_calculate(gameData, character) {
       if ($.inArray(le.param2, character.character_info.base.permanentSkills) !== -1) {
         divMod = 1;
       }
-      character.character_info.skills[le.param2.replace(/ /g, "_")].ranks += (Number(le.value) / divMod);
+      character.character_info.skills[le.param2].ranks += (Number(le.value) / divMod);
     }
     else if (le.action === "Spend" && le.param1 === "PermanentSkill") {
       character.character_info.base.permanentSkills.push(le.param2);

@@ -44,10 +44,8 @@ angular.module('wildWestCharSheetApp').directive('skillsRow', function() {
       calculate: '&calculate'
     },
     controller: function($scope) {
-      var varName = "character.character_info.skills."+$scope.rowdata.name;
+      var varName = "character.character_info.skills[\""+$scope.rowdata.name+"\"]";
       var character = $scope.character;
-      
-      varName = varName.replace(/ /g, "_");
       
       var_expand($scope.items, $scope.character, varName, "Skill");
       $scope.cskill = eval(varName);
