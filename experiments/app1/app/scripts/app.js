@@ -176,4 +176,33 @@ function calculate(gameData, character) {
 
     eval(v + " = " + e);
   }
+    
+  var cc = findLedgerTypeEntry(gameData.classes, character.character_info.base.current_class);
+  for (var i = 0; i < gameData.skills.length; i++) {
+    var dskill = gameData.skills[i];
+    var cskill = character.character_info.skills[dskill.name];
+    
+    if (cskill === undefined) {
+      character.character_info.skills[dskill.name] = {
+        "tmp_mod": 0,
+        "extra_mod": 0,
+        "total": 0,
+        "ranks": 0,
+        "attr_mod": 0
+      };
+      cskill = character.character_info.skills[dskill.name];
+    }
+    
+    if (cskill.tmp_mod === undefined) {
+      cskill.tmp_mod = 0;
+    }
+    cskill.extra_mod = 0;
+    if (($.inArray(dskill.name, character.character_info.base.permanentSkills) !== -1) &&
+        cc !== undefined && ($.inArray(dskill.name, cc.ClassSkills) !== -1)) {
+      cskill.extra_mod = 1;
+    }
+
+    cskill.attr_mod = character.character_info.attributes[dskill.attribute].mod;
+    cskill.total = cskill.ranks + cskill.attr_mod + cskill.extra_mod + Number(cskill.tmp_mod);
+  }
 }

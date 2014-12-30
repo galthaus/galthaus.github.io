@@ -2,19 +2,17 @@
 
 <div class="row">
   <div>
-    <table class="skills">
-      <thead><tr>
-        <th>Permanent Class Skills</th>
-      </tr></thead>
-      <tbody>
-          <tr ng-bind="character.base.permanentSkills" ng-repeat="x in character.base.permanentSkills"><td>{{x}}</td></tr>
-      </tbody>
-    </table>
+    <h3 style="title">Permanent Class Skills</h3>  
+    <ul>
+        <li ng-bind="character.character_info.base.permanentSkills"
+            ng-repeat="x in character.character_info.base.permanentSkills">{{x}}</li>
+    </ul>
   </div>
 </div>   
     
 <div class="row">
   <div>
+    <h3 style="title">Skills</h3> 
     <table class="skills">
       <thead><tr>
         <th>Skill</th>
@@ -24,6 +22,7 @@
         <th>Ranks</th>
         <th>Ability Modifier</th>
         <th>Misc Modifiers</th>
+        <th>Temp Modifiers</th>
       </tr></thead>
       <tbody>
         <tr ng-repeat="x in items.skills" skills-row character="character"
