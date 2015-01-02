@@ -14,24 +14,80 @@ class CharactersController < ApplicationController
     j = JSON.parse(obsidian_portal.access_token.get('/v1/users/me.json').body)
     @char = JSON.parse(obsidian_portal.access_token.get("/v1/campaigns/#{j['campaigns'][0]['id']}/characters/#{params[:id]}.json").body)
 
-    Rails.logger.fatal("GREG: dynamic_sheet = #{@char['dynamic_sheet'].inspect}")
-    @char['dynamic_sheet'] = JSON.parse(Base64.decode64(@char['bio']))
-
     respond_to do |format|
         format.html { render layout: "character_view" }
-        format.json { render json: @char }
+        format.json { 
+          camp_id = @char["campaign"]["id"]
+          wiki_all_url = "/v1/campaigns/#{camp_id}/wikis.json"
+
+#          Rails.logger.fatal(JSON.pretty_generate(@char));
+
+          all_wikis = JSON.parse(obsidian_portal.access_token.get(wiki_all_url).body)
+
+          wiki = nil
+          wiki_id = 0
+          all_wikis.each do |w|
+            #Rails.logger.fatal("GREG: #{w['slug']} ?? #{@char['slug']}")
+            if w['slug'] == @char['slug']
+              wiki = w
+              break
+            end
+          end
+
+          if wiki == nil
+            wiki_create_url = "/v1/campaigns/#{camp_id}/wikis.json"
+            my_data = {
+               'wiki_page' => {
+                 'name' => @char['slug'],
+                 'body' => '{}',
+                 #'tags' => [ 'CharData' ],
+                 'is_game_master_only' => false
+               }
+            }
+
+            resp = obsidian_portal.access_token.post(wiki_create_url, my_data.to_json,
+                                               {'Content-Type' => 'application/x-www-form-urlencoded'})
+            #Rails.logger.fatal("GREG: response to create wiki: #{resp.inspect}")
+            #Rails.logger.fatal("GREG: response to create wiki: #{resp.body}")
+
+            # Parse to get id
+            wiki = JSON.parse(resp.body)
+
+            wiki_id = wiki['id']
+            wiki = nil
+          else
+            wiki_char_url = "/v1/campaigns/#{camp_id}/wikis/#{wiki['id']}.json"
+            #Rails.logger.fatal(wiki_char_url)
+            resp = obsidian_portal.access_token.get(wiki_char_url)
+
+            #Rails.logger.fatal("GREG: response to read wiki: #{resp.inspect}")
+            #Rails.logger.fatal("GREG: response to read wiki: #{resp.body}")
+
+            wiki_id = wiki['id']
+            wiki_str = JSON.parse(resp.body)['body']
+            if wiki_str == '{}'
+              wiki = nil
+            else
+              wiki = JSON.parse(Base64.decode64(wiki_str))
+            end
+          end
+
+          @char['wiki'] = wiki
+          @char['wiki_id'] = wiki_id
+
+          render json: @char
+        }
     end
   end
 
   def update
     char = params[:data]
     camp_id = char["campaign"]["id"]
-    url = "https://api.obsidianportal.com/v1/campaigns/#{camp_id}/characters/#{params[:id]}.json"
+    wiki_url = "/v1/campaigns/#{camp_id}/wikis/#{char['wiki_id']}.json"
 
     my_data = {}
-    my_data['character'] = {}
-    my_data['character']['bio'] = Base64.encode64(char['dynamic_sheet'].to_json)
-    my_data['character']['dynamic_sheet'] = char['dynamic_sheet']
+    my_data['wiki_page'] = {}
+    my_data['wiki_page']['body'] = Base64.encode64(JSON.pretty_generate(char['wiki']))
 
     ## {
     ##   'character' : {
@@ -43,12 +99,15 @@ class CharactersController < ApplicationController
     ##     }
     ##   }
     ## }
+    ##
+    ## {
+    ##   'wiki_page': {
+    ##     'body': jkj
+    ##   }
+    ## }
 
-    @resp = obsidian_portal.access_token.put(url, my_data.to_json,
+    @resp = obsidian_portal.access_token.put(wiki_url, my_data.to_json,
                                              {'Content-Type' => 'application/x-www-form-urlencoded'})
-
-    Rails.logger.fatal("GREG: response to save: #{@resp.inspect}")
-    Rails.logger.fatal("GREG: response to save: #{@resp.body}")
 
     render json: { "result" => true }
   end

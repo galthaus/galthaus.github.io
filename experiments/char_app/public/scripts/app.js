@@ -64,7 +64,7 @@ angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource
           var d = new Date();
           items=data;
           items.current_date = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
-          if (typeof items !== 'number' && typeof character !== 'number' && character.dynamic_sheet !== null)
+          if (typeof items !== 'number' && typeof character !== 'number' && character.wiki !== null)
             ledger_calculate(items, character);
           itemsDefer.resolve(items);
         },
@@ -88,14 +88,14 @@ angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource
         data: null,
         success: function( data ) {
           character=data;
-          if (character.dynamic_sheet === null) {
+          if (character.wiki === null || character.wiki.ledger_id === undefined) {
             $.ajax({
               url: "/character-base.json",
               mimeType: "application/json",
               dataType: 'json',
               data: null,
               success: function( data ) {
-                character.dynamic_sheet=data;
+                character.wiki=data;
                 if (typeof items !== 'number' && typeof character !== 'number')
                   ledger_calculate(items, character);
                 itemsDefer.resolve(character);
@@ -155,27 +155,27 @@ function calculate(gameData, character) {
     eval(v + " = " + e);
   }
     
-  var cc = findLedgerTypeEntry(gameData.classes, character.dynamic_sheet.ci.base.current_class);
+  var cc = findLedgerTypeEntry(gameData.classes, character.wiki.ci.base.current_class);
   for (var i = 0; i < gameData.skills.length; i++) {
     var dskill = gameData.skills[i];
-    var cskill = character.dynamic_sheet.ci.skills[dskill.name];
+    var cskill = character.wiki.ci.skills[dskill.name];
     
     if (cskill === undefined) {
-      character.dynamic_sheet.ci.skills[dskill.name] = {
+      character.wiki.ci.skills[dskill.name] = {
         "tmp_mod": 0,
         "extra_mod": 0,
         "total": 0,
         "ranks": 0,
         "attr_mod": 0
       };
-      cskill = character.dynamic_sheet.ci.skills[dskill.name];
+      cskill = character.wiki.ci.skills[dskill.name];
     }
     
     if (cskill.tmp_mod === undefined) {
       cskill.tmp_mod = 0;
     }
     cskill.extra_mod = 0;
-    if (($.inArray(dskill.name, character.dynamic_sheet.ci.base.permanentSkills) !== -1) &&
+    if (($.inArray(dskill.name, character.wiki.ci.base.permanentSkills) !== -1) &&
         cc !== undefined && ($.inArray(dskill.name, cc.ClassSkills) !== -1)) {
       cskill.extra_mod = 1;
     }
@@ -184,7 +184,7 @@ function calculate(gameData, character) {
       cskill.attr_mod = 0;    
     }
     else {
-      cskill.attr_mod = character.dynamic_sheet.ci.attributes[dskill.attribute].mod;
+      cskill.attr_mod = character.wiki.ci.attributes[dskill.attribute].mod;
     }
     cskill.total = cskill.ranks + cskill.attr_mod + cskill.extra_mod + Number(cskill.tmp_mod);
   }

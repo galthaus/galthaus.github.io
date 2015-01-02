@@ -150,26 +150,26 @@ function ledger_addentry(character, a, p1, p2, v, details) {
   var date = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
 
   var e = { "date": date, "action": a, "param1": p1, "param2": p2, "value": v, "details": details,
-            "id": character.dynamic_sheet.ledger_id, "children": [] };
-  character.dynamic_sheet.ledger_id += 1;
+            "id": character.wiki.ledger_id, "children": [] };
+  character.wiki.ledger_id += 1;
 
-  character.dynamic_sheet.ledger.push(e);
+  character.wiki.ledger.push(e);
 
   return e;
 }
 
 function ledger_deleteentry(character, index) {
-  var arr = character.dynamic_sheet.ledger.splice(index,1);
+  var arr = character.wiki.ledger.splice(index,1);
   var le = arr[0];
 
   for (var i = 0; i < le.children.length; i++) {
     var index;
-    for (index = 0; index < character.dynamic_sheet.ledger.length; index++) {
-      if (character.dynamic_sheet.ledger[index].id === le.children[i])
+    for (index = 0; index < character.wiki.ledger.length; index++) {
+      if (character.wiki.ledger[index].id === le.children[i])
         break;
     }
 
-    if (index !== character.dynamic_sheet.ledger.length) {
+    if (index !== character.wiki.ledger.length) {
       ledger_deleteentry(character, index);
     }
   }
@@ -177,7 +177,7 @@ function ledger_deleteentry(character, index) {
 
 function ledger_calculate(gameData, character) {
   // Sort ledger
-  character.dynamic_sheet.ledger.sort(function(a,b) {
+  character.wiki.ledger.sort(function(a,b) {
     if ( a.date < b.date )
       return -1;
     if ( a.date > b.date )
@@ -193,8 +193,8 @@ function ledger_calculate(gameData, character) {
   ledger_clear(gameData, character);
 
   // Process ledger
-  for (var i = 0; i < character.dynamic_sheet.ledger.length; i++) {
-    var le = character.dynamic_sheet.ledger[i];
+  for (var i = 0; i < character.wiki.ledger.length; i++) {
+    var le = character.wiki.ledger[i];
 
     if (gameData.current_date < le.date) {
       break;
@@ -217,8 +217,8 @@ function ledger_calculate(gameData, character) {
     }
 
     if (type_name === "occupations") {
-      character.dynamic_sheet.ci.base.occupation = el.name;
-      character.dynamic_sheet.ci.scratch.feats += el.BonusFeatCount;
+      character.wiki.ci.base.occupation = el.name;
+      character.wiki.ci.scratch.feats += el.BonusFeatCount;
 
       if (le.children.length === 0) { 
         for (var ii = 0; ii < el.SkillsCount; ii++) {
@@ -239,7 +239,7 @@ function ledger_calculate(gameData, character) {
           le.children.push(e.id);
         }
       }
-      character.dynamic_sheet.ci.misc.wealth += el.WealthBonus;
+      character.wiki.ci.misc.wealth += el.WealthBonus;
     }
 
     if (type_name === "classes") {
@@ -249,8 +249,8 @@ function ledger_calculate(gameData, character) {
       var level_feature = "";
       var grit_value = 0;
 
-      for (ci = 0; ci < character.dynamic_sheet.ci.base.classes.length; ci++) {
-        var e = character.dynamic_sheet.ci.base.classes[ci];
+      for (ci = 0; ci < character.wiki.ci.base.classes.length; ci++) {
+        var e = character.wiki.ci.base.classes[ci];
         if (e.name === el.name) {
           level_index = e.level;
           e.level += 1;
@@ -260,48 +260,48 @@ function ledger_calculate(gameData, character) {
       }
       if (addedLevel === 0) {
         var e = { "name": el.name, "level": 1 };
-        character.dynamic_sheet.ci.base.classes.push(e);
+        character.wiki.ci.base.classes.push(e);
       }
       
       if (level_index > 0) {
-        character.dynamic_sheet.ci.misc.bab -= gameData.charts.bab[el.charts.bab][level_index - 1];
-        character.dynamic_sheet.ci.saves.fort.base -= gameData.charts.fort[el.charts.fort][level_index - 1];
-        character.dynamic_sheet.ci.saves.ref.base -= gameData.charts.ref[el.charts.ref][level_index - 1];
-        character.dynamic_sheet.ci.saves.will.base -= gameData.charts.will[el.charts.will][level_index - 1];
-        character.dynamic_sheet.ci.misc.defense.base -= gameData.charts.defense[el.charts.defense][level_index - 1];
-        character.dynamic_sheet.ci.misc.reputation.base -= gameData.charts.reputation[el.charts.reputation][level_index - 1];   
+        character.wiki.ci.misc.bab -= gameData.charts.bab[el.charts.bab][level_index - 1];
+        character.wiki.ci.saves.fort.base -= gameData.charts.fort[el.charts.fort][level_index - 1];
+        character.wiki.ci.saves.ref.base -= gameData.charts.ref[el.charts.ref][level_index - 1];
+        character.wiki.ci.saves.will.base -= gameData.charts.will[el.charts.will][level_index - 1];
+        character.wiki.ci.misc.defense.base -= gameData.charts.defense[el.charts.defense][level_index - 1];
+        character.wiki.ci.misc.reputation.base -= gameData.charts.reputation[el.charts.reputation][level_index - 1];   
       }
-      character.dynamic_sheet.ci.misc.bab += gameData.charts.bab[el.charts.bab][level_index];
-      character.dynamic_sheet.ci.saves.fort.base += gameData.charts.fort[el.charts.fort][level_index];
-      character.dynamic_sheet.ci.saves.ref.base += gameData.charts.ref[el.charts.ref][level_index];
-      character.dynamic_sheet.ci.saves.will.base += gameData.charts.will[el.charts.will][level_index];
-      character.dynamic_sheet.ci.misc.defense.base += gameData.charts.defense[el.charts.defense][level_index];
-      character.dynamic_sheet.ci.misc.reputation.base += gameData.charts.reputation[el.charts.reputation][level_index];
+      character.wiki.ci.misc.bab += gameData.charts.bab[el.charts.bab][level_index];
+      character.wiki.ci.saves.fort.base += gameData.charts.fort[el.charts.fort][level_index];
+      character.wiki.ci.saves.ref.base += gameData.charts.ref[el.charts.ref][level_index];
+      character.wiki.ci.saves.will.base += gameData.charts.will[el.charts.will][level_index];
+      character.wiki.ci.misc.defense.base += gameData.charts.defense[el.charts.defense][level_index];
+      character.wiki.ci.misc.reputation.base += gameData.charts.reputation[el.charts.reputation][level_index];
       
       level_feature = el.Features[level_index];
       if (level_feature === "Bonus Feat") {
-        character.dynamic_sheet.ci.scratch.feats += 1;
+        character.wiki.ci.scratch.feats += 1;
       }
       else if (level_feature === "Talent") {
-        character.dynamic_sheet.ci.scratch.talents += 1;  
+        character.wiki.ci.scratch.talents += 1;  
       }
       
-      character.dynamic_sheet.ci.base.current_class = el.name;
-      character.dynamic_sheet.ci.base.character_level += 1;
-      character.dynamic_sheet.ci.misc.action_points += eval(el.ActionPoints);
-      character.dynamic_sheet.ci.scratch.gritdie += 1;
+      character.wiki.ci.base.current_class = el.name;
+      character.wiki.ci.base.character_level += 1;
+      character.wiki.ci.misc.action_points += eval(el.ActionPoints);
+      character.wiki.ci.scratch.gritdie += 1;
 
-      if (character.dynamic_sheet.ci.base.character_level % 4 === 0) {
-        character.dynamic_sheet.ci.scratch.stats += 1;
+      if (character.wiki.ci.base.character_level % 4 === 0) {
+        character.wiki.ci.scratch.stats += 1;
       }
-      if (character.dynamic_sheet.ci.base.character_level % 3 === 0) {
-        character.dynamic_sheet.ci.scratch.feats += 1;
+      if (character.wiki.ci.base.character_level % 3 === 0) {
+        character.wiki.ci.scratch.feats += 1;
       }
 
       if (addedLevel === 0 && ci === 0) {
         // Initial Level
-        character.dynamic_sheet.ci.scratch.skills += eval(el.StartSkillPoints);
-	character.dynamic_sheet.ci.scratch.feats += el.StartingFeatCount + 
+        character.wiki.ci.scratch.skills += eval(el.StartSkillPoints);
+	character.wiki.ci.scratch.feats += el.StartingFeatCount + 
 	           el.StartingFeats.length;
 
         if (le.children.length === 0) {
@@ -310,7 +310,7 @@ function ledger_calculate(gameData, character) {
       }
       else {
         // Follow-on Level
-        character.dynamic_sheet.ci.scratch.skills += eval(el.SkillPoints);
+        character.wiki.ci.scratch.skills += eval(el.SkillPoints);
 
         if (le.children.length === 0) {
           grit_value = getRandomInt(0, Number(el.GritDie.substring(1))) + 1;
@@ -349,14 +349,14 @@ function ledger_calculate(gameData, character) {
         }
       
         // Add stat on levels / 4. 
-        if (character.dynamic_sheet.ci.base.character_level % 4 === 0) {
+        if (character.wiki.ci.base.character_level % 4 === 0) {
           e = ledger_addentry(character, "Spend", "Stat", "Strength", 1, "Stat Point for Level/4"); 
           e.parent = le.id;
           le.children.push(e.id);
         }
           
         // Add Feat on levels / 3. 
-        if (character.dynamic_sheet.ci.base.character_level % 3 === 0) {
+        if (character.wiki.ci.base.character_level % 3 === 0) {
           e = ledger_addentry(character, "Spend", "Feat", "?GREG?", 1, "Feat for Level/3"); 
           e.parent = le.id;
           le.children.push(e.id);
@@ -365,7 +365,7 @@ function ledger_calculate(gameData, character) {
     }
 
     if (le.action === "Roll" && le.param1 === "Grit") {
-      character.dynamic_sheet.ci.scratch.gritdie -= 1;
+      character.wiki.ci.scratch.gritdie -= 1;
     }
     else if (le.action === "Roll") {
         // Nothing
@@ -374,31 +374,31 @@ function ledger_calculate(gameData, character) {
         // Nothing
     }
     else if (le.action === "Spend" && le.param1 === "Stat") {
-      character.dynamic_sheet.ci.scratch.stats -= Number(le.value);
+      character.wiki.ci.scratch.stats -= Number(le.value);
     }
     else if (le.action === "Spend" && le.param1 === "Skill") {
-      character.dynamic_sheet.ci.scratch.skills -= Number(le.value);
-      var cc = findLedgerTypeEntry(gameData.classes, character.dynamic_sheet.ci.base.current_class);
+      character.wiki.ci.scratch.skills -= Number(le.value);
+      var cc = findLedgerTypeEntry(gameData.classes, character.wiki.ci.base.current_class);
       var divMod = 2;
       if ($.inArray(le.param2, cc.ClassSkills) !== -1) {
         divMod = 1;
       }
-      if ($.inArray(le.param2, character.dynamic_sheet.ci.base.permanentSkills) !== -1) {
+      if ($.inArray(le.param2, character.wiki.ci.base.permanentSkills) !== -1) {
         divMod = 1;
       }
-      character.dynamic_sheet.ci.skills[le.param2].ranks += (Number(le.value) / divMod);
+      character.wiki.ci.skills[le.param2].ranks += (Number(le.value) / divMod);
     }
     else if (le.action === "Spend" && le.param1 === "PermanentSkill") {
-      character.dynamic_sheet.ci.base.permanentSkills.push(le.param2);
+      character.wiki.ci.base.permanentSkills.push(le.param2);
     }
     else if (le.action === "Spend" && le.param1 === "Feat") {
-      character.dynamic_sheet.ci.scratch.feats -= 1;
+      character.wiki.ci.scratch.feats -= 1;
     }
     else if (le.action === "Spend" && le.param1 === "Talent") {
-      character.dynamic_sheet.ci.scratch.talents -= 1;
+      character.wiki.ci.scratch.talents -= 1;
     }
     else if (le.action === "Spend" && le.param1 === "Occupation") {
-      character.dynamic_sheet.ci.scratch.occupation -= 1;
+      character.wiki.ci.scratch.occupation -= 1;
     }
 
     // Calculate each time - this is badish, but okay for now.

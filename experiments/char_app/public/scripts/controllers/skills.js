@@ -44,7 +44,7 @@ angular.module('wildWestCharSheetApp').directive('skillsRow', function() {
       calculate: '&calculate'
     },
     controller: function($scope) {
-      var varName = "character.dynamic_sheet.ci.skills[\""+$scope.rowdata.name+"\"]";
+      var varName = "character.wiki.ci.skills[\""+$scope.rowdata.name+"\"]";
       var character = $scope.character;
       
       var_expand($scope.items, $scope.character, varName, "Skill");

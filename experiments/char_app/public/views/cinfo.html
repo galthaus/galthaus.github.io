@@ -1,15 +1,15 @@
 <h3 class="western title">Character Info</h3>
 <table>
   <tr>
-    <td>Character</td><td><input size="10" type="text" ng-model="character.dynamic_sheet.ci.base.name" /></td>
-    <td>Player</td><td><input size="10" type="text" ng-model="character.dynamic_sheet.ci.base.player_name" /></td>
+    <td>Character</td><td><input size="10" type="text" ng-model="character.wiki.ci.base.name" /></td>
+    <td>Player</td><td><input size="10" type="text" ng-model="character.wiki.ci.base.player_name" /></td>
   </tr>
   <tr>
-    <td>Current Class</td><td>{{character.dynamic_sheet.ci.base.current_class}}</td>
-    <td>Classes</td><td><ul><li ng-repeat="x in character.dynamic_sheet.ci.base.classes">{{x.name}} {{x.level}}</li></ul></td>
+    <td>Current Class</td><td>{{character.wiki.ci.base.current_class}}</td>
+    <td>Classes</td><td><ul><li ng-repeat="x in character.wiki.ci.base.classes">{{x.name}} {{x.level}}</li></ul></td>
   </tr>
   <tr>
-    <td>Occupation</td><td>{{character.dynamic_sheet.ci.base.occupation}}</td>
-    <td>Age</td><td><input size="4" type="text" ng-model="character.dynamic_sheet.ci.base.age" /></td>
+    <td>Occupation</td><td>{{character.wiki.ci.base.occupation}}</td>
+    <td>Age</td><td><input size="4" type="text" ng-model="character.wiki.ci.base.age" /></td>
   </tr>
 </table>
