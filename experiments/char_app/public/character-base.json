@@ -1,0 +1,103 @@
+{
+  "ci": {
+    "base": {
+      "name": "Fill Me In",
+      "player_name": "Fille Me in",
+      "age": 14,
+      "occupation": "???",
+      "current_class": "???",
+      "classes": [
+      ]
+    },
+    "scratch": {
+      "gritdie": 0,
+      "stats": 0,
+      "skills": 0,
+      "feats": 0,
+      "talents": 0,
+      "occupation": 1
+    },
+    "attributes": {
+      "Strength": {
+        "value":  10,
+        "tmpadj":  0,
+        "mod":  0
+      },
+      "Dexterity": {
+        "value":  10,
+        "tmpadj":  0,
+        "mod":  0
+      },
+      "Constitution": {
+        "value":  10,
+        "tmpadj":  0,
+        "mod":  0
+      },
+      "Intelligence": {
+        "value":  10,
+        "tmpadj":  0,
+        "mod":  0
+      },
+      "Wisdom": {
+        "value":  10,
+        "tmpadj":  0,
+        "mod":  0
+      },
+      "Charisma": {
+        "value":  10,
+        "tmpadj":  0,
+        "mod":  0
+      }
+    },
+    "misc": {
+      "grit": 0,
+      "damage": 0,
+      "action_points": 0,
+      "bab": 0,
+      "defense": {
+        "base": 0,
+        "total": 0
+      },
+      "reputation": {
+        "base": 0,
+        "total": 0
+      },
+      "wealth": 0
+    },
+    "saves": {
+      "fort": {
+        "total": 0,
+        "base": 0,
+        "ability": 0,
+        "misc": 0,
+        "tmp": 0
+      },
+      "ref": {
+        "total": 0,
+        "base": 0,
+        "ability": 0,
+        "misc": 0,
+        "tmp": 0
+      },
+      "will": {
+        "total": 0,
+        "base": 0,
+        "ability": 0,
+        "misc": 0,
+        "tmp": 0
+      }
+    },
+    "skills": {},
+    "feats": {},
+    "talents": {}
+  },
+  "ledger_id": 7,
+  "ledger": [
+    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Strength", "value": 10, "details": "Stat Buy", "id": 1, "children": [] },
+    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Dexterity", "value": 10, "details": "Stat Buy", "id": 2, "children": [] },
+    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Constitution", "value": 10, "details": "Stat Buy", "id": 3, "children": [] },
+    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Intelligence", "value": 10, "details": "Stat Buy", "id": 4, "children": [] },
+    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Wisdom", "value": 10, "details": "Stat Buy", "id": 5, "children": [] },
+    { "date": "2014/12/15", "action": "Roll", "param1": "Stat", "param2": "Charisma", "value": 10, "details": "Stat Buy", "id": 6, "children": [] }
+  ]
+}

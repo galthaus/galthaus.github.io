@@ -1,0 +1,89 @@
+<!doctype html>
+<html class="no-js" ng-app="wildWestCharSheetApp">
+  <head>
+    <meta charset="utf-8">
+    <title>CharApp</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <%= csrf_meta_tags %>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="/styles/main.css">
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="/bower_components/es5-shim/es5-shim.js"></script>
+    <script src="/bower_components/json3/lib/json3.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/angular-touch/angular-touch.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="/scripts/app.js"></script>
+        <script src="/scripts/controllers/main.js"></script>
+        <script src="/scripts/controllers/micro.js"></script>
+        <script src="/scripts/controllers/ledger.js"></script>
+        <script src="/scripts/controllers/skills.js"></script>
+        <script src="/scripts/controllers/nav.js"></script>
+        <!-- endbuild -->
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please 
+         <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <%= yield %>
+
+    <!-- Add your site or application content here -->
+    <div class="container-fluid" ng-controller="NavCtrl">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li ng-class="{active: isActive('/base')}"><a ng-href="#/">Base</a></li>
+          <li ng-class="{active: isActive('/skills')}"><a ng-href="#/skills">Skills</a></li>
+          <li ng-class="{active: isActive('/feats')}"><a ng-href="#/feats">feats</a></li>
+          <li ng-class="{active: isActive('/ledger')}"><a ng-href="#/ledger">Ledger</a></li>
+          <li ng-class="{active: isActive('/portal')}"><a ng-href="/characters">Characters</a></li>
+        </ul>
+
+        <h3 class="text-muted">Wild West Character Sheet</h3>
+        <div style="float: right;">
+          Process Date:
+          <input class="typodermic" size="10" type="text" ng-change="ledger_calculate()" 
+                 ng-model="items.current_date"/>
+        </div>
+
+        <button class="btn btn-success" ng-click="saveCharacter()">
+            <span class="glyphicon glyphicon-user"></span> Save
+        </button>
+      </div>
+
+      <div ng-controller="microController" id="microController-div"></div>
+      <div ng-view=""></div>
+
+      <div class="footer">
+        <p><span class="glyphicon glyphicon-heart"></span> from Greg</p>
+      </div>
+    </div>
+
+</body>
+</html>

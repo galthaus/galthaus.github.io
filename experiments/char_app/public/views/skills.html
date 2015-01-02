@@ -1,0 +1,34 @@
+<div class="container-fluid" ng-controller="SkillsCtrl">
+
+<div class="row">
+  <div>
+    <h3 style="title">Permanent Class Skills</h3>  
+    <ul>
+        <li ng-repeat="x in character.dynamic_sheet.ci.base.permanentSkills">{{x}}</li>
+    </ul>
+  </div>
+</div>   
+    
+<div class="row">
+  <div>
+    <h3 style="title">Skills</h3> 
+    <table class="skills">
+      <thead><tr>
+        <th>Skill</th>
+        <th>Ability</th>
+        <th>Untrained?</th>
+        <th>Skill Modifier</th>
+        <th>Ranks</th>
+        <th>Ability Modifier</th>
+        <th>Misc Modifiers</th>
+        <th>Temp Modifiers</th>
+      </tr></thead>
+      <tbody>
+        <tr ng-repeat="x in items.skills" skills-row character="character"
+            items="items" rowdata="x" calculate="calculate()"></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>

@@ -1,0 +1,32 @@
+
+<div class="container-fluid">
+  <h3 class="western title">Characters</h3>
+
+<table class="charlist">
+  <tr>
+    <th>
+      Name
+    </th>
+    <th>
+      Author
+    </th>
+  </tr>
+<% @chars.each do |cc| %>
+  <tr>
+    <td>
+      <%= cc["name"] %>
+    </td>
+    <td>
+      <%= cc["author"]["username"] %>
+    </td>
+    <td>
+      <img class="character" src="<%=cc["avatar_url"] %>"/>
+    </td>
+    <td>
+      <%= link_to "View/Edit", character_path(cc["id"]) %>
+    </td>
+  </tr>
+<%end%>
+</table>
+
+</div>

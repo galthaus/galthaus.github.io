@@ -1,0 +1,366 @@
+{
+  "attributes_base": "character.dynamic_sheet.ci.attributes[\"__REPLACE__\"].base",
+  "attributes": [
+    { "name": "Strength", "type": "Number" },
+    { "name": "Dexterity", "type": "Number" },
+    { "name": "Constitution", "type": "Number" },
+    { "name": "Intelligence", "type": "Number" },
+    { "name": "Wisdom", "type": "Number" },
+    { "name": "Charisma", "type": "Number" }
+  ],
+  "dice_base": "character.dynamic_sheet.ci.misc.grit",
+  "dice": [
+    { "name": "d4", "type": "Number" },
+    { "name": "d6", "type": "Number" },
+    { "name": "d8", "type": "Number" },
+    { "name": "d10", "type": "Number" },
+    { "name": "d12", "type": "Number" },
+    { "name": "d20", "type": "Number" }
+  ],
+  "occupations": [
+    { "name": "Academic", "type": "Occupation",
+      "Prereqs": [ "Number(character.dynamic_sheet.ci.base.age) >= 18" ],
+      "SkillsCount": 3,
+      "Skills": [ "Craft(writing)", "Decipher Script", "Gather Information", "Knowledge(arcane lore)",
+          "Knowledge(art)", "Knowledge(behavioral sciences)", "Knowledge(business)",
+          "Knowledge(civics)", "Knowledge(current events)", "Knowledge(earth/life sciences)",
+          "Knowledge(history)", "Knowledge(physical sciences)", "Knowledge(popular culture)",
+          "Knowledge(tactics)", "Knowledge(technology)", "Knowledge(theology/philosophy)",
+          "Research", "Read/Write Language", "Speak Language"],
+      "BonusFeatCount": 0,
+      "BonusFeats": [],
+      "WealthBonus": 2 },
+    { "name": "Artisan", "type": "Occupation",
+      "Prereqs": [ "character.dynamic_sheet.ci.attributes.Dexterity.total >= 13" ],
+      "SkillsCount": 2,
+      "Skills": [ "Craft(chemical)", "Craft(electric)", "Craft(mechanical)", "Craft(pharmaceutical)",
+          "Craft(structural)", "Craft(visual art)", "Disable Device",
+          "Knowledge(art)", "Knowledge(physical sciences)", "Knowledge(technology)",
+          "Repair", "Research" ],
+      "BonusFeatCount": 1,
+      "BonusFeats": [ "Builder", "Creative", "Mechanical" ],
+      "WealthBonus": 2
+    },
+    { "name": "Artist", "type": "Occupation",
+      "Prereqs": [ "Number(character.dynamic_sheet.ci.base.age) >= 15" ],
+      "SkillsCount": 3,
+      "Skills": [ "Bluff", "Craft(visual art)", "Disguise", "Forgery",
+          "Knowledge(arcane lore)", "Knowledge(art)", "Knowledge(popular culture)",
+          "Listen", "Perform(act)", "Perform(dance)", "Perform(keyboards)", 
+          "Perform(percussion instruments)", "Perform(sing)", "Perform(stand-up)",
+          "Perform(stringed instruments)", "Perform(wind instruments)", "Spot" ],
+      "BonusFeatCount": 0,
+      "BonusFeats": [],
+      "WealthBonus": 2
+    }  
+  ],
+  "skills_base": "character.dynamic_sheet.ci.skills[\"__REPLACE__\"].base",
+  "skills": [
+    { "name": "Balance", "type": "Number", "attribute": "Dexterity", "untrained": true },
+    { "name": "Bluff", "type": "Number", "attribute": "Charisma", "untrained": true },
+    { "name": "Climb", "type": "Number", "attribute": "Strength", "untrained": true },
+    { "name": "Concentration", "type": "Number", "attribute": "Constitution", "untrained": true },
+    { "name": "Craft(chemical)", "type": "Number", "attribute": "Intelligence", "untrained": false },
+    { "name": "Craft(electric)", "type": "Number", "attribute": "Intelligence", "untrained": false },
+    { "name": "Craft(mechanical)", "type": "Number", "attribute": "Intelligence", "untrained": false },
+    { "name": "Craft(pharmaceutical)", "type": "Number", "attribute": "Intelligence", "untrained": false },
+    { "name": "Craft(structural)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Craft(visual art)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Craft(writing)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Decipher Script", "type": "Number", "attribute": "Intelligence", "untrained": false},
+    { "name": "Demolitions", "type": "Number", "attribute": "Intelligence", "untrained": false },
+    { "name": "Diplomacy", "type": "Number", "attribute": "Charisma", "untrained": true },
+    { "name": "Disable Device", "type": "Number", "attribute": "Intelligence", "untrained": false },
+    { "name": "Disguise", "type": "Number", "attribute": "Charisma", "untrained": true },
+    { "name": "Escape Artist", "type": "Number", "attribute": "Dexterity", "untrained": true },
+    { "name": "Forgery", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Gamble", "type": "Number", "attribute": "Wisdom", "untrained": true },
+    { "name": "Gather Information", "type": "Number", "attribute": "Charisma", "untrained": true },
+    { "name": "Handle Animal", "type": "Number", "attribute": "Charisma", "untrained": true },
+    { "name": "Hide", "type": "Number", "attribute": "Dexterity", "untrained": true },
+    { "name": "Intimidate", "type": "Number", "attribute": "Charisma", "untrained": true },
+    { "name": "Investigate", "type": "Number", "attribute": "Intelligence", "untrained": false },
+    { "name": "Jump", "type": "Number", "attribute": "Strength", "untrained": true },
+    { "name": "Knowledge(arcane lore)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Knowledge(art)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Knowledge(behavioral sciences)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Knowledge(business)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Knowledge(civics)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Knowledge(current events)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Knowledge(earth/life sciences)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Knowledge(history)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Knowledge(physical sciences)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Knowledge(popular culture)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Knowledge(streetwise)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Knowledge(tactics)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Knowledge(technology)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Knowledge(theology/philosophy)", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Listen", "type": "Number", "attribute": "Wisdom", "untrained": true },
+    { "name": "Move Silently", "type": "Number", "attribute": "Dexterity", "untrained": true },
+    { "name": "Navigate", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Operate Vehicle(aircraft)", "type": "Number", "attribute": "Dexterity", "untrained": false },
+    { "name": "Operate Vehicle(ground vehicles)", "type": "Number", "attribute": "Dexterity", "untrained": false },
+    { "name": "Operate Vehicle(watercraft)", "type": "Number", "attribute": "Dexterity", "untrained": false },
+    { "name": "Perform(act)", "type": "Number", "attribute": "Charisma", "untrained": true },
+    { "name": "Perform(dance)", "type": "Number", "attribute": "Charisma", "untrained": true },
+    { "name": "Perform(keyboards)", "type": "Number", "attribute": "Charisma", "untrained": true },
+    { "name": "Perform(percussion instruments)", "type": "Number", "attribute": "Charisma", "untrained": true },
+    { "name": "Perform(sing)", "type": "Number", "attribute": "Charisma", "untrained": true },
+    { "name": "Perform(stand-up)", "type": "Number", "attribute": "Charisma", "untrained": true },
+    { "name": "Perform(stringed instruments)", "type": "Number", "attribute": "Charisma", "untrained": true },
+    { "name": "Perform(wind instruments)", "type": "Number", "attribute": "Charisma", "untrained": true },
+    { "name": "Profession", "type": "Number", "attribute": "Wisdom", "untrained": true },
+    { "name": "Read/Write Language", "type": "Number", "attribute": "None", "untrained": false },
+    { "name": "Repair", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Research", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Ride", "type": "Number", "attribute": "Dexterity", "untrained": true },
+    { "name": "Search", "type": "Number", "attribute": "Intelligence", "untrained": true },
+    { "name": "Sense Motive", "type": "Number", "attribute": "Wisdom", "untrained": true },
+    { "name": "Sleight of Hand", "type": "Number", "attribute": "Dexterity", "untrained": true },
+    { "name": "Speak Language", "type": "Number", "attribute": "None", "untrained": false },
+    { "name": "Spot", "type": "Number", "attribute": "Wisdom", "untrained": true },
+    { "name": "Survival", "type": "Number", "attribute": "Wisdom", "untrained": true },
+    { "name": "Swim", "type": "Number", "attribute": "Strength", "untrained": true },
+    { "name": "Treat Injury", "type": "Number", "attribute": "Wisdom", "untrained": true },
+    { "name": "Tumble", "type": "Number", "attribute": "Dexterity", "untrained": false }
+  ],
+  "feats_base": "character.dynamic_sheet.ci.feats[\"__REPLACE__\"].purchased",
+  "feats": [
+    { "name": "Feinting", "type": "Number" },
+    { "name": "Power Attack", "type": "Number" },
+    { "name": "Simple Weapons Proficiency", "type": "Number" }
+  ],
+  "talents_base": "character.dynamic_sheet.ci.talents[\"__REPLACE__\"].purchased",
+  "talents": [
+        { "name": "Extreme Effort", "type": "Number",
+          "requires": [],
+          "details": "+2 to Strength Check or Strength Related Skills and takes a full round"
+        },
+        { "name": "Improved Extreme Effort", "type": "Number",
+          "requires": ["Extreme Effort"],
+          "details": "+4 to Strength Check or Strength Related Skills and takes a full round"
+        },
+        { "name": "Advanced Extreme Effort", "type": "Number", 
+          "requires": ["Improved Extreme Effort", "Extreme Effort"],
+          "details": "+6 to Strength Check or Strength Related Skills and takes a full round"
+        },
+        { "name": "Ignore Hardness", "type": "Number",
+          "requires": [],
+          "details": "Ignore 2 points of object hardness"
+        },
+        { "name": "Improved Ignore Hardness", "type": "Number",
+          "requires": ["Ignore Hardnerss"],
+          "details": "Ignore 2 points of object hardness (stacks with prereqs)"
+        },
+        { "name": "Advanced Ignore Hardness", "type": "Number",
+          "requires": ["Improved Ignore Hardness", "Ignore Hardnerss"],
+          "details": "Ignore 2 points of object hardness (stacks with prereqs)"
+        },
+        { "name": "Melee Smash", "type": "Number",
+          "requires": [],
+          "details": "+1 Melee Damage"
+        },
+        { "name": "Improved Melee Smash", "type": "Number",
+          "requires": ["Melee Damage"],
+          "details": "+1 Melee Damage (stacks with prereqs)"
+        },
+        { "name": "Advanced Melee Smash", "type": "Number",
+          "requires": ["Improved Melee Damage", "Melee Damage"],
+          "details": "+1 Melee Damage (stacks with prereqs)"
+        }  
+  ],
+  "charts": {
+    "bab": {
+      "best":   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      "better": [ 0, 1, 2, 3, 3, 4, 5, 6, 6, 7],
+      "good":   [ 0, 1, 1, 2, 2, 3, 3, 4, 4, 5]
+    },
+    "fort": {
+      "bestest":[ 2, 3, 3, 4, 4, 5, 5, 6, 6, 7 ],
+      "best":   [ 1, 2, 2, 2, 3, 3, 4, 4, 5, 5 ],
+      "better": [ 1, 2, 2, 2, 3, 3, 4, 4, 4, 5 ],
+      "good":   [ 0, 0, 1, 1, 1, 2, 2, 2, 3, 3 ]
+    },
+    "ref": {
+      "bestest":[ 2, 3, 3, 4, 4, 5, 5, 6, 6, 7 ],
+      "best":   [ 1, 2, 2, 2, 3, 3, 4, 4, 5, 5 ],
+      "better": [ 1, 2, 2, 2, 3, 3, 4, 4, 4, 5 ],
+      "good":   [ 0, 0, 1, 1, 1, 2, 2, 2, 3, 3 ]
+    },
+    "will": {
+      "bestest":[ 2, 3, 3, 4, 4, 5, 5, 6, 6, 7 ],
+      "best":   [ 1, 2, 2, 2, 3, 3, 4, 4, 5, 5 ],
+      "better": [ 1, 2, 2, 2, 3, 3, 4, 4, 4, 5 ],
+      "good":   [ 0, 0, 1, 1, 1, 2, 2, 2, 3, 3 ]
+    },
+    "defense": {
+      "bestest":[ 3, 4, 4, 5, 5, 6, 6, 7, 7, 8 ],
+      "best":   [ 1, 2, 2, 3, 4, 4, 5, 6, 6, 7 ],
+      "better": [ 1, 2, 2, 3, 3, 3, 4, 4, 5, 5 ],
+      "gooder": [ 1, 1, 2, 2, 3, 3, 4, 4, 5, 5 ],
+      "good":   [ 0, 1, 1, 1, 2, 2, 2, 3, 3, 3 ]
+    },
+    "reputation": {
+      "bestest":[ 2, 2, 2, 3, 3, 3, 4, 4, 4, 5 ],
+      "best":   [ 1, 1, 1, 2, 2, 2, 3, 3, 3, 4 ],
+      "better": [ 0, 0, 1, 1, 1, 2, 2, 2, 3, 3 ],
+      "good":   [ 0, 0, 0, 0, 1, 1, 1, 1, 2, 2 ]
+    }
+  },
+  "classes": [
+    {
+      "name": "Strong Hero",
+      "type": "Class",
+      "charts": {
+        "bab": "best",
+        "fort": "best",
+        "ref": "good",
+        "will": "good",
+        "defense": "better",
+        "reputation": "good"
+      },
+      "Features": [ "Talent", "Bonus Feat", "Talent", "Bonus Feat", "Talent", "Bonus Feat",
+                    "Talent", "Bonus Feat", "Talent", "Bonus Feat" ],
+      "BonusFeatList": [
+        "Animal Affinity", "Archaic Weapons Proficiency",
+        "Athletic", "Blind-Fight", "Brawl", "Cleave", "Combat Martial Arts",
+        "Combat Reflexes", "Great Cleave", "Improved Brawl",
+        "Improved Combat Martial Arts", "Improvised Weapon Proficiency",
+        "Improvised Weapon Damage", "Power Attack", "Weapon Focus"],
+      "GritDie": "d8",
+      "ClassSkills": [ "Painting" ],
+      "ActionPoints": "5 + Math.floor(0.5*character.dynamic_sheet.ci.base.character_level)",
+      "SkillPoints": "3 + character.dynamic_sheet.ci.attributes.Intelligence.mod",
+      "StartSkillPoints": "4*(3+character.dynamic_sheet.ci.attributes.Intelligence.mod)",
+      "StartingFeats": [ "Simple Weapons Proficiency" ],
+      "StartingFeatCount": 2,
+      "Talents": [
+        "Extreme Effort",
+        "Improved Extreme Effort",
+        "Advanced Extreme Effort",
+        "Ignore Hardness",
+        "Improved Ignore Hardness",
+        "Advanced Ignore Hardness",
+        "Melee Smash",
+        "Improved Melee Smash",
+        "Advanced Melee Smash"
+      ]
+    }
+  ],
+
+  "ledger": {
+    "Roll": {
+      "Stat": {
+        "type": "attributes"
+      },
+      "Grit": {
+        "type": "dice"
+      }
+    },
+    "Spend": {
+      "Occupation": {
+        "type": "occupations"
+      },
+      "Class": {
+        "type": "classes"
+      },
+      "Stat": {
+        "type": "attributes"
+      },
+      "Skill": {
+        "type": "skills"
+      },
+      "PermanentSkill": {
+        "type": "skills"
+      },
+      "Feat": {
+        "type": "feats"
+      },
+      "Talent": {
+        "type": "talents"
+      }
+    },
+    "Buy": {
+      "Equipment": {
+        "type": "equipment"
+      }
+    }
+  },
+
+  "ledger_clear": {
+    "character.dynamic_sheet.ci.attributes.*.base": "Number(0)",
+    "character.dynamic_sheet.ci.skills.*.total": "Number(0)",
+    "character.dynamic_sheet.ci.skills.*.ranks": "Number(0)",
+    "character.dynamic_sheet.ci.skills.*.attr_mod": "Number(0)",
+    "character.dynamic_sheet.ci.skills.*.extra_mod": "Number(0)",
+    "character.dynamic_sheet.ci.saves.*.base": "Number(0)",
+    "character.dynamic_sheet.ci.feats.*.purchased": "Number(0)",
+    "character.dynamic_sheet.ci.talents.*.purchased": "Number(0)",
+    "character.dynamic_sheet.ci.misc.grit": "Number(0)",
+    "character.dynamic_sheet.ci.misc.wealth": "Number(0)",
+    "character.dynamic_sheet.ci.misc.action_points": "Number(0)",
+    "character.dynamic_sheet.ci.misc.bab": "Number(0)",
+    "character.dynamic_sheet.ci.misc.defense.base": "Number(0)",
+    "character.dynamic_sheet.ci.misc.reputation.base": "Number(0)",
+    "character.dynamic_sheet.ci.scratch.gritdie": "Number(0)",
+    "character.dynamic_sheet.ci.scratch.stats": "Number(0)",
+    "character.dynamic_sheet.ci.scratch.skills": "Number(0)",
+    "character.dynamic_sheet.ci.scratch.feats": "Number(0)",
+    "character.dynamic_sheet.ci.scratch.talents": "Number(0)",
+    "character.dynamic_sheet.ci.scratch.occupation": "Number(1)",
+    "character.dynamic_sheet.ci.base.occupation": "'Unset'",
+    "character.dynamic_sheet.ci.base.character_level": "Number(0)",
+    "character.dynamic_sheet.ci.base.current_class": "'Unset'",
+    "character.dynamic_sheet.ci.base.classes": "[]",
+    "character.dynamic_sheet.ci.base.permanentSkills": "[]"
+  },
+
+  "calculations": [
+    { "value": "character.dynamic_sheet.ci.attributes.Strength.value",
+       "eval": "Number(character.dynamic_sheet.ci.attributes.Strength.base) + Number(character.dynamic_sheet.ci.attributes.Strength.tmpadj)" },
+    { "value": "character.dynamic_sheet.ci.attributes.Dexterity.value",
+       "eval": "Number(character.dynamic_sheet.ci.attributes.Dexterity.base) + Number(character.dynamic_sheet.ci.attributes.Dexterity.tmpadj)" },
+    { "value": "character.dynamic_sheet.ci.attributes.Constitution.value",
+       "eval": "Number(character.dynamic_sheet.ci.attributes.Constitution.base) + Number(character.dynamic_sheet.ci.attributes.Constitution.tmpadj)" },
+    { "value": "character.dynamic_sheet.ci.attributes.Intelligence.value",
+       "eval": "Number(character.dynamic_sheet.ci.attributes.Intelligence.base) + Number(character.dynamic_sheet.ci.attributes.Intelligence.tmpadj)" },
+    { "value": "character.dynamic_sheet.ci.attributes.Wisdom.value",
+       "eval": "Number(character.dynamic_sheet.ci.attributes.Wisdom.base) + Number(character.dynamic_sheet.ci.attributes.Wisdom.tmpadj)" },
+    { "value": "character.dynamic_sheet.ci.attributes.Charisma.value",
+       "eval": "Number(character.dynamic_sheet.ci.attributes.Charisma.base) + Number(character.dynamic_sheet.ci.attributes.Charisma.tmpadj)" },
+
+    { "value": "character.dynamic_sheet.ci.attributes.Strength.mod",
+       "eval": "Math.floor((Number(character.dynamic_sheet.ci.attributes.Strength.value) - 10) / 2)" },
+    { "value": "character.dynamic_sheet.ci.attributes.Dexterity.mod",
+       "eval": "Math.floor((Number(character.dynamic_sheet.ci.attributes.Dexterity.value) - 10) / 2)" },
+    { "value": "character.dynamic_sheet.ci.attributes.Constitution.mod",
+       "eval": "Math.floor((Number(character.dynamic_sheet.ci.attributes.Constitution.value) - 10) / 2)" },
+    { "value": "character.dynamic_sheet.ci.attributes.Intelligence.mod",
+       "eval": "Math.floor((Number(character.dynamic_sheet.ci.attributes.Intelligence.value) - 10) / 2)" },
+    { "value": "character.dynamic_sheet.ci.attributes.Wisdom.mod",
+       "eval": "Math.floor((Number(character.dynamic_sheet.ci.attributes.Wisdom.value) - 10) / 2)" },
+    { "value": "character.dynamic_sheet.ci.attributes.Charisma.mod",
+       "eval": "Math.floor((Number(character.dynamic_sheet.ci.attributes.Charisma.value) - 10) / 2)" },
+
+    { "value": "character.dynamic_sheet.ci.saves.fort.ability",
+      "eval": "Number(character.dynamic_sheet.ci.attributes.Constitution.mod)" },
+    { "value": "character.dynamic_sheet.ci.saves.ref.ability",
+      "eval": "Number(character.dynamic_sheet.ci.attributes.Dexterity.mod)" },
+    { "value": "character.dynamic_sheet.ci.saves.will.ability",
+      "eval": "Number(character.dynamic_sheet.ci.attributes.Wisdom.mod)" },
+
+    { "value": "character.dynamic_sheet.ci.saves.fort.total",
+      "eval": "Number(character.dynamic_sheet.ci.saves.fort.base) + Number(character.dynamic_sheet.ci.saves.fort.ability) + Number(character.dynamic_sheet.ci.saves.fort.misc) + Number(character.dynamic_sheet.ci.saves.fort.tmp)" },
+    { "value": "character.dynamic_sheet.ci.saves.ref.total",
+      "eval": "Number(character.dynamic_sheet.ci.saves.ref.base) + Number(character.dynamic_sheet.ci.saves.ref.ability) + Number(character.dynamic_sheet.ci.saves.ref.misc) + Number(character.dynamic_sheet.ci.saves.ref.tmp)" },
+    { "value": "character.dynamic_sheet.ci.saves.will.total",
+      "eval": "Number(character.dynamic_sheet.ci.saves.will.base) + Number(character.dynamic_sheet.ci.saves.will.ability) + Number(character.dynamic_sheet.ci.saves.will.misc) + Number(character.dynamic_sheet.ci.saves.will.tmp)" },
+
+    { "value": "character.dynamic_sheet.ci.misc.defense.total",
+      "eval": "10 + Number(character.dynamic_sheet.ci.misc.defense.base) + Number(character.dynamic_sheet.ci.attributes.Dexterity.mod)"},
+    { "value": "character.dynamic_sheet.ci.misc.reputation.total",
+      "eval": "Number(character.dynamic_sheet.ci.misc.reputation.base)" }
+
+  ]
+
+}
