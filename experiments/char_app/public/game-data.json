@@ -133,41 +133,90 @@
   "talents_base": "character.wiki.ci.talents[\"__REPLACE__\"].purchased",
   "talents": [
         { "name": "Extreme Effort", "type": "Number",
+          "page": 29,
           "requires": [],
           "details": "+2 to Strength Check or Strength Related Skills and takes a full round"
         },
         { "name": "Improved Extreme Effort", "type": "Number",
+          "page": 29,
           "requires": ["Extreme Effort"],
           "details": "+4 to Strength Check or Strength Related Skills and takes a full round"
         },
         { "name": "Advanced Extreme Effort", "type": "Number", 
+          "page": 29,
           "requires": ["Improved Extreme Effort", "Extreme Effort"],
           "details": "+6 to Strength Check or Strength Related Skills and takes a full round"
         },
         { "name": "Ignore Hardness", "type": "Number",
+          "page": 30,
           "requires": [],
           "details": "Ignore 2 points of object hardness"
         },
         { "name": "Improved Ignore Hardness", "type": "Number",
+          "page": 30,
           "requires": ["Ignore Hardnerss"],
           "details": "Ignore 2 points of object hardness (stacks with prereqs)"
         },
         { "name": "Advanced Ignore Hardness", "type": "Number",
+          "page": 30,
           "requires": ["Improved Ignore Hardness", "Ignore Hardnerss"],
           "details": "Ignore 2 points of object hardness (stacks with prereqs)"
         },
         { "name": "Melee Smash", "type": "Number",
+          "page": 30,
           "requires": [],
           "details": "+1 Melee Damage"
         },
         { "name": "Improved Melee Smash", "type": "Number",
+          "page": 30,
           "requires": ["Melee Damage"],
           "details": "+1 Melee Damage (stacks with prereqs)"
         },
         { "name": "Advanced Melee Smash", "type": "Number",
+          "page": 30,
           "requires": ["Improved Melee Damage", "Melee Damage"],
           "details": "+1 Melee Damage (stacks with prereqs)"
-        }  
+        },
+        { "name": "Evasion", "type": "Number",
+          "page": 32,
+          "requires": [],
+          "details": "Ref save for 1/2 is ref save for none (Not in med/heavy armor)"
+        },
+        { "name": "Uncanny Dodge 1", "type": "Number",
+          "page": 32,
+          "requires": [ "Evasion" ],
+          "details": "Retains Dex bonus to defense when flat-footed or hidden attacker"
+        },
+        { "name": "Uncanny Dodge 2", "type": "Number",
+          "page": 32,
+          "requires": [ "Evasion", "Uncanny Dodge 1" ],
+          "details": "No longer flanked"
+        },
+        { "name": "Defensive Roll", "type": "Number",
+          "page": 32,
+          "requires": [ "Evasion", "Uncanny Dodge 1" ],
+          "details": "Blow that would lower to 0 or less can have damaged halved for DC=damage ref save"
+        },
+        { "name": "Opportunist", "type": "Number",
+          "page": 32,
+          "requires": [ "Evasion" ],
+          "details": "Blow that would lower to 0 or less can have damaged halved for DC=damage ref save"
+        },
+        { "name": "Increased Speed", "type": "Number",
+          "page": 32,
+          "requires": [],
+          "details": "+5 base speed"
+        },
+        { "name": "Improved Increased Speed", "type": "Number",
+          "page": 32,
+          "requires": [ "Increased Speed" ],
+          "details": "+5 base speed (stacks with prereqs)"
+        },
+        { "name": "Advanced Increased Speed" "type": "Number",
+          "page": 32,
+          "requires": [ "Improved Increased Speed" ],
+          "details": "+5 base speed (stacks with prereqs)"
+        }
   ],
   "charts": {
     "bab": {
@@ -211,6 +260,7 @@
     {
       "name": "Strong Hero",
       "type": "Class",
+      "page": 28,
       "charts": {
         "bab": "best",
         "fort": "best",
@@ -228,7 +278,10 @@
         "Improved Combat Martial Arts", "Improvised Weapon Proficiency",
         "Improvised Weapon Damage", "Power Attack", "Weapon Focus"],
       "GritDie": "d8",
-      "ClassSkills": [ "Painting" ],
+      "ClassSkills": [ "Climb", "Craft(structural)", "Handle Animal", "Jump",
+                       "Knowledge(current events)", "Knowledge(popular culture)",
+                       "Knowledge(streetwise)", "Knowledge(tactics)", "Operate Vehicle(watercraft)",
+                       "Profession", "Read/Write Language", "Repair", "Speak Langunage", "Swim" ],
       "ActionPoints": "5 + Math.floor(0.5*character.wiki.ci.base.character_level)",
       "SkillPoints": "3 + character.wiki.ci.attributes.Intelligence.mod",
       "StartSkillPoints": "4*(3+character.wiki.ci.attributes.Intelligence.mod)",
@@ -244,6 +297,45 @@
         "Melee Smash",
         "Improved Melee Smash",
         "Advanced Melee Smash"
+      ]
+    },
+    {
+      "name": "Fast Hero",
+      "type": "Class",
+      "page": 30,
+      "charts": {
+        "bab": "better",
+        "fort": "good",
+        "ref": "better",
+        "will": "good",
+        "defense": "bestest",
+        "reputation": "better"
+      },
+      "Features": [ "Talent", "Bonus Feat", "Talent", "Bonus Feat", "Talent", "Bonus Feat",
+                    "Talent", "Bonus Feat", "Talent", "Bonus Feat" ],
+      "BonusFeatList": [
+        "Acrobatic", "Combat Expertise", "Combat Throw", "Defensive Martial Arts",
+        "Defensive Riding", "Double Tap", "Elusive Target", "Focused", "Improved Disarm",
+        "Mobility", "Personal Firearm Proficiency", "Point Blank Shot", "Sidewinder",
+        "Slip Hammer", "Stealthy", "Weapon Finesse" ],
+      "GritDie": "d8",
+      "ClassSkills": [ "Balance", "Craft(mechanical)", "Escape Artist", "Hide", "Knowledge(current events)",
+                       "Knowledge(popular culture)", "Knowledge(streetwise)", "Move Silently", "Operate Vehicle(watercraft)",
+                       "Profession", "Read/Write Language", "Ride", "Sleight of Hand", "Speak Language", "Tumble" ],
+      "ActionPoints": "5 + Math.floor(0.5*character.wiki.ci.base.character_level)",
+      "SkillPoints": "5 + character.wiki.ci.attributes.Intelligence.mod",
+      "StartSkillPoints": "4*(5+character.wiki.ci.attributes.Intelligence.mod)",
+      "StartingFeats": [ "Simple Weapons Proficiency" ],
+      "StartingFeatCount": 2,
+      "Talents": [
+        "Evasion",
+        "Uncanny Dodge 1",
+        "Uncanny Dodge 2",
+        "Defensive Roll",
+        "Opportunist",
+        "Increased Speed",
+        "Improved Increased Speed",
+        "Advanced Increased Speed"
       ]
     }
   ],
