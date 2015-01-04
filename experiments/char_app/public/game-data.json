@@ -212,7 +212,7 @@
           "requires": [ "Increased Speed" ],
           "details": "+5 base speed (stacks with prereqs)"
         },
-        { "name": "Advanced Increased Speed" "type": "Number",
+        { "name": "Advanced Increased Speed", "type": "Number",
           "page": 32,
           "requires": [ "Improved Increased Speed" ],
           "details": "+5 base speed (stacks with prereqs)"
