@@ -353,7 +353,24 @@
   ],
   "feats_base": "character.wiki.ci.feats[\"__REPLACE__\"].purchased",
   "feats": [
-    { "name": "Feinting", "type": "Number" },
+    { "page": 101, "name": "Acrobatic", "type": "Boolean",
+      "requires": [],
+      "description": "+2 on Jump and Tumble checks",
+      "actions": [ "add_skill_bonus(gameData, character, \"Tumble\", 2)", 
+                   "add_skill_bonus(gameData, character, \"Jump\", 2)" ]
+    },
+    { "page": 101, "name": "Alertness", "type": "Boolean",
+      "requires": [],
+      "description": "+2 on Listen and Spot checks",
+      "actions": [ "add_skill_bonus(gameData, character, \"Listen\", 2)", 
+                   "add_skill_bonus(gameData, character, \"Spot\", 2)" ]
+    },
+    { "page": 101, "name": "Animal Affinity", "type": "Boolean",
+      "requires": [],
+      "description": "+2 on Handle Animal and Ride checks",
+      "actions": [ "add_skill_bonus(gameData, character, \"Handle Animal\", 2)", 
+                   "add_skill_bonus(gameData, character, \"Ride\", 2)" ]
+    },
     { "name": "Power Attack", "type": "Number" },
     { "name": "Simple Weapons Proficiency", "type": "Number" }
   ],

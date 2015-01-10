@@ -122,7 +122,7 @@ function var_expand(gameData, character, varName, type) {
       eval(varName + " = Number(0)");
     }
     if (type === "Skill") {
-      eval(varName + " = { \"total\": 0, \"ranks\": 0 }");
+      eval(varName + " = { \"total\": 0, \"ranks\": 0, \"extra_mod\": 0, \"attr_mod\": 0 }");
     }
   }
 }
@@ -175,6 +175,22 @@ function ledger_deleteentry(character, index) {
   }
 }
 
+function add_skill_bonus(gameData, character, skill, bonus) {
+  var cskill = character.wiki.ci.skills[skill];
+    
+  if (cskill === undefined) {
+    character.wiki.ci.skills[dskill.name] = {
+      "tmp_mod": 0,
+      "extra_mod": 0,
+      "total": 0,
+      "ranks": 0,
+      "attr_mod": 0
+    };
+    cskill = character.wiki.ci.skills[dskill.name];
+  }
+  cskill.extra_mod += bonus;  
+}
+
 function ledger_calculate(gameData, character) {
   // Sort ledger
   character.wiki.ledger.sort(function(a,b) {
@@ -214,6 +230,20 @@ function ledger_calculate(gameData, character) {
 
       var_expand(gameData, character, varName, el.type);
       eval(varName + " += Number(" + le.value + ");");
+    }
+    if (el.type === "Boolean") {
+      var base = eval("gameData." + type_name + "_base");
+      var varName = base.replace("__REPLACE__", el.name);
+
+      var_expand(gameData, character, varName, el.type);
+      eval(varName + " = 1;");
+    }
+    
+    if (type_name === "feats") {
+      for (var ii = 0; ii < el.actions.length; ii++) {
+        var action = el.actions[ii];
+        eval(action);
+      }
     }
 
     if (type_name === "occupations") {

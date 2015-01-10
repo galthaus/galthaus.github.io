@@ -174,10 +174,10 @@ function calculate(gameData, character) {
     if (cskill.tmp_mod === undefined) {
       cskill.tmp_mod = 0;
     }
-    cskill.extra_mod = 0;
+
     if (($.inArray(dskill.name, character.wiki.ci.base.permanentSkills) !== -1) &&
         cc !== undefined && ($.inArray(dskill.name, cc.ClassSkills) !== -1)) {
-      cskill.extra_mod = 1;
+      cskill.extra_mod += 1;
     }
 
     if (dskill.attribute === "None") {
