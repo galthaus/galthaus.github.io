@@ -17,7 +17,7 @@ angular.module('wildWestCharSheetApp').controller('SkillsCtrl', function ($scope
     $scope.items=items;
   });
 
-  $scope.$on('dataService:character', function(event,data) {
+  $scope.$on('dataService:character', function(event, data) {
     $scope.character = data;
   });
 

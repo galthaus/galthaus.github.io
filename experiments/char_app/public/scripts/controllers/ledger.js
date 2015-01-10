@@ -125,7 +125,7 @@ function var_expand(gameData, character, varName, type) {
       eval(varName + " = { \"total\": 0, \"ranks\": 0, \"extra_mod\": 0, \"attr_mod\": 0 }");
     }
     if (type === "Feat") {
-      eval(varName + " = { \"purchased\": 0 }");
+      eval(varName + " = { \"purchased\": false }");
     }
   }
 }
@@ -239,7 +239,7 @@ function ledger_calculate(gameData, character) {
       var varName = base.replace("__REPLACE__", el.name);
 
       var_expand(gameData, character, varName, el.type);
-      eval(varName + " = 1;");
+      eval(varName + " = true;");
     }
     
     if (type_name === "feats") {
