@@ -26,7 +26,7 @@ class CharactersController < ApplicationController
           # Check to see if char has a description url, if not add one.
           if !@char["description"].include? "View Character Sheet"
             new_description = @char["description"]
-            new_description += "\n\"View Character Sheet\":http://70.113.106.34/character/#{params[:id]}.json"
+            new_description += "\n\"View Character Sheet\":http://70.113.106.34/characters/#{params[:id]}"
             d_data = {
               'character' => {
                 'description' => new_description
