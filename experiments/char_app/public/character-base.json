@@ -60,6 +60,7 @@
       },
       "reputation": {
         "base": 0,
+        "bonus": 0,
         "total": 0
       },
       "wealth": 0

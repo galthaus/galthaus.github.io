@@ -240,6 +240,7 @@ function ledger_calculate(gameData, character) {
         }
       }
       character.wiki.ci.misc.wealth += el.WealthBonus;
+      character.wiki.ci.misc.reputation.bonus += el.RepBonus;
     }
 
     if (type_name === "classes") {
