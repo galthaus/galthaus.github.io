@@ -1152,6 +1152,7 @@
     "character.wiki.ci.misc.bab": "Number(0)",
     "character.wiki.ci.misc.defense.base": "Number(0)",
     "character.wiki.ci.misc.reputation.base": "Number(0)",
+    "character.wiki.ci.misc.reputation.bonus": "Number(0)",
     "character.wiki.ci.scratch.gritdie": "Number(0)",
     "character.wiki.ci.scratch.stats": "Number(0)",
     "character.wiki.ci.scratch.skills": "Number(0)",
