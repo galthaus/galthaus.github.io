@@ -29,7 +29,7 @@ class CharactersController < ApplicationController
             new_description += "\n\"View Character Sheet\":http://70.113.106.34/character/#{params[:id]}.json"
             d_data = {
               'character' => {
-                'description' : new_description
+                'description' => new_description
               }
             }
 
