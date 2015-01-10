@@ -1,0 +1,21 @@
+<div class="container-fluid" ng-controller="FeatsCtrl">
+
+<div class="row">
+  <div>
+    <h3 style="title">Feats</h3> 
+    <table class="feats">
+      <thead><tr>
+        <th>Feat</th>
+        <th>Bought</th>
+        <th>Description</th>
+        <th>Page</th>
+      </tr></thead>
+      <tbody>
+        <tr ng-repeat="x in items.feats" feats-row character="character"
+            items="items" rowdata="x" calculate="calculate()"></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>

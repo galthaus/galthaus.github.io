@@ -124,6 +124,9 @@ function var_expand(gameData, character, varName, type) {
     if (type === "Skill") {
       eval(varName + " = { \"total\": 0, \"ranks\": 0, \"extra_mod\": 0, \"attr_mod\": 0 }");
     }
+    if (type === "Feat") {
+      eval(varName + " = { \"purchased\": 0 }");
+    }
   }
 }
 
