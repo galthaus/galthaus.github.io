@@ -243,10 +243,12 @@ function ledger_calculate(gameData, character) {
     }
     
     if (type_name === "feats") {
+      /* GREG: Not yet
       for (var ii = 0; ii < el.actions.length; ii++) {
         var action = el.actions[ii];
         eval(action);
       }
+      */
     }
 
     if (type_name === "occupations") {
