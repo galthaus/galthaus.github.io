@@ -3,16 +3,15 @@ class CharactersController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_filter :obsidian_portal_login_required
 
-  def index
-    j = JSON.parse(obsidian_portal.access_token.get('/v1/users/me.json').body)
-    @chars = JSON.parse(obsidian_portal.access_token.get("/v1/campaigns/#{j['campaigns'][0]['id']}/characters.json").body)
+  @@camp_id = 33212
 
+  def index
+    @chars = JSON.parse(obsidian_portal.access_token.get("/v1/campaigns/#{@@camp_id}/characters.json").body)
     render
   end
 
   def show
-    j = JSON.parse(obsidian_portal.access_token.get('/v1/users/me.json').body)
-    char_url = "/v1/campaigns/#{j['campaigns'][0]['id']}/characters/#{params[:id]}.json"
+    char_url = "/v1/campaigns/#{@@camp_id}/characters/#{params[:id]}.json"
     @char = JSON.parse(obsidian_portal.access_token.get(char_url).body)
 
     respond_to do |format|
