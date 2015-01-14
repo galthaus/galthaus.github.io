@@ -3,15 +3,17 @@ class CharactersController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_filter :obsidian_portal_login_required
 
-  @@camp_id = 33212
+  CAMP_ID = "2003bb20776111e093d540403656340d"
 
   def index
-    @chars = JSON.parse(obsidian_portal.access_token.get("/v1/campaigns/#{@@camp_id}/characters.json").body)
+    char_url = "/v1/campaigns/#{CAMP_ID}/characters.json"
+    resp = obsidian_portal.access_token.get(char_url)
+    @chars = JSON.parse(resp.body)
     render
   end
 
   def show
-    char_url = "/v1/campaigns/#{@@camp_id}/characters/#{params[:id]}.json"
+    char_url = "/v1/campaigns/#{CAMP_ID}/characters/#{params[:id]}.json"
     @char = JSON.parse(obsidian_portal.access_token.get(char_url).body)
 
     respond_to do |format|
@@ -34,8 +36,8 @@ class CharactersController < ApplicationController
 
             resp = obsidian_portal.access_token.put(char_url, d_data.to_json,
                                              {'Content-Type' => 'application/x-www-form-urlencoded'})
-            Rails.logger.fatal("GREG: response to update description: #{resp.inspect}")
-            Rails.logger.fatal("GREG: response to update description: #{resp.body}")
+            #Rails.logger.fatal("GREG: response to update description: #{resp.inspect}")
+            #Rails.logger.fatal("GREG: response to update description: #{resp.body}")
           end
 
           all_wikis = JSON.parse(obsidian_portal.access_token.get(wiki_all_url).body)
