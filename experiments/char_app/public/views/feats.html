@@ -11,7 +11,7 @@
         <th>Description</th>
       </tr></thead>
       <tbody>
-        <tr ng-repeat="x in items.feats | filterFunction:items:character:items.options"
+        <tr ng-repeat="x in items.feats | featsFilterFunction:items:character:items.options"
             feats-row character="character" items="items" rowdata="x" calculate="calculate()"></tr>
       </tbody>
     </table>

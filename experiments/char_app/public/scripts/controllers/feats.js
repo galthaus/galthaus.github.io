@@ -31,7 +31,7 @@ angular.module('wildWestCharSheetApp').controller('FeatsCtrl', function ($scope,
   $scope.calculate = function() {
     ledger_calculate($scope.items, $scope.character);
   };
-}).filter('filterFunction', function() {
+}).filter('featsFilterFunction', function() {
   return function(list, items, character, options) {
     //console.log("Calling filter with options: " + options)
     if (items === undefined) {

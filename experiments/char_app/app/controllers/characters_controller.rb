@@ -22,7 +22,7 @@ class CharactersController < ApplicationController
           camp_id = @char["campaign"]["id"]
           wiki_all_url = "/v1/campaigns/#{camp_id}/wikis.json"
 
-#          Rails.logger.fatal(JSON.pretty_generate(@char));
+          Rails.logger.fatal(JSON.pretty_generate(@char));
 
           # Check to see if char has a description url, if not add one.
           if !@char["description"].include? "View Character Sheet"

@@ -1,8 +1,8 @@
 <h3 class="western title">Character Info</h3>
 <table>
   <tr>
-    <td>Character</td><td><input size="10" type="text" ng-model="character.wiki.ci.base.name" /></td>
-    <td>Player</td><td><input size="10" type="text" ng-model="character.wiki.ci.base.player_name" /></td>
+    <td>Character</td><td><a target="_blank" ng-href="{{character.author.profile_url}}">{{character.author.username}}</a></td>
+    <td>Player</td><td><a target="_blank" ng-href="{{character.character_url}}">{{character.name}}</a></td>
   </tr>
   <tr>
     <td>Current Class</td><td>{{character.wiki.ci.base.current_class}}</td>

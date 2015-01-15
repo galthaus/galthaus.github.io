@@ -35,6 +35,11 @@ img.character {
   width: 100px;
 }
 
+img.sheet-character {
+  height: 200px;
+  width: 200px;
+}
+
 th {
   padding-left: 10px;
   padding-right: 10px;

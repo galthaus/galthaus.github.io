@@ -31,7 +31,7 @@ angular.module('wildWestCharSheetApp').controller('SkillsCtrl', function ($scope
   $scope.calculate = function() {
     ledger_calculate($scope.items, $scope.character);
   };
-}).filter('filterFunction', function() {
+}).filter('skillsFilterFunction', function() {
     return function(list, items, character, options) {
     //console.log("Calling filter with options: " + options)
     if (items === undefined) {

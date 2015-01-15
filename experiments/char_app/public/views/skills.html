@@ -25,7 +25,7 @@
         <th>Temp Modifiers</th>
       </tr></thead>
       <tbody>
-        <tr ng-repeat="x in items.skills | filterFunction:items:character:items.options"
+        <tr ng-repeat="x in items.skills | skillsFilterFunction:items:character:items.options"
             skills-row character="character" items="items" rowdata="x" calculate="calculate()"></tr>
       </tbody>
     </table>
