@@ -31,7 +31,46 @@ angular.module('wildWestCharSheetApp').controller('SkillsCtrl', function ($scope
   $scope.calculate = function() {
     ledger_calculate($scope.items, $scope.character);
   };
+}).filter('filterFunction', function() {
+    return function(list, items, character, options) {
+    //console.log("Calling filter with options: " + options)
+    if (items === undefined) {
+      //console.log("items undefined returning list");
+      return list;
+    }
+    if (character === undefined) {
+      //console.log("character undefined returning list");
+      return list;
+    }
+    if (options === undefined) {
+      //console.log("options undefined returning list");
+      return list;
+    }
+    if (options.show_all) {
+      //console.log("options true = returning list");
+      return list;
+    }
 
+    var arr = [];
+    for (var i = 0; i < list.length; i++) {
+      var skill = list[i];
+
+      var varName = "character.wiki.ci.skills[\""+skill.name+"\"]";
+
+      var_expand(items, character, varName, "Skill");
+      var cdata = eval(varName);
+
+      //console.log("cdata = " + cdata);
+      if (cdata === undefined) {
+        arr.push(skill);
+      }
+      else if (skill.untrained || cdata.ranks > 0) {
+        arr.push(skill);
+      }
+    }
+
+    return arr;
+  };
 });
 
 angular.module('wildWestCharSheetApp').directive('skillsRow', function() {
@@ -46,7 +85,7 @@ angular.module('wildWestCharSheetApp').directive('skillsRow', function() {
     controller: function($scope) {
       var varName = "character.wiki.ci.skills[\""+$scope.rowdata.name+"\"]";
       var character = $scope.character;
-      
+
       var_expand($scope.items, $scope.character, varName, "Skill");
       $scope.cskill = eval(varName);
     },

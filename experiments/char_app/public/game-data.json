@@ -1,4 +1,7 @@
 {
+  "options": {
+    "show_all": false
+  },
   "attributes_base": "character.wiki.ci.attributes[\"__REPLACE__\"].base",
   "attributes": [
     { "name": "Strength", "type": "Number" },

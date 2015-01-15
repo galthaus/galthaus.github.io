@@ -15,6 +15,7 @@
     <table class="skills">
       <thead><tr>
         <th>Skill</th>
+        <th>Page</th>
         <th>Ability</th>
         <th>Untrained?</th>
         <th>Skill Modifier</th>
@@ -24,8 +25,8 @@
         <th>Temp Modifiers</th>
       </tr></thead>
       <tbody>
-        <tr ng-repeat="x in items.skills" skills-row character="character"
-            items="items" rowdata="x" calculate="calculate()"></tr>
+        <tr ng-repeat="x in items.skills | filterFunction:items:character:items.options"
+            skills-row character="character" items="items" rowdata="x" calculate="calculate()"></tr>
       </tbody>
     </table>
   </div>

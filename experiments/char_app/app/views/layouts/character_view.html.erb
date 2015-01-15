@@ -71,6 +71,11 @@
           Process Date:
           <input class="typodermic" size="10" type="text" ng-change="ledger_calculate()" 
                  ng-model="items.current_date"/>
+          <div class="checkbox" style="float: left;">
+            <label>
+              <input type="checkbox" ng-model="items.options.show_all"/>Show All
+            </label>
+          </div>
         </div>
 
         <button class="btn btn-success" ng-click="saveCharacter()">
