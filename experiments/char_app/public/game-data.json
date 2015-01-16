@@ -1769,6 +1769,7 @@
 
   "ledger_clear": {
     "character.wiki.ci.attributes.*.base": "Number(0)",
+    "character.wiki.ci.attributes.*.value": "Number(0)",
     "character.wiki.ci.skills.*.total": "Number(0)",
     "character.wiki.ci.skills.*.ranks": "Number(0)",
     "character.wiki.ci.skills.*.attr_mod": "Number(0)",

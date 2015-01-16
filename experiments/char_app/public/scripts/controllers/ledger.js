@@ -1,5 +1,12 @@
 'use strict';
 
+function date_compare(sd1, sd2) {
+  var d1 = new Date(sd1);
+  var d2 = new Date(sd2);
+
+  return d1.getTime() - d2.getTime();
+}
+
 /**
  * @ngdoc function
  * @name iwildWestCharSheetApp.controller:LedgerCtrl
@@ -183,7 +190,7 @@ function ledger_deleteentry(character, index) {
 
 function add_skill_bonus(gameData, character, skill, bonus) {
   var cskill = character.wiki.ci.skills[skill];
-    
+
   if (cskill === undefined) {
     character.wiki.ci.skills[dskill.name] = {
       "tmp_mod": 0,
@@ -218,7 +225,7 @@ function ledger_calculate(gameData, character) {
   for (var i = 0; i < character.wiki.ledger.length; i++) {
     var le = character.wiki.ledger[i];
 
-    if (gameData.current_date < le.date) {
+    if (date_compare(gameData.current_date, le.date) < 0) {
       break;
     }
 
@@ -244,7 +251,7 @@ function ledger_calculate(gameData, character) {
       var_expand(gameData, character, varName, el.type);
       eval(varName + " = true;");
     }
-    
+
     if (type_name === "feats") {
       /* GREG: Not yet
       for (var ii = 0; ii < el.actions.length; ii++) {
@@ -261,16 +268,16 @@ function ledger_calculate(gameData, character) {
       if (le.children.length === 0) { 
         for (var ii = 0; ii < el.SkillsCount; ii++) {
           var e;
-        
+
           e = ledger_addentry(character, "Spend", "PermanentSkill", el.Skills[0], 1, "Permanent Skill for " + el.name);
           e.parent = le.id;
           e.choices = el.Skills;
           le.children.push(e.id);
         }
-      
+
         for (var ii = 0; ii < el.BonusFeatCount; ii++) {
           var e;
-        
+
           e = ledger_addentry(character, "Spend", "Feat", el.BonusFeats[0], 1, "Starting Feat for " + el.name);
           e.parent = le.id;
           e.choices = el.BonusFeats;
@@ -442,4 +449,7 @@ function ledger_calculate(gameData, character) {
     // Calculate each time - this is badish, but okay for now.
     calculate(gameData, character);
   }
+
+  // Calculate each time - this is badish, but okay for now.
+  calculate(gameData, character);
 }

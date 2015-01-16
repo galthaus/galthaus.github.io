@@ -191,12 +191,12 @@ function calculate(gameData, character) {
 
     eval(v + " = " + e);
   }
-    
+
   var cc = findLedgerTypeEntry(gameData.classes, character.wiki.ci.base.current_class);
   for (var i = 0; i < gameData.skills.length; i++) {
     var dskill = gameData.skills[i];
     var cskill = character.wiki.ci.skills[dskill.name];
-    
+
     if (cskill === undefined) {
       character.wiki.ci.skills[dskill.name] = {
         "tmp_mod": 0,
@@ -207,7 +207,7 @@ function calculate(gameData, character) {
       };
       cskill = character.wiki.ci.skills[dskill.name];
     }
-    
+
     if (cskill.tmp_mod === undefined) {
       cskill.tmp_mod = 0;
     }
@@ -218,7 +218,7 @@ function calculate(gameData, character) {
     }
 
     if (dskill.attribute === "None") {
-      cskill.attr_mod = 0;    
+      cskill.attr_mod = 0;
     }
     else {
       cskill.attr_mod = character.wiki.ci.attributes[dskill.attribute].mod;
