@@ -6,6 +6,38 @@ function getRandomInt(min, max) {
    return Math.floor(Math.random() * (max - min)) + min;
 }
 
+function migrationCharacterData(character) {
+  // Migrate data
+  if (typeof character.wiki.ci.misc.grit === "number") {
+    character.wiki.ci.misc.grit = {};
+  }
+  if (character.wiki.options === undefined) {
+    character.wiki.options = {};
+    character.wiki.options.show_all = false;
+  }
+  if (character.wiki.ci.misc.initiative === undefined) {
+    character.wiki.ci.misc.initiative = {};
+  }
+  if (character.wiki.ci.misc.speed === undefined) {
+    character.wiki.ci.misc.speed = {};
+  }
+  if (character.wiki.ci.misc.grit.damage === undefined) {
+    character.wiki.ci.misc.grit.damage = 0;
+  }
+  if (character.wiki.ci.misc.reputation.tmpadj === undefined) {
+    character.wiki.ci.misc.reputation.tmpadj = 0;
+  }
+  if (character.wiki.ci.misc.defense.tmpadj === undefined) {
+    character.wiki.ci.misc.defense.tmpadj = 0;
+  }
+  if (character.wiki.ci.misc.initiative.tmpadj === undefined) {
+    character.wiki.ci.misc.initiative.tmpadj = 0;
+  }
+  if (character.wiki.ci.misc.speed.tmpadj === undefined) {
+    character.wiki.ci.misc.speed.tmpadj = 0;
+  }
+}
+
 /**
  * @ngdoc overview
  * @name wildWestCharSheetApp
@@ -64,8 +96,9 @@ angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource
           var d = new Date();
           items=data;
           items.current_date = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
-          if (typeof items !== 'number' && typeof character !== 'number' && character.wiki !== null)
+          if (typeof items !== 'number' && typeof character !== 'number' && character.wiki !== null) {
             ledger_calculate(items, character);
+          }
           itemsDefer.resolve(items);
         },
         error: function(jq, reason, error) {
@@ -96,8 +129,10 @@ angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource
               data: null,
               success: function( data ) {
                 character.wiki=data;
-                if (typeof items !== 'number' && typeof character !== 'number')
+                migrationCharacterData(character);
+                if (typeof items !== 'number' && typeof character !== 'number') {
                   ledger_calculate(items, character);
+                }
                 itemsDefer.resolve(character);
               },
               error: function(jq, reason, error) {
@@ -106,8 +141,10 @@ angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource
             });
           }
           else {
-            if (typeof items !== 'number' && typeof character !== 'number')
+            migrationCharacterData(character);
+            if (typeof items !== 'number' && typeof character !== 'number') {
               ledger_calculate(items, character);
+            }
             itemsDefer.resolve(character);
           }
         },

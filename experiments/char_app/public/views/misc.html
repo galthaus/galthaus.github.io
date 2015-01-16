@@ -1,16 +1,60 @@
 <h3 class="western title">Miscellaneous</h3>
 <table class="attributes">
   <tr>
+    <td class="attribute"></td>
+    <td>Total</td>
+    <td></td>
+    <td>Base</td>
+    <td></td>
+    <td>Bonus</td>
+    <td></td>
+    <td>Damage</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
     <td class="attribute">Grit</td>
-    <td>{{character.wiki.ci.misc.grit}}</td>
+    <td>{{character.wiki.ci.misc.grit.total}}</td>
+    <td>=</td>
+    <td>{{character.wiki.ci.misc.grit.max}}</td>
+    <td>+</td>
+    <td>{{character.wiki.ci.misc.grit.bonus}}</td>
+    <td>-</td>
+    <td><input size="3" type="text" ng-change="calculate()" ng-model="character.wiki.ci.misc.grit.damage" /></td>
     <td class="attribute">Wealth</td>
     <td>{{character.wiki.ci.misc.wealth}}</td>
+  </tr>
+  <tr>
+    <td class="attribute"></td>
+    <td>Total</td>
+    <td></td>
+    <td>Base</td>
+    <td></td>
+    <td>Bonus</td>
+    <td></td>
+    <td>Tmp</td>
+  </tr>
+  <tr>
     <td class="attribute">REP</td>
     <td>{{character.wiki.ci.misc.reputation.total}}</td>
     <td>=</td>
     <td>{{character.wiki.ci.misc.reputation.base}}</td>
     <td>+</td>
     <td>{{character.wiki.ci.misc.reputation.bonus}}</td>
+    <td>+</td>
+    <td><input size="3" type="text" ng-change="calculate()" ng-model="character.wiki.ci.misc.reputation.tmpadj" /></td>
+  </tr>
+  <tr>
+    <td class="attribute"></td>
+    <td>Total</td>
+    <td></td>
+    <td>Base</td>
+    <td></td>
+    <td>Dex</td>
+    <td></td>
+    <td>Class</td>
+    <td></td>
+    <td>Tmp</td>
   </tr>
   <tr>
     <td class="attribute">DEF</td>
@@ -22,12 +66,42 @@
     <td>+</td>
     <td>{{character.wiki.ci.misc.defense.base}}</td>
     <td>+</td>
-    <td>0</td>
+    <td><input size="3" type="text" ng-change="calculate()" ng-model="character.wiki.ci.misc.defense.tmpadj" /></td>
+  </tr>
+  <tr>
+    <td class="attribute"></td>
+    <td>Total</td>
+    <td></td>
+    <td>Feat</td>
+    <td></td>
+    <td>Dex</td>
+    <td></td>
+    <td>Misc</td>
+    <td></td>
+    <td>Tmp</td>
+  </tr>
+  <tr>
+    <td class="attribute">Initiative</td>
+    <td>{{character.wiki.ci.misc.initiative.total}}</td>
+    <td>=</td>
+    <td>{{character.wiki.ci.misc.initiative.feat}}</td>
+    <td>+</td>
+    <td>{{character.wiki.ci.attributes.Dexterity.mod}}</td>
+    <td>+</td>
+    <td>{{character.wiki.ci.misc.initiative.misc}}</td>
+    <td>+</td>
+    <td><input size="3" type="text" ng-change="calculate()" ng-model="character.wiki.ci.misc.initiative.tmpadj" /></td>
   </tr>
   <tr>
     <td class="attribute">Action Points</td>
     <td>{{character.wiki.ci.misc.action_points}}</td>
     <td class="attribute">BAB</td>
     <td>{{character.wiki.ci.misc.bab}}</td>
+    <td class="attribute">MDT</td>
+    <td>{{character.wiki.ci.misc.mdt}}</td>
+    <td class="attribute">Flat Footed</td>
+    <td>{{character.wiki.ci.misc.flat_footed}}</td>
+    <td class="attribute">Speed</td>
+    <td>{{character.wiki.ci.misc.speed.total}}</td>
   </tr>
 </table>

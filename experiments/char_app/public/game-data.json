@@ -1,7 +1,4 @@
 {
-  "options": {
-    "show_all": false
-  },
   "attributes_base": "character.wiki.ci.attributes[\"__REPLACE__\"].base",
   "attributes": [
     { "name": "Strength", "type": "Number" },
@@ -11,7 +8,7 @@
     { "name": "Wisdom", "type": "Number" },
     { "name": "Charisma", "type": "Number" }
   ],
-  "dice_base": "character.wiki.ci.misc.grit",
+  "dice_base": "character.wiki.ci.misc.grit.max",
   "dice": [
     { "name": "d4", "type": "Number" },
     { "name": "d6", "type": "Number" },
@@ -1779,13 +1776,21 @@
     "character.wiki.ci.saves.*.base": "Number(0)",
     "character.wiki.ci.feats.*.purchased": "false",
     "character.wiki.ci.talents.*.purchased": "false",
-    "character.wiki.ci.misc.grit": "Number(0)",
+    "character.wiki.ci.misc.grit.max": "Number(0)",
+    "character.wiki.ci.misc.grit.bonus": "Number(0)",
+    "character.wiki.ci.misc.grit.total": "Number(0)",
+    "character.wiki.ci.misc.initiative.total": "Number(0)",
+    "character.wiki.ci.misc.initiative.feat": "Number(0)",
+    "character.wiki.ci.misc.initiative.misc": "Number(0)",
     "character.wiki.ci.misc.wealth": "Number(0)",
     "character.wiki.ci.misc.action_points": "Number(0)",
     "character.wiki.ci.misc.bab": "Number(0)",
     "character.wiki.ci.misc.defense.base": "Number(0)",
     "character.wiki.ci.misc.reputation.base": "Number(0)",
-    "character.wiki.ci.misc.reputation.bonus": "Number(0)",
+    "character.wiki.ci.misc.speed.base": "Number(30)",
+    "character.wiki.ci.misc.speed.bonus": "Number(0)",
+    "character.wiki.ci.misc.speed.total": "Number(0)",
+    "character.wiki.ci.misc.mdt": "Number(0)",
     "character.wiki.ci.scratch.gritdie": "Number(0)",
     "character.wiki.ci.scratch.stats": "Number(0)",
     "character.wiki.ci.scratch.skills": "Number(0)",
@@ -1841,10 +1846,17 @@
       "eval": "Number(character.wiki.ci.saves.will.base) + Number(character.wiki.ci.saves.will.ability) + Number(character.wiki.ci.saves.will.misc) + Number(character.wiki.ci.saves.will.tmp)" },
 
     { "value": "character.wiki.ci.misc.defense.total",
-      "eval": "10 + Number(character.wiki.ci.misc.defense.base) + Number(character.wiki.ci.attributes.Dexterity.mod)"},
+      "eval": "10 + Number(character.wiki.ci.misc.defense.base) + Number(character.wiki.ci.attributes.Dexterity.mod) + Number(character.wiki.ci.misc.defense.tmpadj)"},
     { "value": "character.wiki.ci.misc.reputation.total",
-      "eval": "Number(character.wiki.ci.misc.reputation.base) + Number(character.wiki.ci.misc.reputation.bonus)" }
-
+      "eval": "Number(character.wiki.ci.misc.reputation.base) + Number(character.wiki.ci.misc.reputation.bonus) + Number(character.wiki.ci.misc.reputation.tmpadj)" },
+    { "value": "character.wiki.ci.misc.speed.total",
+       "eval": "Number(character.wiki.ci.misc.speed.base) + Number(character.wiki.ci.misc.speed.bonus) + Number(character.wiki.ci.misc.speed.tmpadj)" },
+    { "value": "character.wiki.ci.misc.grit.total",
+       "eval": "Number(character.wiki.ci.misc.grit.max) + Number(character.wiki.ci.misc.grit.bonus) - Number(character.wiki.ci.misc.grit.damage)" },
+    { "value": "character.wiki.ci.misc.initiative.total",
+      "eval": "Number(character.wiki.ci.misc.initiative.feat) + Number(character.wiki.ci.attributes.Dexterity.mod) + Number(character.wiki.ci.misc.initiative.tmpadj) + Number(character.wiki.ci.misc.initiative.misc)" },
+    { "value": "character.wiki.ci.misc.flat_footed",
+      "eval": "Number(character.wiki.ci.misc.defense.total) - Number(character.wiki.ci.attributes.Dexterity.mod)" }
   ]
-
 }
+
