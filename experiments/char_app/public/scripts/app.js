@@ -72,6 +72,10 @@ angular.module('wildWestCharSheetApp', [
         templateUrl: '/views/feats.html',
         controller: 'FeatsCtrl'
       })
+      .when('/talents', {
+        templateUrl: '/views/talents.html',
+        controller: 'TalentsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

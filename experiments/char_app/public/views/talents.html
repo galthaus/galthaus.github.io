@@ -1,0 +1,21 @@
+<div class="container-fluid" ng-controller="TalentsCtrl">
+
+<div class="row">
+  <div>
+    <h3 style="title">Talents</h3> 
+    <table class="feats">
+      <thead><tr>
+        <th>Talent</th>
+        <th>Page</th>
+        <th>Bought</th>
+        <th>Description</th>
+      </tr></thead>
+      <tbody>
+        <tr ng-repeat="x in items.talents | talentsFilterFunction:items:character:character.wiki.options"
+            talents-row character="character" items="items" rowdata="x" calculate="calculate()"></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>

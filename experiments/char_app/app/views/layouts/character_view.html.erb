@@ -44,6 +44,7 @@
         <script src="/scripts/controllers/ledger.js"></script>
         <script src="/scripts/controllers/skills.js"></script>
         <script src="/scripts/controllers/feats.js"></script>
+        <script src="/scripts/controllers/talents.js"></script>
         <script src="/scripts/controllers/nav.js"></script>
         <!-- endbuild -->
   </head>
@@ -61,7 +62,8 @@
         <ul class="nav nav-pills pull-right">
           <li ng-class="{active: isActive('/base')}"><a ng-href="#/">Base</a></li>
           <li ng-class="{active: isActive('/skills')}"><a ng-href="#/skills">Skills</a></li>
-          <li ng-class="{active: isActive('/feats')}"><a ng-href="#/feats">feats</a></li>
+          <li ng-class="{active: isActive('/feats')}"><a ng-href="#/feats">Feats</a></li>
+          <li ng-class="{active: isActive('/talents')}"><a ng-href="#/talents">Talents</a></li>
           <li ng-class="{active: isActive('/ledger')}"><a ng-href="#/ledger">Ledger</a></li>
           <li ng-class="{active: isActive('/portal')}"><a ng-href="/characters">Characters</a></li>
         </ul>
