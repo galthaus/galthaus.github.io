@@ -39,6 +39,7 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="/scripts/app.js"></script>
+        <script src="/scripts/controllers/info.js"></script>
         <script src="/scripts/controllers/main.js"></script>
         <script src="/scripts/controllers/micro.js"></script>
         <script src="/scripts/controllers/ledger.js"></script>
@@ -60,7 +61,8 @@
     <div class="container-fluid" ng-controller="NavCtrl">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li ng-class="{active: isActive('/base')}"><a ng-href="#/">Base</a></li>
+          <li ng-class="{active: isActive('/info')}"><a ng-href="#/info">Info</a></li>
+          <li ng-class="{active: isActive('/base')}"><a ng-href="#/base">Base</a></li>
           <li ng-class="{active: isActive('/skills')}"><a ng-href="#/skills">Skills</a></li>
           <li ng-class="{active: isActive('/feats')}"><a ng-href="#/feats">Feats</a></li>
           <li ng-class="{active: isActive('/talents')}"><a ng-href="#/talents">Talents</a></li>

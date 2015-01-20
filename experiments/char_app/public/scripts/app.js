@@ -57,8 +57,16 @@ angular.module('wildWestCharSheetApp', [
   .config(function ($locationProvider, $routeProvider) {
     $routeProvider
       .when('/', {
+        templateUrl: '/views/info.html',
+        controller: 'InfoCtrl'
+      })
+      .when('/base', {
         templateUrl: '/views/main.html',
         controller: 'MainCtrl'
+      })
+      .when('/info', {
+        templateUrl: '/views/info.html',
+        controller: 'InfoCtrl'
       })
       .when('/ledger', {
         templateUrl: '/views/ledger.html',

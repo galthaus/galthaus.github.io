@@ -1,0 +1,28 @@
+<div class="container-fluid" ng-controller="InfoCtrl">
+
+<div class="row">
+  <div class="col-md-7 col-lg-7 col-sm-7 col-xs-7">
+    <div ng-include src="'/views/cinfo.html'"></div>
+  </div>
+  <div class="col-md-5 col-lg-5 col-sm-5 col-xs-5">
+    <img class="sheet-character" ng-src="{{character.avatar_url}}"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-7 col-lg-7 col-sm-7 col-xs-7">
+    <h3 class="western title">Description</h3>
+    <div class="description">
+      <div ng-bind-html="character.description_html" />
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-7 col-lg-7 col-sm-7 col-xs-7">
+    <h3 class="western title">Bio</h3>
+    <div class="bio">
+      <div ng-bind-html="character.bio_html" />
+    </div>
+  </div>
+</div>
