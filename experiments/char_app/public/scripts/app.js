@@ -173,10 +173,10 @@ angular.module('wildWestCharSheetApp').factory('dataService', [ '$q', '$resource
       contentType: "application/json; charset=utf-8",
       dataType: "json",
       success: function(msg) {
-        alert(msg.d);
+        alert(character.name + " saved successfully");
       },
       error: function(msg) {
-        alert('error');
+        alert('Error: ' + character.name + " saved failed. " + msg);
       }
     });
   };
