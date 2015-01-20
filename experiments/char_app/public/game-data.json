@@ -1791,6 +1791,12 @@
     "character.wiki.ci.misc.speed.base": "Number(30)",
     "character.wiki.ci.misc.speed.bonus": "Number(0)",
     "character.wiki.ci.misc.speed.total": "Number(0)",
+    "character.wiki.ci.misc.melee.total": "Number(0)",
+    "character.wiki.ci.misc.ranged.total": "Number(0)",
+    "character.wiki.ci.misc.grapple.total": "Number(0)",
+    "character.wiki.ci.misc.melee.bonus": "Number(0)",
+    "character.wiki.ci.misc.ranged.bonus": "Number(0)",
+    "character.wiki.ci.misc.grapple.bonus": "Number(0)",
     "character.wiki.ci.misc.mdt": "Number(0)",
     "character.wiki.ci.scratch.gritdie": "Number(0)",
     "character.wiki.ci.scratch.stats": "Number(0)",
@@ -1857,7 +1863,14 @@
     { "value": "character.wiki.ci.misc.initiative.total",
       "eval": "Number(character.wiki.ci.misc.initiative.feat) + Number(character.wiki.ci.attributes.Dexterity.mod) + Number(character.wiki.ci.misc.initiative.tmpadj) + Number(character.wiki.ci.misc.initiative.misc)" },
     { "value": "character.wiki.ci.misc.flat_footed",
-      "eval": "Number(character.wiki.ci.misc.defense.total) - Number(character.wiki.ci.attributes.Dexterity.mod)" }
+      "eval": "Number(character.wiki.ci.misc.defense.total) - Number(character.wiki.ci.attributes.Dexterity.mod)" },
+
+    { "value": "character.wiki.ci.misc.melee.total",
+      "eval": "Number(character.wiki.ci.misc.bab) + Number(character.wiki.ci.attributes.Strength.mod) + Number(character.wiki.ci.misc.melee.tmpadj)" },
+    { "value": "character.wiki.ci.misc.ranged.total",
+      "eval": "Number(character.wiki.ci.misc.bab) + Number(character.wiki.ci.attributes.Dexterity.mod) + Number(character.wiki.ci.misc.ranged.tmpadj)" },
+    { "value": "character.wiki.ci.misc.grapple.total",
+      "eval": "Number(character.wiki.ci.misc.bab) + Number(character.wiki.ci.attributes.Strength.mod) + Number(character.wiki.ci.misc.grapple.tmpadj)" }
   ]
 }
 

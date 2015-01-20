@@ -1,0 +1,31 @@
+<h3 class="western title">Attacks</h3>
+<table>
+  <thead><tr><th></th><th>Total</th><th>Base</th><th>Ability</th><th>Misc</th><th>Tmp</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="attribute">Melee</td>
+      <td ng-bind="character.wiki.ci.misc.melee.total">{{character.wiki.ci.misc.melee.total}}</td>
+      <td ng-bind="character.wiki.ci.misc.bab">{{character.wiki.ci.misc.bab}}</td>
+      <td ng-bind="character.wiki.ci.attributes.Strength.mod">{{character.wiki.ci.attributes.Strength.mod}}</td>
+      <td ng-bind="character.wiki.ci.misc.melee.bonus">{{character.wiki.ci.misc.melee.bonus}}</td>
+      <td><input size="3" type="text" ng-change="calculate()" ng-model="character.wiki.ci.misc.melee.tmpadj" /></td>
+    </tr>
+    <tr>
+      <td class="attribute">Ranged</td>
+      <td ng-bind="character.wiki.ci.misc.ranged.total">{{character.wiki.ci.misc.ranged.total}}</td>
+      <td ng-bind="character.wiki.ci.misc.bab">{{character.wiki.ci.misc.bab}}</td>
+      <td ng-bind="character.wiki.ci.attributes.Dexterity.mod">{{character.wiki.ci.attributes.Dexterity.mod}}</td>
+      <td ng-bind="character.wiki.ci.misc.ranged.bonus">{{character.wiki.ci.misc.ranged.bonus}}</td>
+      <td><input size="3" type="text" ng-change="calculate()" ng-model="character.wiki.ci.misc.ranged.tmpadj" /></td>
+    </tr>
+    <tr>
+      <td class="attribute">Grapple</td>
+      <td ng-bind="character.wiki.ci.misc.grapple.total">{{character.wiki.ci.misc.grapple.total}}</td>
+      <td ng-bind="character.wiki.ci.misc.bab">{{character.wiki.ci.misc.bab}}</td>
+      <td ng-bind="character.wiki.ci.attributes.Strength.mod">{{character.wiki.ci.attributes.Strength.mod}}</td>
+      <td ng-bind="character.wiki.ci.misc.grapple.bonus">{{character.wiki.ci.misc.grapple.bonus}}</td>
+      <td><input size="3" type="text" ng-change="calculate()" ng-model="character.wiki.ci.misc.grapple.tmpadj" /></td>
+    </tr>
+  </tbody>
+</table>
+

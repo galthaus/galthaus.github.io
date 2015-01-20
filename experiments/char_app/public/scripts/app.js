@@ -21,6 +21,15 @@ function migrationCharacterData(character) {
   if (character.wiki.ci.misc.speed === undefined) {
     character.wiki.ci.misc.speed = {};
   }
+  if (character.wiki.ci.misc.ranged === undefined) {
+    character.wiki.ci.misc.ranged = {};
+  }
+  if (character.wiki.ci.misc.melee === undefined) {
+    character.wiki.ci.misc.melee = {};
+  }
+  if (character.wiki.ci.misc.grapple === undefined) {
+    character.wiki.ci.misc.grapple = {};
+  }
   if (character.wiki.ci.misc.grit.damage === undefined) {
     character.wiki.ci.misc.grit.damage = 0;
   }
@@ -35,6 +44,15 @@ function migrationCharacterData(character) {
   }
   if (character.wiki.ci.misc.speed.tmpadj === undefined) {
     character.wiki.ci.misc.speed.tmpadj = 0;
+  }
+  if (character.wiki.ci.misc.melee.tmpadj === undefined) {
+    character.wiki.ci.misc.melee.tmpadj = 0;
+  }
+  if (character.wiki.ci.misc.ranged.tmpadj === undefined) {
+    character.wiki.ci.misc.ranged.tmpadj = 0;
+  }
+  if (character.wiki.ci.misc.grapple.tmpadj === undefined) {
+    character.wiki.ci.misc.grapple.tmpadj = 0;
   }
 }
 
