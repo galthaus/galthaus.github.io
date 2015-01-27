@@ -226,6 +226,7 @@ function calculate(gameData, character) {
   for (var i = 0; i < gameData.skills.length; i++) {
     var dskill = gameData.skills[i];
     var cskill = character.wiki.ci.skills[dskill.name];
+    var ps = 0;
 
     if (cskill === undefined) {
       character.wiki.ci.skills[dskill.name] = {
@@ -244,7 +245,7 @@ function calculate(gameData, character) {
 
     if (($.inArray(dskill.name, character.wiki.ci.base.permanentSkills) !== -1) &&
         cc !== undefined && ($.inArray(dskill.name, cc.ClassSkills) !== -1)) {
-      cskill.extra_mod += 1;
+      ps = 1;
     }
 
     if (dskill.attribute === "None") {
@@ -253,6 +254,6 @@ function calculate(gameData, character) {
     else {
       cskill.attr_mod = character.wiki.ci.attributes[dskill.attribute].mod;
     }
-    cskill.total = cskill.ranks + cskill.attr_mod + cskill.extra_mod + Number(cskill.tmp_mod);
+    cskill.total = ps + cskill.ranks + cskill.attr_mod + cskill.extra_mod + Number(cskill.tmp_mod);
   }
 }

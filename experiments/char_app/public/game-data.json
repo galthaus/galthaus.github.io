@@ -1859,7 +1859,7 @@
     { "value": "character.wiki.ci.misc.speed.total",
        "eval": "Number(character.wiki.ci.misc.speed.base) + Number(character.wiki.ci.misc.speed.bonus) + Number(character.wiki.ci.misc.speed.tmpadj)" },
     { "value": "character.wiki.ci.misc.grit.total",
-       "eval": "Number(character.wiki.ci.misc.grit.max) + Number(character.wiki.ci.misc.grit.bonus) - Number(character.wiki.ci.misc.grit.damage)" },
+       "eval": "Number(character.wiki.ci.misc.grit.max) + Number(character.wiki.ci.misc.grit.bonus) - Number(character.wiki.ci.misc.grit.damage) + Number(character.wiki.ci.base.character_level) * Number(character.wiki.ci.attributes.Constitution.mod)" },
     { "value": "character.wiki.ci.misc.initiative.total",
       "eval": "Number(character.wiki.ci.misc.initiative.feat) + Number(character.wiki.ci.attributes.Dexterity.mod) + Number(character.wiki.ci.misc.initiative.tmpadj) + Number(character.wiki.ci.misc.initiative.misc)" },
     { "value": "character.wiki.ci.misc.flat_footed",
