@@ -1,3 +1,6 @@
+
+require 'zlib'
+
 class CharactersController < ApplicationController
   include MageHandController
   skip_before_action :verify_authenticity_token
@@ -18,11 +21,9 @@ class CharactersController < ApplicationController
 
     respond_to do |format|
         format.html { render layout: "character_view" }
-        format.json { 
+        format.json {
           camp_id = @char["campaign"]["id"]
           wiki_all_url = "/v1/campaigns/#{camp_id}/wikis.json"
-
-          Rails.logger.fatal(JSON.pretty_generate(@char));
 
           # Check to see if char has a description url, if not add one.
           if !@char["description"].include? "View Character Sheet"
@@ -86,7 +87,12 @@ class CharactersController < ApplicationController
             if wiki_str == '{}'
               wiki = nil
             else
-              wiki = JSON.parse(Base64.decode64(wiki_str))
+              if wiki_str.start_with?("V2:")
+                  enc_data = Base64.decode64(wiki_str[3..-1])
+                  wiki = JSON.parse(Zlib::Inflate.inflate(enc_data))
+              else
+                  wiki = JSON.parse(Base64.decode64(wiki_str))
+              end
             end
           end
 
@@ -105,7 +111,16 @@ class CharactersController < ApplicationController
 
     my_data = {}
     my_data['wiki_page'] = {}
-    my_data['wiki_page']['body'] = Base64.encode64(JSON.pretty_generate(char['wiki']))
+
+    dstring = JSON.pretty_generate(char['wiki'])
+    comp_data = Zlib::Deflate.deflate(dstring)
+    enc_data = Base64.encode64(comp_data)
+
+    Rails.logger.fatal("GREG: json size = #{dstring.length}")
+    Rails.logger.fatal("GREG: comp_data size= #{comp_data.length}")
+    Rails.logger.fatal("GREG: enc_data size= #{enc_data.length}")
+
+    my_data['wiki_page']['body'] = "V2:#{enc_data}"
 
     ## {
     ##   'character' : {
@@ -126,6 +141,8 @@ class CharactersController < ApplicationController
 
     @resp = obsidian_portal.access_token.put(wiki_url, my_data.to_json,
                                              {'Content-Type' => 'application/x-www-form-urlencoded'})
+
+    Rails.logger.fatal("GREG: response to update wiki: #{@resp.inspect}")
 
     render json: { "result" => true }
   end
