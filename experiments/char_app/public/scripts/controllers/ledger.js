@@ -204,17 +204,20 @@ function add_skill_bonus(gameData, character, skill, bonus) {
     };
     cskill = character.wiki.ci.skills[dskill.name];
   }
-  cskill.extra_mod += bonus;  
+  cskill.extra_mod += bonus;
 }
 
 function ledger_calculate(gameData, character) {
   // Sort ledger
   character.wiki.ledger.sort(function(a,b) {
-    if ( a.date < b.date )
+    var ad = new Date(a.date.replace("/", "-"))
+    var bd = new Date(b.date.replace("/", "-"))
+
+    if ( ad.getTime() < bd.getTime() )
       return -1;
-    if ( a.date > b.date )
+    if ( ad.getTime() > bd.getTime() )
       return 1;
-    if ( a.id < b. id )
+    if ( a.id < b.id )
         return -1;
     if ( a.id > b.id )
         return 1;
