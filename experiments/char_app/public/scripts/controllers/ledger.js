@@ -117,7 +117,6 @@ function var_expand(gameData, character, varName, type) {
 
   for (var i = 1; i < (arr.length-1); i++) {
     newVar = newVar + "." + arr[i];
-
     if (eval(newVar) === undefined) {
       eval(newVar + " = {}");
       expanded = 1;
@@ -207,6 +206,15 @@ function add_skill_bonus(gameData, character, skill, bonus) {
   cskill.extra_mod += bonus;
 }
 
+function add_initiative_bonus(gameData, character, bonus) {
+  character.wiki.ci.initiative.feat += bonus;
+}
+
+function add_save_bonus(gameData, character, save, bonus) {
+  var csave = character.wiki.ci.saves[save];
+  csave.misc += bonus;
+}
+
 function ledger_calculate(gameData, character) {
   // Sort ledger
   character.wiki.ledger.sort(function(a,b) {
@@ -259,28 +267,28 @@ function ledger_calculate(gameData, character) {
     }
 
     if (type_name === "feats") {
-      /* GREG: Not yet
-      for (var ii = 0; ii < el.actions.length; ii++) {
-        var action = el.actions[ii];
-        eval(action);
+      if (el.actions !== undefined) {
+        for (var ii = 0; ii < el.actions.length; ii++) {
+          var action = el.actions[ii];
+          eval(action);
+        }
       }
-      */
     }
 
     if (type_name === "talents") {
-      /* GREG: Not yet
-       for (var ii = 0; ii < el.actions.length; ii++) {
-       var action = el.actions[ii];
-       eval(action);
-       }
-       */
+      if (el.actions !== undefined) {
+        for (var ii = 0; ii < el.actions.length; ii++) {
+          var action = el.actions[ii];
+          eval(action);
+        }
+      }
     }
 
     if (type_name === "occupations") {
       character.wiki.ci.base.occupation = el.name;
       character.wiki.ci.scratch.feats += el.BonusFeatCount;
 
-      if (le.children.length === 0) { 
+      if (le.children.length === 0) {
         for (var ii = 0; ii < el.SkillsCount; ii++) {
           var e;
 
@@ -330,7 +338,7 @@ function ledger_calculate(gameData, character) {
         character.wiki.ci.saves.ref.base -= gameData.charts.ref[el.charts.ref][level_index - 1];
         character.wiki.ci.saves.will.base -= gameData.charts.will[el.charts.will][level_index - 1];
         character.wiki.ci.misc.defense.base -= gameData.charts.defense[el.charts.defense][level_index - 1];
-        character.wiki.ci.misc.reputation.base -= gameData.charts.reputation[el.charts.reputation][level_index - 1];   
+        character.wiki.ci.misc.reputation.base -= gameData.charts.reputation[el.charts.reputation][level_index - 1];
       }
       character.wiki.ci.misc.bab += gameData.charts.bab[el.charts.bab][level_index];
       character.wiki.ci.saves.fort.base += gameData.charts.fort[el.charts.fort][level_index];
@@ -344,7 +352,7 @@ function ledger_calculate(gameData, character) {
         character.wiki.ci.scratch.feats += 1;
       }
       else if (level_feature === "Talent") {
-        character.wiki.ci.scratch.talents += 1;  
+        character.wiki.ci.scratch.talents += 1;
       }
 
       character.wiki.ci.base.current_class = el.name;
@@ -377,7 +385,7 @@ function ledger_calculate(gameData, character) {
         }
       }
 
-      if (le.children.length === 0) {  
+      if (le.children.length === 0) {
         var e;
 
         e = ledger_addentry(character, "Roll", "Grit", el.GritDie, grit_value, "Grit Die for " + el.name);
@@ -405,19 +413,19 @@ function ledger_calculate(gameData, character) {
           e.parent = le.id;
           e.choices = el.Talents;
           e.param2 = e.choices[0];
-          le.children.push(e.id);  
+          le.children.push(e.id);
         }
 
-        // Add stat on levels / 4. 
+        // Add stat on levels / 4.
         if (character.wiki.ci.base.character_level % 4 === 0) {
-          e = ledger_addentry(character, "Spend", "Stat", "Strength", 1, "Stat Point for Level/4"); 
+          e = ledger_addentry(character, "Spend", "Stat", "Strength", 1, "Stat Point for Level/4");
           e.parent = le.id;
           le.children.push(e.id);
         }
 
-        // Add Feat on levels / 3. 
+        // Add Feat on levels / 3.
         if (character.wiki.ci.base.character_level % 3 === 0) {
-          e = ledger_addentry(character, "Spend", "Feat", "?GREG?", 1, "Feat for Level/3"); 
+          e = ledger_addentry(character, "Spend", "Feat", "?GREG?", 1, "Feat for Level/3");
           e.parent = le.id;
           le.children.push(e.id);
         }

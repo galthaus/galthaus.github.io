@@ -654,7 +654,7 @@
     { "page": 111, "name": "Great Fortitude", "type": "Boolean",
       "requires": [ ],
       "description": "+2 to Fortitude Saves",
-      "actions": [ "add2tofort()" ]
+      "actions": [ "add_save_bonus(gameData, character, \"fort\", 2)" ]
     },
     { "page": 111, "name": "Guide", "type": "Boolean",
       "requires": [ ],
@@ -695,7 +695,7 @@
     { "page": 114, "name": "Improved Initiative", "type": "Boolean",
       "requires": [ ],
       "description": "+4 on initiative checks",
-      "actions": [ "GREGFIXTHIS()" ]
+      "actions": [ "add_initiative_bonus(gameData, character, 4)" ]
     },
     { "page": 115, "name": "Improvised Weapon Proficiency", "type": "Boolean",
       "requires": [ "hasBAB(2)" ],
@@ -720,12 +720,12 @@
     { "page": 116, "name": "Iron Will", "type": "Boolean",
       "requires": [ ],
       "description": "+2 to will saves",
-      "actions": [ "GREGFIXTHIS()" ]
+      "actions": [ "add_save_bonus(gameData, character, \"will\", 2)" ]
     },
     { "page": 116, "name": "Lightning Reflexes", "type": "Boolean",
       "requires": [ ],
       "description": "+2 to reflex saves",
-      "actions": [ "GREGFIXTHIS()" ]
+      "actions": [ "add_save_bonus(gameData, character, \"ref\", 2)" ]
     },
     { "page": 116, "name": "Low Profile", "type": "Boolean",
       "requires": [ ],
@@ -1775,6 +1775,7 @@
     "character.wiki.ci.skills.*.attr_mod": "Number(0)",
     "character.wiki.ci.skills.*.extra_mod": "Number(0)",
     "character.wiki.ci.saves.*.base": "Number(0)",
+    "character.wiki.ci.saves.*.misc": "Number(0)",
     "character.wiki.ci.feats.*.purchased": "false",
     "character.wiki.ci.talents.*.purchased": "false",
     "character.wiki.ci.misc.grit.max": "Number(0)",
