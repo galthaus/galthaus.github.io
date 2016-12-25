@@ -4,6 +4,14 @@ import "gopkg.in/gin-gonic/gin.v1"
 
 func main() {
 	r := gin.Default()
+
+	r.StaticFS("/villian_throwdown", http.Dir("villain_throwdown"))
+	r.LoadHTMLGlob("templates/*")
+	r.GET("/index", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "index.tmpl", gin.H{
+			"title": "Main website",
+		})
+	})
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
