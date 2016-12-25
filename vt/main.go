@@ -12,10 +12,10 @@ func main() {
 	r.LoadHTMLGlob("templates/*")
 	r.GET("/index", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.tmpl", gin.H{
-			"title": "Main website",
+			"title": "Villian Throwdown",
 		})
 	})
-	r.GET("/ping", func(c *gin.Context) {
+	r.GET("/api/v1/users", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
