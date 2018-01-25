@@ -1399,6 +1399,36 @@
           "page": 44,
           "requires": [ "Coordinate", "Inspiration" ],
           "details": "Inspire ally for +1 saves, attacks, and damage"
+        },
+        { "name": "Terrain Specialization", "type": "Boolean",
+          "page": 181,
+          "requires": [ ],
+          "details": "+2 Competence bonus for Climb, Hide, Knowledge (earth and life sciences), Listen, Move Silently, Navigate, Search, Spot, and Survival in one terrain (e.g. Forest)"
+        },
+        { "name": "Hard to Follow", "type": "Boolean",
+          "page": 181,
+          "requires": [ ],
+          "details": "Move at full speed while hiding trail in specialized terrain"
+        },
+        { "name": "Terrain Awareness", "type": "Boolean",
+          "page": 182,
+          "requires": [ ],
+          "details": "Can not be caught flat-footed in specialized terrain"
+        },
+        { "name": "Fast Track", "type": "Boolean",
+          "page": 182,
+          "requires": [ ],
+          "details": "Move normal while tracking at no penalty.  Move double at -10"
+        },
+        { "name": "Snake in the grass", "type": "Boolean",
+          "page": 182,
+          "requires": [ ],
+          "details": "Scout level added to Hide in wilderness.  Can hide when terrain doesn't grant cover or conceal"
+        },
+        { "name": "Ear to the ground", "type": "Boolean",
+          "page": 182,
+          "requires": [ ],
+          "details": "Ear movement up to 1 mile away with listen check"
         }
   ],
   "charts": {
@@ -1678,6 +1708,43 @@
         "Aware",
         "Faith",
         "Cool Under Pressure"
+      ]
+    },
+    {
+      "name": "Scout",
+      "type": "Class",
+      "page": 180,
+      "charts": {
+        "bab": "better",
+        "fort": "bestest",
+        "ref": "good",
+        "will": "good",
+        "defense": "gooder",
+        "reputation": "better"
+      },
+      "Features": [ "Talent", "Talent", "Bonus Feat", "Talent", "Talent", "Bonus Feat",
+                    "Talent", "Talent", "Bonus Feat", "Talent" ],
+      "BonusFeatList": [ "Advanced Firearms Proficiency", "Alertness", "Archaic Weapons Proficiency",
+                         "Attentive", "Blind-Fight", "Deceptive", "Educated", "Far Shot", "Iron Will",
+                         "Medical Expert", "Meticulous", "Surgery", "Track", "Weapon Focus" ],
+      "GritDie": "d10",
+      "ClassSkills": [ 
+        "Climb", "Concentration", "Diplomacy", "Handle Animal", "Hide", "Jump", "Knowledge(earth/life sciences)",
+        "Knowledge(current events)", "Knowledge(popular culture)", "Listen", "Move Silently", "Navigate", "Profession",
+        "Read/Write Language", "Ride", "Speak Language", "Spot", "Survival", "Swim"
+      ],
+      "ActionPoints": "6 + Math.floor(0.5*character.wiki.ci.base.character_level)",
+      "SkillPoints": "5 + character.wiki.ci.attributes.Intelligence.mod",
+      "StartSkillPoints": "4*(5+character.wiki.ci.attributes.Intelligence.mod)",
+      "StartingFeats": [ "Simple Weapons Proficiency" ],
+      "StartingFeatCount": 0,
+      "Talents": [
+        "Terrain Specialization",
+        "Hard to Follow",
+        "Terrain Awareness",
+        "Fast Track",
+        "Snake in the grass",
+        "Ear to the ground"
       ]
     },
     {
