@@ -127,7 +127,6 @@ func (c *Client) putData(url string, input []byte) (*models.GameListEntry, error
 	if err != nil {
 		return nil, err
 	}
-	fmt.Printf("GREG: putData: %d %s\n", resp.StatusCode, string(data))
 	if resp.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("Response failed: %d: %s", resp.StatusCode, string(data))
 	}
